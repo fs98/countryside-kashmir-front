@@ -3,17 +3,15 @@ import axios from '@/lib/axios';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
-export const useAuth = ({
-  middleware,
-  redirectIfAuthenticated,
-}: { middleware?: string; redirectIfAuthenticated?: string } = {}) => {
+export type UseAuthProps = {
+  middleware?: 'guest' | 'auth';
+  redirectIfAuthenticated?: string;
+};
+
+export const useAuth = ({ middleware, redirectIfAuthenticated }: UseAuthProps = {}) => {
   const router = useRouter();
 
-  const {
-    data: user,
-    error,
-    mutate,
-  } = useSWR('/api/user', () =>
+  const { data: user, error, mutate } = useSWR('/api/user', () =>
     axios
       .get('/api/user')
       .then(res => res.data)
