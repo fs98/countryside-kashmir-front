@@ -1,7 +1,7 @@
 import Head from 'next/head';
-import Link from 'next/link';
 import { useAuth } from '@/hooks/auth';
 import axios from '@/lib/axios';
+import Layout from '@/components/Layouts/Layout';
 
 type SlidesProps = {
   image_url: string;
@@ -19,17 +19,13 @@ const Home = ({ slides }: HomeProps): JSX.Element => {
   const { user } = useAuth({ middleware: 'guest' });
 
   return (
-    <>
-      <Head>
-        <title>Laravel</title>
-      </Head>
-
+    <Layout title="Countryside Kashmir">
       <div>
         {slides.map((slide, i) => {
           return <li key={i}>{slide.title}</li>;
         })}
       </div>
-    </>
+    </Layout>
   );
 };
 
