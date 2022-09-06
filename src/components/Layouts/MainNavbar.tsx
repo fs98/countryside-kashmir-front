@@ -9,8 +9,9 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
-import { Avatar } from '@mui/material';
+import { AppBarProps, Avatar, Link } from '@mui/material';
+import PhoneIcon from '@mui/icons-material/Phone';
+import EmailIcon from '@mui/icons-material/Email';
 
 const pages = [
   'Home',
@@ -23,7 +24,7 @@ const pages = [
   'Contact Us',
 ];
 
-const ResponsiveAppBar = () => {
+const MainNavbar: React.FC<AppBarProps> = ({ color }) => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -35,7 +36,44 @@ const ResponsiveAppBar = () => {
   };
 
   return (
-    <AppBar position="static" elevation={0}>
+    <AppBar position="static" elevation={0} color={color}>
+      <Container maxWidth="xl">
+        <Toolbar>
+          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+            <PhoneIcon sx={{ color: 'white' }} />
+            <Typography sx={{ ml: 1 }} textAlign="center" color="white">
+              +91-9596404872 / 75
+            </Typography>
+
+            <EmailIcon sx={{ ml: 3, color: 'white' }} />
+            <Link
+              sx={{ ml: 1, textDecoration: 'none', color: 'white' }}
+              href="mailto: countrysidekashmir@gmail.com">
+              countrysidekashmir@gmail.com
+            </Link>
+          </Box>
+
+          <Box sx={{ display: 'flex', alignItems: 'center', ml: { md: 'auto' } }}>
+            <Link href="https://www.tripadvisor.in/Attraction_Review-g297623-d15557712-Reviews-Countryside_Kashmir_Tour_Travel-Srinagar_Srinagar_District_Kashmir_Jammu_and_Kas.html">
+              <img width={30} src="https://countrysidekashmir.com/img/tripadvisor.png" alt="" />
+            </Link>
+            <Link sx={{ ml: 1 }} href="https://www.fLinkcebook.com/countrysidekashmir">
+              <img width={30} src="https://countrysidekashmir.com/img/facebook.png" alt="" />
+            </Link>
+            <Link sx={{ ml: 1 }} href="https://www.instagram.com/countrysidekashmir/">
+              <img width={30} src="https://countrysidekashmir.com/img/instagram.png" alt="" />
+            </Link>
+            <Link
+              sx={{ ml: 1 }}
+              href="https://www.google.com/maps/place/Countryside+Kashmir+Tour+%26+Travel/@34.0690528,74.4500511,15z/data=!4m5!3m4!1s0x0:0x8ce50dbaaad9ca86!8m2!3d34.0690528!4d74.4500511?shorturl=1">
+              <img width={30} src="https://countrysidekashmir.com/img/google_map.png" alt="" />
+            </Link>
+            <Link sx={{ ml: 1 }} href="https://www.youtube.com/channel/UCxe23fscAkpQ2TOsnnKtkpQ">
+              <img width={30} src="https://countrysidekashmir.com/img/youtube.png" alt="" />
+            </Link>
+          </Box>
+        </Toolbar>
+      </Container>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
@@ -109,4 +147,4 @@ const ResponsiveAppBar = () => {
     </AppBar>
   );
 };
-export default ResponsiveAppBar;
+export default MainNavbar;
