@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { useAuth } from '@/hooks/auth';
 import axios from '@/lib/axios';
-import Layout from '@/components/Layouts/Layout';
+import HomeLayout from '@/components/Layouts/HomeLayout';
 
 type SlidesProps = {
   image_url: string;
@@ -19,13 +19,13 @@ const Home = ({ slides }: HomeProps): JSX.Element => {
   const { user } = useAuth({ middleware: 'guest' });
 
   return (
-    <Layout title="Countryside Kashmir">
+    <HomeLayout title="Countryside Kashmir Tour And Travel - Book Kashmir Tour Packages at Best Price's">
       <div>
         {slides.map((slide, i) => {
           return <li key={i}>{slide.title}</li>;
         })}
       </div>
-    </Layout>
+    </HomeLayout>
   );
 };
 
