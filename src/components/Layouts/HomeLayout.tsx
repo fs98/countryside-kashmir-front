@@ -10,15 +10,10 @@ import SwiperCore, { Navigation, Autoplay } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { Typography } from '@mui/material';
+import type { SlidesProps } from '@/pages';
 
 export type LayoutProps = PropsWithChildren & {
-  slides: {
-    image_url: string;
-    image_alt: string;
-    title: string;
-    subtitle: string;
-    order: number;
-  }[];
+  slides: SlidesProps[];
   title: string;
 };
 
