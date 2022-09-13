@@ -4,45 +4,70 @@ import { Footer } from './Footer';
 import MainNavbar from './MainNavbar';
 import { Swiper, SwiperSlide } from 'swiper/react';
 // import Swiper core and required modules
-import { Navigation } from 'swiper';
+import SwiperCore, { Navigation, Autoplay } from 'swiper';
 
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
+import { Typography } from '@mui/material';
+import type { SlidesProps } from '@/pages';
 
 export type LayoutProps = PropsWithChildren & {
+  slides: SlidesProps[];
   title: string;
 };
 
-const Layout: FC<LayoutProps> = ({ title, children }) => {
+const Layout: FC<LayoutProps> = ({ slides, title, children }) => {
+  SwiperCore.use([Autoplay]);
+
   return (
     <>
       <Head>
         <title>{title}</title>
       </Head>
 
-      <MainNavbar />
+      <MainNavbar color="transparent" sx={{ zIndex: '1' }} />
 
       <Swiper
         modules={[Navigation]}
-        autoplay={true}
+        autoplay={{ delay: 3000 }}
+        speed={2000}
         spaceBetween={50}
         slidesPerView={1}
-        navigation
         onSlideChange={() => console.log('slide change')}
-        onSwiper={swiper => console.log(swiper)}>
-        <SwiperSlide>
-          <img width="100%" src="https://picsum.photos/500/300.jpg?random=1" alt="" />
-          {/* <Image height="100%" width="100%" src={'https://picsum.photos/200/300.jpg'}></Image> */}
-        </SwiperSlide>
-        <SwiperSlide>
-          <img width="100%" src="https://picsum.photos/500/300.jpg?random=2" alt="" />
-          {/* <Image height="100%" width="100%" src={'https://picsum.photos/200/300.jpg'}></Image> */}
-        </SwiperSlide>
-        <SwiperSlide>
-          <img width="100%" src="https://picsum.photos/500/300.jpg?random=3" alt="" />
-          {/* <Image height="100%" width="100%" src={'https://picsum.photos/200/300.jpg'}></Image> */}
-        </SwiperSlide>
+        onSwiper={swiper => console.log(swiper)}
+        className="absolute top-0 -z-1 -z-10 h-screen">
+        {slides.map((slide, i) => {
+          return (
+            <SwiperSlide
+              key={i}
+              className={`bg-black bg-opacity-60 bg-blend-overlay bg-cover bg-no-repeat bg-[url('https://picsum.photos/500/300.jpg?random=1')] flex flex-col justify-center items-center`}>
+              <Typography
+                variant="h1"
+                sx={{
+                  textTransform: 'uppercase',
+                  width: '75%',
+                  textAlign: 'center',
+                  fontWeight: '400',
+                  color: 'orange',
+                  textShadow: '2px 2px 10px black',
+                }}>
+                {slide.title}
+              </Typography>
+              <Typography
+                variant="h3"
+                sx={{
+                  fontStyle: 'italic',
+                  width: '75%',
+                  textAlign: 'center',
+                  color: 'white',
+                  textShadow: '2px 2px 10px black',
+                }}>
+                {slide.subtitle}
+              </Typography>
+            </SwiperSlide>
+          );
+        })}
       </Swiper>
 
       <main>
