@@ -20,7 +20,7 @@ const ImageHeaderLayout: FC<LayoutProps> = ({ title, heading, children }) => {
       <Box
         height={300}
         className="bg-bottom bg-cover bg-no-repeat bg-[url('https://live.staticflickr.com/2207/2251104255_b00e017fb9_b.jpg')]">
-        <MainNavbar color="transparent" />
+        <MainNavbar color="transparent" position="static" />
 
         <Typography
           variant="h4"
