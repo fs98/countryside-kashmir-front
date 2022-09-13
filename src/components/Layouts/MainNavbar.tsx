@@ -24,7 +24,7 @@ const pages = [
   'Contact Us',
 ];
 
-const MainNavbar: React.FC<AppBarProps> = ({ color }) => {
+const MainNavbar: React.FC<AppBarProps> = ({ position, color }) => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -36,7 +36,7 @@ const MainNavbar: React.FC<AppBarProps> = ({ color }) => {
   };
 
   return (
-    <AppBar position="static" elevation={0} color={color}>
+    <AppBar position={position} elevation={0} color={color}>
       <Container maxWidth="xl">
         <Toolbar>
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
