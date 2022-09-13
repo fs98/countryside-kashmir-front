@@ -19,13 +19,9 @@ const Home = ({ slides }: HomeProps): JSX.Element => {
   const { user } = useAuth({ middleware: 'guest' });
 
   return (
-    <HomeLayout title="Countryside Kashmir Tour And Travel - Book Kashmir Tour Packages at Best Price's">
-      <div>
-        {slides.map((slide, i) => {
-          return <li key={i}>{slide.title}</li>;
-        })}
-      </div>
-    </HomeLayout>
+    <HomeLayout
+      slides={slides}
+      title="Countryside Kashmir Tour And Travel - Book Kashmir Tour Packages at Best Price's"></HomeLayout>
   );
 };
 
