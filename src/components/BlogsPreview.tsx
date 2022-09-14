@@ -23,7 +23,7 @@ const BlogsPreview = ({ blogs }: BlogsPreviewProps): JSX.Element => {
         </Grid>
         <Grid item xs={12} md={4} container>
           <Typography
-            variant="subtitle1"
+            variant="h6"
             sx={{
               color: 'orange',
               fontWeight: '600',
@@ -33,7 +33,10 @@ const BlogsPreview = ({ blogs }: BlogsPreviewProps): JSX.Element => {
           </Typography>
           {blogs[0].content.blocks.slice(0, 3).map((block, i) => {
             return (
-              <Typography key={i} variant="body1" sx={{ textAlign: 'justify', marginTop: 2 }}>
+              <Typography
+                key={i}
+                variant="body1"
+                sx={{ fontWeight: 'light', textAlign: 'justify', marginTop: 2 }}>
                 {block.data.text}
               </Typography>
             );
@@ -41,7 +44,12 @@ const BlogsPreview = ({ blogs }: BlogsPreviewProps): JSX.Element => {
           <Button
             variant="contained"
             color="success"
-            sx={{ backgroundColor: 'orange !important', marginTop: 2, py: 2 }}>
+            sx={{
+              backgroundColor: 'orange !important',
+              marginTop: 2,
+              py: 2,
+              textTransform: 'none',
+            }}>
             Read more...
           </Button>
         </Grid>
