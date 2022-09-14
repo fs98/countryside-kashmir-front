@@ -4,6 +4,7 @@ import axios from '@/lib/axios';
 import HomeLayout from '@/components/Layouts/HomeLayout';
 import CardStackSection from '@/components/CardStackSection';
 import AboutSection from '@/components/AboutSection';
+import BlogsPreview from '@/components/BlogsPreview';
 
 export type SlidesProps = {
   image_url: string;
@@ -27,15 +28,32 @@ export type ActivitiesProps = {
   image_alt: string;
 };
 
+export type BlogsProps = {
+  title: string;
+  slug: string;
+  image_url: string;
+  image_alt: string;
+  content: {
+    time: number;
+    blocks: {
+      id: string;
+      type: string;
+      data: {
+        text: string;
+      };
+    }[];
+  };
+};
+
 type HomeProps = {
   slides: SlidesProps[];
   destinations: DestinationsProps[];
   activities: ActivitiesProps[];
+  blogs: BlogsProps[];
 };
 
-const Home = ({ slides, destinations, activities }: HomeProps): JSX.Element => {
+const Home = ({ slides, destinations, activities, blogs }: HomeProps): JSX.Element => {
   const { user } = useAuth({ middleware: 'guest' });
-  console.log('activities', activities);
 
   return (
     <HomeLayout
@@ -54,6 +72,10 @@ const Home = ({ slides, destinations, activities }: HomeProps): JSX.Element => {
         Kashmir."
         items={destinations}
       />
+
+      <section className="bg-zinc-100">
+        <BlogsPreview blogs={blogs} />
+      </section>
 
       <CardStackSection
         title="Things to do in Kashmir"
@@ -130,11 +152,31 @@ export const getServerSideProps = async context => {
     }),
   );
 
+  const blogsApi = await axios
+    .get('/api/guest/blogs')
+    .then(res => {
+      return res.data;
+    })
+    .catch(error => {
+      if (error.response.status !== 409) throw error;
+    });
+
+  const blogs = blogsApi.data.slice(0, 4).map(({ title, slug, image_url, image_alt, content }) => ({
+    title,
+    slug,
+    image_url,
+    image_alt,
+    content,
+  }));
+
+  console.log(blogs);
+
   return {
     props: {
       slides,
       destinations,
       activities,
+      blogs,
     }, // will be passed to the page component as props
   };
 };
