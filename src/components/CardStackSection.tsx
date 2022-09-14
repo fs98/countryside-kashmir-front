@@ -30,7 +30,9 @@ const CardStackSection: FC<CardStackSectionProps> = ({ title, subtitle, items })
         sx={{ color: 'orange', fontWeight: '600', textTransform: 'uppercase' }}>
         {title}
       </Typography>
-      <Typography variant="h6" sx={{ color: 'black', fontWeight: '600', fontStyle: 'italic' }}>
+      <Typography
+        variant="h6"
+        sx={{ color: 'black', fontWeight: '600', fontStyle: 'italic', marginTop: 2 }}>
         {subtitle}
       </Typography>
 
@@ -39,12 +41,7 @@ const CardStackSection: FC<CardStackSectionProps> = ({ title, subtitle, items })
           return (
             <Grid item xs={6} md={4} lg={3}>
               <Card sx={{ maxWidth: 345 }}>
-                <CardMedia
-                  component="img"
-                  height="140"
-                  image="https://picsum.photos/500/300.jpg?random=1"
-                  alt="green iguana"
-                />
+                <CardMedia component="img" height="140" image={item.image_url} alt="green iguana" />
                 <CardContent>
                   <Typography
                     gutterBottom
