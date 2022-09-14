@@ -3,6 +3,7 @@ import { useAuth } from '@/hooks/auth';
 import axios from '@/lib/axios';
 import HomeLayout from '@/components/Layouts/HomeLayout';
 import CardStackSection from '@/components/CardStackSection';
+import AboutSection from '@/components/AboutSection';
 
 export type SlidesProps = {
   image_url: string;
@@ -40,12 +41,20 @@ const Home = ({ slides, destinations, activities }: HomeProps): JSX.Element => {
     <HomeLayout
       slides={slides}
       title="Countryside Kashmir Tour And Travel - Book Kashmir Tour Packages at Best Price's">
+      <section className="bg-zinc-100">
+        <AboutSection
+          title="About - Countryside Kashmir"
+          subtitle="Our mantra is very simple, you get what you pay for, Honesty and integrity is and will always remain at the core of our business values."
+        />
+      </section>
+
       <CardStackSection
         title="Popular Destinations"
         subtitle="There’s probably no other place on the planet that blazes its way into your memory like
         Kashmir."
         items={destinations}
       />
+
       <CardStackSection
         title="Things to do in Kashmir"
         subtitle="Mostly located in the Himalayan ranges, Kashmir offers a plethora of experiences that one must take by indulging in the below listed exciting things to do. The location and the terrain make some of the things are exclusive to this destination, so go ahead and enjoy all of these."
