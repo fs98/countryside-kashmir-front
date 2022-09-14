@@ -45,10 +45,9 @@ const AboutSection: FC<AboutSectionProps> = ({ title, subtitle }) => {
             you enjoy your time and enjoy worth every penny.
           </Typography>
           <Button
-            variant="contained"
-            color="success"
+            variant="outlined"
+            color="primary"
             sx={{
-              backgroundColor: 'orange !important',
               marginTop: 2,
               py: 0,
               textTransform: 'none',

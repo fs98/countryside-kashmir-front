@@ -6,6 +6,8 @@ type BlogsPreviewProps = {
 };
 
 const BlogsPreview = ({ blogs }: BlogsPreviewProps): JSX.Element => {
+  const [mainPost, ...sidePosts] = blogs;
+
   return (
     <Container maxWidth="lg" sx={{ py: 6, textAlign: 'center' }}>
       <Typography
@@ -29,23 +31,22 @@ const BlogsPreview = ({ blogs }: BlogsPreviewProps): JSX.Element => {
               fontWeight: '600',
               textAlign: 'left',
             }}>
-            {blogs[0].title}
+            {mainPost.title}
           </Typography>
-          {blogs[0].content.blocks.slice(0, 3).map((block, i) => {
-            return (
-              <Typography
-                key={i}
-                variant="body1"
-                sx={{ fontWeight: 'light', textAlign: 'justify', marginTop: 2 }}>
-                {block.data.text}
-              </Typography>
-            );
-          })}
+
+          {mainPost.content.blocks.slice(0, 3).map((block, i) => (
+            <Typography
+              key={i}
+              variant="body1"
+              sx={{ fontWeight: 'light', textAlign: 'justify', marginTop: 2 }}>
+              {block.data.text}
+            </Typography>
+          ))}
+
           <Button
-            variant="contained"
-            color="success"
+            variant="outlined"
+            color="warning"
             sx={{
-              backgroundColor: 'orange !important',
               marginTop: 2,
               py: 2,
               textTransform: 'none',
@@ -53,25 +54,24 @@ const BlogsPreview = ({ blogs }: BlogsPreviewProps): JSX.Element => {
             Read more...
           </Button>
         </Grid>
+
         <Grid item xs={12} md={4}>
-          {blogs.slice(1).map(blog => {
-            return (
-              <Box display="flex" marginBottom={2}>
-                <img width={150} src={blog.image_url} alt="" />
-                <Link
-                  sx={{
-                    cursor: 'pointer',
-                    textDecoration: 'none',
-                    textAlign: 'left',
-                    marginLeft: 2,
-                    color: 'orange',
-                    fontWeight: 'bold',
-                  }}>
-                  {blog.title}
-                </Link>
-              </Box>
-            );
-          })}
+          {sidePosts.map(blog => (
+            <Box display="flex" marginBottom={2}>
+              <img width={150} src={blog.image_url} alt="" />
+              <Link
+                sx={{
+                  cursor: 'pointer',
+                  textDecoration: 'none',
+                  textAlign: 'left',
+                  marginLeft: 2,
+                  color: 'orange',
+                  fontWeight: 'bold',
+                }}>
+                {blog.title}
+              </Link>
+            </Box>
+          ))}
         </Grid>
       </Grid>
     </Container>

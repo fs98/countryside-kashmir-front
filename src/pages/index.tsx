@@ -6,49 +6,41 @@ import CardStackSection from '@/components/CardStackSection';
 import AboutSection from '@/components/AboutSection';
 import BlogsPreview from '@/components/BlogsPreview';
 
-export type SlidesProps = {
+type ImageProps = {
   image_url: string;
   image_alt: string;
+};
+
+export type SlidesProps = ImageProps & {
   title: string;
   subtitle: string;
   order: number;
 };
 
-export type DestinationsProps = {
+export type SectionProps = ImageProps & {
   name: string;
   slug: string;
-  image_url: string;
-  image_alt: string;
 };
 
-export type ActivitiesProps = {
-  name: string;
-  slug: string;
-  image_url: string;
-  image_alt: string;
-};
-
-export type BlogsProps = {
+export type BlogsProps = ImageProps & {
   title: string;
   slug: string;
-  image_url: string;
-  image_alt: string;
   content: {
     time: number;
-    blocks: {
+    blocks: Array<{
       id: string;
       type: string;
       data: {
         text: string;
       };
-    }[];
+    }>;
   };
 };
 
 type HomeProps = {
   slides: SlidesProps[];
-  destinations: DestinationsProps[];
-  activities: ActivitiesProps[];
+  destinations: SectionProps[];
+  activities: SectionProps[];
   blogs: BlogsProps[];
 };
 
@@ -74,7 +66,7 @@ const Home = ({ slides, destinations, activities, blogs }: HomeProps): JSX.Eleme
       />
 
       <section className="bg-zinc-100">
-        <BlogsPreview blogs={blogs} />
+        {blogs.length ? <BlogsPreview blogs={blogs} /> : 'No blogs'}
       </section>
 
       <CardStackSection
@@ -86,7 +78,7 @@ const Home = ({ slides, destinations, activities, blogs }: HomeProps): JSX.Eleme
   );
 };
 
-export const getServerSideProps = async context => {
+export const getServerSideProps = async () => {
   const slidesApi = await axios
     .get('/api/guest/slides')
     .then(res => {
@@ -125,7 +117,7 @@ export const getServerSideProps = async context => {
       if (error.response.status !== 409) throw error;
     });
 
-  const destinations: DestinationsProps[] = destinationsApi.data.map(
+  const destinations: SectionProps[] = destinationsApi.data.map(
     ({ name, slug, image_url, image_alt }) => ({
       name,
       slug,
@@ -143,7 +135,7 @@ export const getServerSideProps = async context => {
       if (error.response.status !== 409) throw error;
     });
 
-  const activities: ActivitiesProps[] = activitiesApi.data.map(
+  const activities: SectionProps[] = activitiesApi.data.map(
     ({ name, slug, image_url, image_alt }) => ({
       name,
       slug,
@@ -168,8 +160,6 @@ export const getServerSideProps = async context => {
     image_alt,
     content,
   }));
-
-  console.log(blogs);
 
   return {
     props: {
