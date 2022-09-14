@@ -27,12 +27,10 @@ const CardStackSection: FC<CardStackSectionProps> = ({ title, subtitle, items })
     <Container maxWidth="lg" sx={{ py: 6, textAlign: 'center' }}>
       <Typography
         variant="h4"
-        sx={{ color: 'orange', fontWeight: '600', textTransform: 'uppercase' }}>
+        sx={{ color: 'orange', fontWeight: 'bold', textTransform: 'uppercase' }}>
         {title}
       </Typography>
-      <Typography
-        variant="h6"
-        sx={{ color: 'black', fontWeight: '600', fontStyle: 'italic', marginTop: 2 }}>
+      <Typography variant="h6" sx={{ color: 'black', fontWeight: 'light', marginTop: 2 }}>
         {subtitle}
       </Typography>
 
