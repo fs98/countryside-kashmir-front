@@ -31,7 +31,12 @@ const Home = ({ slides, destinations }: HomeProps): JSX.Element => {
     <HomeLayout
       slides={slides}
       title="Countryside Kashmir Tour And Travel - Book Kashmir Tour Packages at Best Price's">
-      <CardStackSection items={destinations} />
+      <CardStackSection
+        title="Popular Destinations"
+        subtitle="There’s probably no other place on the planet that blazes its way into your memory like
+        Kashmir."
+        items={destinations}
+      />
     </HomeLayout>
   );
 };
