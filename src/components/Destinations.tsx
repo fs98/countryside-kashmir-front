@@ -13,7 +13,7 @@ import { FC } from 'react';
 
 export const Destinations: FC<{ destinations: DestinationsProps[] }> = ({ destinations }) => {
   return (
-    <Container maxWidth="xl" sx={{ py: 6, textAlign: 'center' }}>
+    <Container maxWidth="lg" sx={{ py: 6, textAlign: 'center' }}>
       <Typography
         variant="h4"
         sx={{ color: 'orange', fontWeight: '600', textTransform: 'uppercase' }}>
@@ -27,7 +27,7 @@ export const Destinations: FC<{ destinations: DestinationsProps[] }> = ({ destin
       <Grid marginTop={6} container rowSpacing={5} spacing={5} justifyContent="center">
         {destinations.map(destination => {
           return (
-            <Grid item xs={3}>
+            <Grid item xs={6} md={4} lg={3}>
               <Card sx={{ maxWidth: 345 }}>
                 <CardMedia
                   component="img"
