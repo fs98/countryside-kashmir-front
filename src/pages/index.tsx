@@ -19,13 +19,22 @@ export type DestinationsProps = {
   image_alt: string;
 };
 
+export type ActivitiesProps = {
+  name: string;
+  slug: string;
+  image_url: string;
+  image_alt: string;
+};
+
 type HomeProps = {
   slides: SlidesProps[];
   destinations: DestinationsProps[];
+  activities: ActivitiesProps[];
 };
 
-const Home = ({ slides, destinations }: HomeProps): JSX.Element => {
+const Home = ({ slides, destinations, activities }: HomeProps): JSX.Element => {
   const { user } = useAuth({ middleware: 'guest' });
+  console.log('activities', activities);
 
   return (
     <HomeLayout
@@ -36,6 +45,11 @@ const Home = ({ slides, destinations }: HomeProps): JSX.Element => {
         subtitle="There’s probably no other place on the planet that blazes its way into your memory like
         Kashmir."
         items={destinations}
+      />
+      <CardStackSection
+        title="Things to do in Kashmir"
+        subtitle="Mostly located in the Himalayan ranges, Kashmir offers a plethora of experiences that one must take by indulging in the below listed exciting things to do. The location and the terrain make some of the things are exclusive to this destination, so go ahead and enjoy all of these."
+        items={activities}
       />
     </HomeLayout>
   );
@@ -89,10 +103,29 @@ export const getServerSideProps = async context => {
     }),
   );
 
+  const activitiesApi = await axios
+    .get('/api/guest/activities')
+    .then(res => {
+      return res.data;
+    })
+    .catch(error => {
+      if (error.response.status !== 409) throw error;
+    });
+
+  const activities: ActivitiesProps[] = activitiesApi.data.map(
+    ({ name, slug, image_url, image_alt }) => ({
+      name,
+      slug,
+      image_url,
+      image_alt,
+    }),
+  );
+
   return {
     props: {
       slides,
       destinations,
+      activities,
     }, // will be passed to the page component as props
   };
 };
