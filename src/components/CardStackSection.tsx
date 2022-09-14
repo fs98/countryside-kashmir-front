@@ -11,7 +11,16 @@ import {
 } from '@mui/material';
 import { FC } from 'react';
 
-export const Destinations: FC<{ destinations: DestinationsProps[] }> = ({ destinations }) => {
+export type CardStackSectionProps = {
+  items: {
+    name: string;
+    slug: string;
+    image_url: string;
+    image_alt: string;
+  }[];
+};
+
+const CardStackSection: FC<CardStackSectionProps> = ({ items }) => {
   return (
     <Container maxWidth="lg" sx={{ py: 6, textAlign: 'center' }}>
       <Typography
@@ -25,7 +34,7 @@ export const Destinations: FC<{ destinations: DestinationsProps[] }> = ({ destin
       </Typography>
 
       <Grid marginTop={6} container rowSpacing={5} spacing={5} justifyContent="center">
-        {destinations.map(destination => {
+        {items.map(destination => {
           return (
             <Grid item xs={6} md={4} lg={3}>
               <Card sx={{ maxWidth: 345 }}>
@@ -57,3 +66,5 @@ export const Destinations: FC<{ destinations: DestinationsProps[] }> = ({ destin
     </Container>
   );
 };
+
+export default CardStackSection;
