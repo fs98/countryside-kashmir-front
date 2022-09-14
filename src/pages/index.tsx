@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { useAuth } from '@/hooks/auth';
 import axios from '@/lib/axios';
 import HomeLayout from '@/components/Layouts/HomeLayout';
-import { Destinations } from '@/components/Destinations';
+import CardStackSection from '@/components/CardStackSection';
 
 export type SlidesProps = {
   image_url: string;
@@ -31,7 +31,7 @@ const Home = ({ slides, destinations }: HomeProps): JSX.Element => {
     <HomeLayout
       slides={slides}
       title="Countryside Kashmir Tour And Travel - Book Kashmir Tour Packages at Best Price's">
-      <Destinations destinations={destinations} />
+      <CardStackSection items={destinations} />
     </HomeLayout>
   );
 };
