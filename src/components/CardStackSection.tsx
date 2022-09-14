@@ -12,6 +12,8 @@ import {
 import { FC } from 'react';
 
 export type CardStackSectionProps = {
+  title: string;
+  subtitle: string;
   items: {
     name: string;
     slug: string;
@@ -20,17 +22,16 @@ export type CardStackSectionProps = {
   }[];
 };
 
-const CardStackSection: FC<CardStackSectionProps> = ({ items }) => {
+const CardStackSection: FC<CardStackSectionProps> = ({ title, subtitle, items }) => {
   return (
     <Container maxWidth="lg" sx={{ py: 6, textAlign: 'center' }}>
       <Typography
         variant="h4"
         sx={{ color: 'orange', fontWeight: '600', textTransform: 'uppercase' }}>
-        Popular Destinations
+        {title}
       </Typography>
       <Typography variant="h6" sx={{ color: 'black', fontWeight: '600', fontStyle: 'italic' }}>
-        There’s probably no other place on the planet that blazes its way into your memory like
-        Kashmir.
+        {subtitle}
       </Typography>
 
       <Grid marginTop={6} container rowSpacing={5} spacing={5} justifyContent="center">
