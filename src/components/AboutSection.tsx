@@ -11,12 +11,10 @@ const AboutSection: FC<AboutSectionProps> = ({ title, subtitle }) => {
     <Container maxWidth="lg" sx={{ py: 6, textAlign: 'center' }}>
       <Typography
         variant="h4"
-        sx={{ color: 'orange', fontWeight: '600', textTransform: 'uppercase' }}>
+        sx={{ color: 'orange', fontWeight: 'bold', textTransform: 'uppercase' }}>
         {title}
       </Typography>
-      <Typography
-        variant="h6"
-        sx={{ color: 'black', fontWeight: '600', fontStyle: 'italic', marginTop: 2 }}>
+      <Typography variant="h6" sx={{ color: 'black', fontWeight: 'light', marginTop: 2 }}>
         {subtitle}
       </Typography>
 
@@ -28,15 +26,19 @@ const AboutSection: FC<AboutSectionProps> = ({ title, subtitle }) => {
           />
         </Grid>
         <Grid item xs={12} md={6} container>
-          <Typography variant="h6" sx={{ fontWeight: '600', textTransform: 'uppercase' }}>
+          <Typography variant="h5" sx={{ fontWeight: 'bold' }}>
             Countryside Kashmir Tour & Travel
           </Typography>
-          <Typography variant="body1" sx={{ textAlign: 'justify', marginTop: 2 }}>
+          <Typography
+            variant="body1"
+            sx={{ fontWeight: 'light', textAlign: 'justify', marginTop: 2 }}>
             Countryside Kashmir is registered with the Department of Tourism, Govt. of Jammu and
             Kashmir, under registration 172/ADTG. The company is based out of Chandilora Tangmarg,
             which is also known the Gateway of Gulmarg. The company is a freshly establishment one.
           </Typography>
-          <Typography variant="body1" sx={{ textAlign: 'justify', marginTop: 2 }}>
+          <Typography
+            variant="body1"
+            sx={{ fontWeight: 'light', textAlign: 'justify', marginTop: 2 }}>
             With the endeavor of provides exceptional, respectful, trustworthy service to our
             clients. Honesty and integrity are the sole motives of our company to restore the
             eroding trust of clients. It is not just about booking a package but making sure that
@@ -45,7 +47,12 @@ const AboutSection: FC<AboutSectionProps> = ({ title, subtitle }) => {
           <Button
             variant="contained"
             color="success"
-            sx={{ backgroundColor: 'orange !important', marginTop: 2, py: 0 }}>
+            sx={{
+              backgroundColor: 'orange !important',
+              marginTop: 2,
+              py: 0,
+              textTransform: 'none',
+            }}>
             Read more...
           </Button>
         </Grid>
