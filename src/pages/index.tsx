@@ -2,9 +2,9 @@ import Head from 'next/head';
 import { useAuth } from '@/hooks/auth';
 import axios from '@/lib/axios';
 import HomeLayout from '@/components/Layouts/HomeLayout';
-import CardStackSection from '@/components/CardStackSection';
-import AboutSection from '@/components/AboutSection';
-import BlogsPreview from '@/components/BlogsPreview';
+import CardStackSection from '@/components/HomePageBlocks/CardStackSection';
+import AboutSection from '@/components/HomePageBlocks/AboutSection';
+import BlogsPreview from '@/components/HomePageBlocks/BlogsPreview';
 
 type ImageProps = {
   image_url: string;
