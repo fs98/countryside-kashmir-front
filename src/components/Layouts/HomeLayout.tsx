@@ -31,6 +31,7 @@ const Layout: FC<LayoutProps> = ({ slides, title, children }) => {
       <Swiper
         modules={[Navigation]}
         autoplay={{ delay: 3000 }}
+        loop={true}
         speed={2000}
         spaceBetween={50}
         slidesPerView={1}
