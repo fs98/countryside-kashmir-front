@@ -1,5 +1,6 @@
 import { Box, Button, Container, Grid, Link, Typography } from '@mui/material';
 import { BlogsProps } from '@/pages';
+import Block from '@/components/Block/Block';
 
 type BlogsPreviewProps = {
   blogs: BlogsProps[];
@@ -9,16 +10,7 @@ const BlogsPreview = ({ blogs }: BlogsPreviewProps): JSX.Element => {
   const [mainPost, ...sidePosts] = blogs;
 
   return (
-    <Container maxWidth="lg" sx={{ py: 6 }}>
-      <Typography
-        variant="h4"
-        color="warning.main"
-        fontWeight="bold"
-        textAlign="center"
-        textTransform="uppercase">
-        Travel Blogs
-      </Typography>
-
+    <Block title="Travel Blogs">
       <Grid marginTop={6} container rowSpacing={5} spacing={5}>
         <Grid item xs={12} md={4} container>
           <img
@@ -55,8 +47,8 @@ const BlogsPreview = ({ blogs }: BlogsPreviewProps): JSX.Element => {
         </Grid>
 
         <Grid item xs={12} md={4}>
-          {sidePosts.map(blog => (
-            <Box display="flex" marginBottom={2}>
+          {sidePosts.map((blog, i) => (
+            <Box key={i} display="flex" marginBottom={2}>
               <img width={150} src={blog.image_url} alt="" />
               <Link
                 color="warning.main"
@@ -73,7 +65,7 @@ const BlogsPreview = ({ blogs }: BlogsPreviewProps): JSX.Element => {
           ))}
         </Grid>
       </Grid>
-    </Container>
+    </Block>
   );
 };
 
