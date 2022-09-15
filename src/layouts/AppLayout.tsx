@@ -1,4 +1,4 @@
-import Navigation from '@/components/Layouts/Navigation';
+import Navigation from './Navigation';
 import { useAuth } from '@/hooks/auth';
 import { FC, PropsWithChildren, ReactNode } from 'react';
 

@@ -1,9 +1,11 @@
-import ApplicationLogo from '@/components/ApplicationLogo';
-import Dropdown from '@/components/Dropdown';
+import ApplicationLogo from '@/components/ApplicationLogo/ApplicationLogo';
+import Dropdown from '@/components/Dropdown/Dropdown';
 import Link from 'next/link';
-import NavLink from '@/components/NavLink';
-import ResponsiveNavLink, { ResponsiveNavButton } from '@/components/ResponsiveNavLink';
-import { DropdownButton } from '@/components/DropdownLink';
+import NavLink from '@/components/NavLink/NavLink';
+import ResponsiveNavLink, {
+  ResponsiveNavButton,
+} from '@/components/ResponsiveNavLink/ResponsiveNavLink';
+import { DropdownButton } from '@/components/DropdownLink/DropdownLink';
 import { useAuth } from '@/hooks/auth';
 import { useRouter } from 'next/router';
 import { FC, useState } from 'react';
