@@ -1,3 +1,4 @@
+import Block from '@/components/Block/Block';
 import { Button, Container, Grid, Typography } from '@mui/material';
 import { FC } from 'react';
 
@@ -8,24 +9,7 @@ export type AboutSectionProps = {
 
 const AboutSection: FC<AboutSectionProps> = ({ title, subtitle }) => {
   return (
-    <Container maxWidth="lg" sx={{ py: 6 }}>
-      <Typography
-        variant="h4"
-        color="warning.main"
-        fontWeight="bold"
-        textAlign="center"
-        textTransform="uppercase">
-        {title}
-      </Typography>
-      <Typography
-        variant="h6"
-        color="text.primary"
-        fontWeight="light"
-        textAlign="center"
-        marginTop={2}>
-        {subtitle}
-      </Typography>
-
+    <Block title={title} subtitle={subtitle}>
       <Grid marginTop={6} container rowSpacing={5} spacing={5}>
         <Grid item xs={12} md={6} container>
           <img
@@ -60,7 +44,7 @@ const AboutSection: FC<AboutSectionProps> = ({ title, subtitle }) => {
           </Button>
         </Grid>
       </Grid>
-    </Container>
+    </Block>
   );
 };
 
