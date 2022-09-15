@@ -35,8 +35,6 @@ const Layout: FC<LayoutProps> = ({ slides, title, children }) => {
         speed={2000}
         spaceBetween={50}
         slidesPerView={1}
-        onSlideChange={() => console.log('slide change')}
-        onSwiper={swiper => console.log(swiper)}
         className="absolute top-0 -z-1 -z-10 h-screen">
         {slides.map((slide, i) => {
           return (

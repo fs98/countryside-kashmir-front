@@ -2,11 +2,14 @@ import Head from 'next/head';
 import { useAuth } from '@/hooks/auth';
 import axios from '@/lib/axios';
 import HomeLayout from '@/layouts/HomeLayout';
-import CardStackSection from '@/blocks/HomePageBlocks/CardStackSection';
 import AboutSection from '@/blocks/HomePageBlocks/AboutSection';
 import BlogsPreview from '@/blocks/HomePageBlocks/BlogsPreview';
+import Block from '@/components/Block/Block';
+import CardStack from '@/components/CardStack/CardStack';
+import PriceCard from '@/components/ItemCard/PriceCard';
+import { Grid } from '@mui/material';
 
-type ImageProps = {
+export type ImageProps = {
   image_url: string;
   image_alt: string;
 };
@@ -17,7 +20,7 @@ export type SlidesProps = ImageProps & {
   order: number;
 };
 
-export type SectionProps = ImageProps & {
+export type ItemsProps = ImageProps & {
   name: string;
   slug: string;
 };
@@ -37,20 +40,46 @@ export type BlogsProps = ImageProps & {
   };
 };
 
-type HomeProps = {
-  slides: SlidesProps[];
-  destinations: SectionProps[];
-  activities: SectionProps[];
-  blogs: BlogsProps[];
+export type OfferProps = ImageProps & {
+  name: string;
+  slug: string;
+  days: number;
+  nights: number;
+  persons: number;
+  price: number;
+  destinations: Array<{
+    name: string;
+  }>;
 };
 
-const Home = ({ slides, destinations, activities, blogs }: HomeProps): JSX.Element => {
+export type CategoryProps = {
+  name: string;
+  slug: string;
+  offers: OfferProps[];
+};
+
+type HomeProps = {
+  slides: SlidesProps[];
+  destinations: ItemsProps[];
+  activities: ItemsProps[];
+  blogs: BlogsProps[];
+  categoryOffers: CategoryProps[];
+};
+
+const Home = ({
+  slides,
+  destinations,
+  activities,
+  blogs,
+  categoryOffers,
+}: HomeProps): JSX.Element => {
   const { user } = useAuth({ middleware: 'guest' });
 
   return (
     <HomeLayout
       slides={slides}
       title="Countryside Kashmir Tour And Travel - Book Kashmir Tour Packages at Best Price's">
+      {/* About Us Block */}
       <section className="bg-zinc-100">
         <AboutSection
           title="About - Countryside Kashmir"
@@ -58,22 +87,38 @@ const Home = ({ slides, destinations, activities, blogs }: HomeProps): JSX.Eleme
         />
       </section>
 
-      <CardStackSection
+      {/* Destinations Block */}
+      <Block
         title="Popular Destinations"
         subtitle="There’s probably no other place on the planet that blazes its way into your memory like
-        Kashmir."
-        items={destinations}
-      />
+        Kashmir.">
+        <CardStack items={destinations} />
+      </Block>
 
+      {/* Categories and their packages */}
+      {categoryOffers.map(category => (
+        <Block title={category.name} subtitle={`Find the best ${category.name} we have`}>
+          <Grid marginTop={6} container rowSpacing={5} spacing={5} justifyContent="center">
+            {category.offers.map((offer, i) => (
+              <Grid key={i} item xs={6} md={4} lg={3}>
+                <PriceCard offer={offer} />
+              </Grid>
+            ))}
+          </Grid>
+        </Block>
+      ))}
+
+      {/* Blogs Block */}
       <section className="bg-zinc-100">
         {blogs.length ? <BlogsPreview blogs={blogs} /> : 'No blogs'}
       </section>
 
-      <CardStackSection
+      {/* Activities Block */}
+      <Block
         title="Things to do in Kashmir"
-        subtitle="Mostly located in the Himalayan ranges, Kashmir offers a plethora of experiences that one must take by indulging in the below listed exciting things to do. The location and the terrain make some of the things are exclusive to this destination, so go ahead and enjoy all of these."
-        items={activities}
-      />
+        subtitle="Mostly located in the Himalayan ranges, Kashmir offers a plethora of experiences that one must take by indulging in the below listed exciting things to do. The location and the terrain make some of the things are exclusive to this destination, so go ahead and enjoy all of these.">
+        <CardStack items={activities} />
+      </Block>
     </HomeLayout>
   );
 };
@@ -84,16 +129,6 @@ export const getServerSideProps = async () => {
     .then(res => {
       return res.data;
     })
-    // .then(response => ({
-    //   ...response,
-    //   data: response.data.map(({ image_url, image_alt, title, subtitle, order }) => ({
-    //     image_url,
-    //     image_alt,
-    //     title,
-    //     subtitle,
-    //     order,
-    //   })),
-    // }))
     .catch(error => {
       if (error.response.status !== 409) throw error;
     });
@@ -117,7 +152,7 @@ export const getServerSideProps = async () => {
       if (error.response.status !== 409) throw error;
     });
 
-  const destinations: SectionProps[] = destinationsApi.data.map(
+  const destinations: ItemsProps[] = destinationsApi.data.map(
     ({ name, slug, image_url, image_alt }) => ({
       name,
       slug,
@@ -135,7 +170,7 @@ export const getServerSideProps = async () => {
       if (error.response.status !== 409) throw error;
     });
 
-  const activities: SectionProps[] = activitiesApi.data.map(
+  const activities: ItemsProps[] = activitiesApi.data.map(
     ({ name, slug, image_url, image_alt }) => ({
       name,
       slug,
@@ -161,12 +196,42 @@ export const getServerSideProps = async () => {
     content,
   }));
 
+  const categoryOffersApi = await axios
+    .get('api/guest/categories')
+    .then(res => {
+      return res.data;
+    })
+    .catch(error => {
+      if (error.response.status !== 409) throw error;
+    });
+
+  const categoryOffers = categoryOffersApi.data.map(({ name, slug, packages }) => ({
+    name,
+    slug,
+    offers: packages.map(
+      ({ name, slug, days, nights, price, persons, image_url, image_alt, destinations }) => ({
+        name,
+        slug,
+        days,
+        nights,
+        price,
+        persons,
+        image_url,
+        image_alt,
+        destinations: destinations.map(({ name }) => ({
+          name,
+        })),
+      }),
+    ),
+  }));
+
   return {
     props: {
       slides,
       destinations,
       activities,
       blogs,
+      categoryOffers,
     }, // will be passed to the page component as props
   };
 };
