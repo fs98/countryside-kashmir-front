@@ -66,12 +66,7 @@ const MainNavbar: React.FC<AppBarProps> = ({ position, color }) => {
             </Link>
           </Box>
 
-          <Box
-            display="flex"
-            alignItems="center"
-            marginLeft={{
-              ml: 'auto',
-            }}>
+          <Box display="flex" alignItems="center" marginLeft="auto">
             <Link href="https://www.tripadvisor.in/Attraction_Review-g297623-d15557712-Reviews-Countryside_Kashmir_Tour_Travel-Srinagar_Srinagar_District_Kashmir_Jammu_and_Kas.html">
               <img width={30} src="https://countrysidekashmir.com/img/tripadvisor.png" alt="" />
             </Link>
