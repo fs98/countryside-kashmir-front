@@ -39,36 +39,54 @@ const MainNavbar: React.FC<AppBarProps> = ({ position, color }) => {
     <AppBar position={position} elevation={0} color={color}>
       <Container maxWidth="xl">
         <Toolbar>
-          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <PhoneIcon sx={{ color: 'white' }} />
-            <Typography sx={{ ml: 1 }} textAlign="center" color="white">
+          <Box
+            display={{
+              xs: 'none',
+              md: 'flex',
+            }}>
+            <PhoneIcon htmlColor="white" />
+            <Typography marginLeft={1} textAlign="center" color="white">
               +91-9596404872 / 75
             </Typography>
 
-            <EmailIcon sx={{ ml: 3, color: 'white' }} />
+            <EmailIcon
+              htmlColor="white"
+              sx={{
+                ml: 3,
+              }}
+            />
             <Link
-              sx={{ ml: 1, textDecoration: 'none', color: 'white' }}
+              sx={{
+                ml: 1,
+                textDecoration: 'none',
+                color: 'white',
+              }}
               href="mailto: countrysidekashmir@gmail.com">
               countrysidekashmir@gmail.com
             </Link>
           </Box>
 
-          <Box sx={{ display: 'flex', alignItems: 'center', ml: { md: 'auto' } }}>
+          <Box
+            display="flex"
+            alignItems="center"
+            marginLeft={{
+              ml: 'auto',
+            }}>
             <Link href="https://www.tripadvisor.in/Attraction_Review-g297623-d15557712-Reviews-Countryside_Kashmir_Tour_Travel-Srinagar_Srinagar_District_Kashmir_Jammu_and_Kas.html">
               <img width={30} src="https://countrysidekashmir.com/img/tripadvisor.png" alt="" />
             </Link>
-            <Link sx={{ ml: 1 }} href="https://www.fLinkcebook.com/countrysidekashmir">
+            <Link marginLeft={1} href="https://www.fLinkcebook.com/countrysidekashmir">
               <img width={30} src="https://countrysidekashmir.com/img/facebook.png" alt="" />
             </Link>
-            <Link sx={{ ml: 1 }} href="https://www.instagram.com/countrysidekashmir/">
+            <Link marginLeft={1} href="https://www.instagram.com/countrysidekashmir/">
               <img width={30} src="https://countrysidekashmir.com/img/instagram.png" alt="" />
             </Link>
             <Link
-              sx={{ ml: 1 }}
+              marginLeft={1}
               href="https://www.google.com/maps/place/Countryside+Kashmir+Tour+%26+Travel/@34.0690528,74.4500511,15z/data=!4m5!3m4!1s0x0:0x8ce50dbaaad9ca86!8m2!3d34.0690528!4d74.4500511?shorturl=1">
               <img width={30} src="https://countrysidekashmir.com/img/google_map.png" alt="" />
             </Link>
-            <Link sx={{ ml: 1 }} href="https://www.youtube.com/channel/UCxe23fscAkpQ2TOsnnKtkpQ">
+            <Link marginLeft={1} href="https://www.youtube.com/channel/UCxe23fscAkpQ2TOsnnKtkpQ">
               <img width={30} src="https://countrysidekashmir.com/img/youtube.png" alt="" />
             </Link>
           </Box>
@@ -76,7 +94,11 @@ const MainNavbar: React.FC<AppBarProps> = ({ position, color }) => {
       </Container>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+          <Box
+            display={{
+              xs: 'none',
+              md: 'flex',
+            }}>
             <img
               width={120}
               className="mr-1 bg-slate-50 p-2 rounded-xl"
@@ -85,7 +107,12 @@ const MainNavbar: React.FC<AppBarProps> = ({ position, color }) => {
             />
           </Box>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          <Box
+            flexGrow={1}
+            display={{
+              xs: 'flex',
+              md: 'none',
+            }}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -110,7 +137,10 @@ const MainNavbar: React.FC<AppBarProps> = ({ position, color }) => {
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
-                display: { xs: 'block', md: 'none' },
+                display: {
+                  xs: 'block',
+                  md: 'none',
+                },
               }}>
               {pages.map(page => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
@@ -120,11 +150,11 @@ const MainNavbar: React.FC<AppBarProps> = ({ position, color }) => {
             </Menu>
           </Box>
           <Box
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              // flexGrow: 1,
-            }}>
+            display={{
+              xs: 'flex',
+              md: 'none',
+            }}
+            marginRight={2}>
             <img
               width={120}
               className="mr-1 bg-slate-50 p-2 rounded-xl"
@@ -132,12 +162,21 @@ const MainNavbar: React.FC<AppBarProps> = ({ position, color }) => {
               alt="logo"
             />
           </Box>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box
+            display={{
+              xs: 'none',
+              md: 'flex',
+            }}
+            flexGrow={1}>
             {pages.map(page => (
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}>
+                sx={{
+                  my: 2,
+                  color: 'white',
+                  display: 'block',
+                }}>
                 {page}
               </Button>
             ))}

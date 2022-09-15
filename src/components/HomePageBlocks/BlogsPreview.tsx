@@ -9,10 +9,13 @@ const BlogsPreview = ({ blogs }: BlogsPreviewProps): JSX.Element => {
   const [mainPost, ...sidePosts] = blogs;
 
   return (
-    <Container maxWidth="lg" sx={{ py: 6, textAlign: 'center' }}>
+    <Container maxWidth="lg" sx={{ py: 6 }}>
       <Typography
         variant="h4"
-        sx={{ color: 'orange', fontWeight: '600', textTransform: 'uppercase' }}>
+        color="warning.main"
+        fontWeight="bold"
+        textAlign="center"
+        textTransform="uppercase">
         Travel Blogs
       </Typography>
 
@@ -24,13 +27,7 @@ const BlogsPreview = ({ blogs }: BlogsPreviewProps): JSX.Element => {
           />
         </Grid>
         <Grid item xs={12} md={4} container>
-          <Typography
-            variant="h6"
-            sx={{
-              color: 'orange',
-              fontWeight: '600',
-              textAlign: 'left',
-            }}>
+          <Typography variant="h6" color="warning.main" fontWeight="bold" textAlign="left">
             {mainPost.title}
           </Typography>
 
@@ -38,7 +35,9 @@ const BlogsPreview = ({ blogs }: BlogsPreviewProps): JSX.Element => {
             <Typography
               key={i}
               variant="body1"
-              sx={{ fontWeight: 'light', textAlign: 'justify', marginTop: 2 }}>
+              fontWeight="light"
+              marginTop={2}
+              textAlign="justify">
               {block.data.text}
             </Typography>
           ))}
@@ -60,13 +59,13 @@ const BlogsPreview = ({ blogs }: BlogsPreviewProps): JSX.Element => {
             <Box display="flex" marginBottom={2}>
               <img width={150} src={blog.image_url} alt="" />
               <Link
+                color="warning.main"
+                fontWeight="bold"
+                marginLeft={2}
+                textAlign="left"
                 sx={{
                   cursor: 'pointer',
                   textDecoration: 'none',
-                  textAlign: 'left',
-                  marginLeft: 2,
-                  color: 'orange',
-                  fontWeight: 'bold',
                 }}>
                 {blog.title}
               </Link>

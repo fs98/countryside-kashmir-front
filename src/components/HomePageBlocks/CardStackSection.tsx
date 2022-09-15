@@ -19,15 +19,22 @@ export type CardStackSectionProps = {
 
 const CardStackSection: FC<CardStackSectionProps> = ({ title, subtitle, items }) => {
   return (
-    <Container maxWidth="lg" sx={{ py: 6, textAlign: 'center' }}>
+    <Container maxWidth="lg" sx={{ py: 6 }}>
       <Typography
-        fontWeight="bold"
         variant="h4"
-        sx={{ color: 'orange', textTransform: 'uppercase' }}>
+        color="warning.main"
+        fontWeight="bold"
+        textAlign="center"
+        textTransform="uppercase">
         {title}
       </Typography>
 
-      <Typography variant="h6" sx={{ color: 'black', fontWeight: 'light', marginTop: 2 }}>
+      <Typography
+        variant="h6"
+        color="text.secondary"
+        fontWeight="light"
+        marginTop={2}
+        textAlign="center">
         {subtitle}
       </Typography>
 
@@ -49,12 +56,13 @@ const CardStackSection: FC<CardStackSectionProps> = ({ title, subtitle, items })
                     gutterBottom
                     variant="h5"
                     component="div"
-                    sx={{ fontWeight: 600, textTransform: 'uppercase' }}>
+                    fontWeight="bold"
+                    textTransform="uppercase">
                     {item.name}
                   </Typography>
                 </CardContent>
                 <CardActions>
-                  <Button size="small" sx={{ color: 'orange' }}>
+                  <Button size="small" color="warning">
                     Learn More
                   </Button>
                 </CardActions>
