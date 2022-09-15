@@ -1,4 +1,4 @@
-import ImageHeaderLayout from '@/components/Layouts/ImageHeaderLayout';
+import ImageHeaderLayout from '@/layouts/ImageHeaderLayout';
 
 const AboutUs = () => {
   return (
