@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { ButtonHTMLAttributes, FC } from 'react';
-import { NavLinkProps } from './NavLink';
+import { NavLinkProps } from '../NavLink/NavLink';
 
 const ResponsiveNavLink: FC<NavLinkProps> = ({ active = false, children, ...props }) => (
   <Link {...props}>

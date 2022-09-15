@@ -1,13 +1,16 @@
-import { Container } from '@mui/material';
+import { Box, Container } from '@mui/material';
 
 export const Footer = () => {
   return (
     <footer>
-      <Container
+      <Box
         maxWidth="xl"
-        sx={{ bgcolor: 'success.main', color: 'white', py: 2, textAlign: 'center' }}>
+        color="common.white"
+        bgcolor="success.main"
+        paddingY={2}
+        textAlign="center">
         <div>All rights reserved &copy; Countryside Kashmir Tour and Travel</div>
-      </Container>
+      </Box>
     </footer>
   );
 };

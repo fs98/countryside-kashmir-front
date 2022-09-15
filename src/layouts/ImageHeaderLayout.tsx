@@ -24,14 +24,12 @@ const ImageHeaderLayout: FC<LayoutProps> = ({ title, heading, children }) => {
 
         <Typography
           variant="h4"
-          sx={{
-            textTransform: 'uppercase',
-            fontWeight: 'bold',
-            textAlign: 'center',
-            color: 'white',
-            marginTop: 5,
-            marginBottom: 2,
-          }}>
+          color="common.white"
+          fontWeight="bold"
+          marginBottom={2}
+          marginTop={5}
+          textAlign="center"
+          textTransform="uppercase">
           {heading}
         </Typography>
         <Divider
