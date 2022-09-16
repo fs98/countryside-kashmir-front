@@ -43,7 +43,7 @@ const Gallery: FC<GalleryProps> = ({ galleryImages }) => (
 );
 
 export const getServerSideProps = async () => {
-  const galleryImagesApi = await axios
+  const galleryImages = await axios
     .get('/api/guest/gallery-images')
     .then(res => {
       return res.data;
@@ -51,11 +51,6 @@ export const getServerSideProps = async () => {
     .catch(error => {
       if (error.response.status !== 409) throw error;
     });
-
-  const galleryImages = galleryImagesApi.data.map(({ image_alt, image_url }) => ({
-    image_alt,
-    image_url,
-  }));
 
   return {
     props: {

@@ -17,7 +17,6 @@ export type ImageProps = {
 export type SlidesProps = ImageProps & {
   title: string;
   subtitle: string;
-  order: number;
 };
 
 export type ItemsProps = ImageProps & {
@@ -53,7 +52,7 @@ export type OfferProps = ItemsProps & {
 export type CategoryProps = {
   name: string;
   slug: string;
-  offers: OfferProps[];
+  packages: OfferProps[];
 };
 
 type HomeProps = {
@@ -101,14 +100,14 @@ const Home = ({
 
       {/* Categories and their packages */}
       {categoryOffers.map((category, i) => {
-        if (category.offers.length > 0) {
+        if (category.packages.length > 0) {
           return (
             <Block
               key={i}
               title={category.name}
               subtitle={`Find the best ${category.name} we have`}>
               <Grid marginTop={6} container rowSpacing={5} spacing={5} justifyContent="center">
-                {category.offers.map((offer, i) => (
+                {category.packages.map((offer, i) => (
                   <Grid key={i} item xs={6} md={4} lg={3}>
                     <PriceCard offer={offer} />
                   </Grid>
@@ -141,106 +140,50 @@ const Home = ({
 };
 
 export const getServerSideProps = async () => {
-  const slidesApi = await axios
+  const slides = await axios
     .get('/api/guest/slides')
     .then(res => {
-      return res.data;
+      return res.data.data;
     })
     .catch(error => {
       if (error.response.status !== 409) throw error;
     });
 
-  const slides: SlidesProps[] = slidesApi.data.map(
-    ({ image_url, image_alt, title, subtitle, order }) => ({
-      image_url,
-      image_alt,
-      title,
-      subtitle,
-      order,
-    }),
-  );
-
-  const destinationsApi = await axios
+  const destinations = await axios
     .get('/api/guest/destinations')
     .then(res => {
-      return res.data;
+      return res.data.data;
     })
     .catch(error => {
       if (error.response.status !== 409) throw error;
     });
 
-  const destinations: ItemsProps[] = destinationsApi.data.map(
-    ({ name, slug, image_url, image_alt }) => ({
-      name,
-      slug,
-      image_url,
-      image_alt,
-    }),
-  );
-
-  const activitiesApi = await axios
+  const activities = await axios
     .get('/api/guest/activities')
     .then(res => {
-      return res.data;
+      return res.data.data;
     })
     .catch(error => {
       if (error.response.status !== 409) throw error;
     });
 
-  const activities: ItemsProps[] = activitiesApi.data.map(
-    ({ name, slug, image_url, image_alt }) => ({
-      name,
-      slug,
-      image_url,
-      image_alt,
-    }),
-  );
-
-  const blogsApi = await axios
+  const blogs = await axios
     .get('/api/guest/blogs')
     .then(res => {
-      return res.data;
+      return res.data.data;
     })
     .catch(error => {
       if (error.response.status !== 409) throw error;
     });
 
-  const blogs = blogsApi.data.slice(0, 4).map(({ title, slug, image_url, image_alt, content }) => ({
-    title,
-    slug,
-    image_url,
-    image_alt,
-    content,
-  }));
-
-  const categoryOffersApi = await axios
+  const categoryOffers = await axios
     .get('api/guest/categories')
     .then(res => {
-      return res.data;
+      return res.data.data;
     })
     .catch(error => {
       if (error.response.status !== 409) throw error;
     });
-
-  const categoryOffers = categoryOffersApi.data.map(({ name, slug, packages }) => ({
-    name,
-    slug,
-    offers: packages.map(
-      ({ name, slug, days, nights, price, persons, image_url, image_alt, destinations }) => ({
-        name,
-        slug,
-        days,
-        nights,
-        price,
-        persons,
-        image_url,
-        image_alt,
-        destinations: destinations.map(({ name }) => ({
-          name,
-        })),
-      }),
-    ),
-  }));
 
   return {
     props: {
