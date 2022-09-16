@@ -6,7 +6,7 @@ type PriceCardProps = {
   offer: OfferProps;
 };
 
-const ItemCard: FC<PriceCardProps> = ({ offer }) => (
+const PriceCard: FC<PriceCardProps> = ({ offer }) => (
   <Card
     sx={{
       maxWidth: 345,
@@ -71,4 +71,4 @@ const ItemCard: FC<PriceCardProps> = ({ offer }) => (
   </Card>
 );
 
-export default ItemCard;
+export default PriceCard;

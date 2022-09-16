@@ -5,9 +5,9 @@ import HomeLayout from '@/layouts/HomeLayout';
 import AboutSection from '@/blocks/HomePageBlocks/AboutSection';
 import BlogsPreview from '@/blocks/HomePageBlocks/BlogsPreview';
 import Block from '@/components/Block/Block';
-import CardStack from '@/components/CardStack/CardStack';
-import PriceCard from '@/components/ItemCard/PriceCard';
+import PriceCard from '@/components/Cards/PriceCard/PriceCard';
 import { Grid } from '@mui/material';
+import SimpleCard from '@/components/Cards/SimpleCard/SimpleCard';
 
 export type ImageProps = {
   image_url: string;
@@ -40,9 +40,7 @@ export type BlogsProps = ImageProps & {
   };
 };
 
-export type OfferProps = ImageProps & {
-  name: string;
-  slug: string;
+export type OfferProps = ItemsProps & {
   days: number;
   nights: number;
   persons: number;
@@ -92,21 +90,34 @@ const Home = ({
         title="Popular Destinations"
         subtitle="There’s probably no other place on the planet that blazes its way into your memory like
         Kashmir.">
-        <CardStack items={destinations} />
+        <Grid marginTop={6} container rowSpacing={5} spacing={5} justifyContent="center">
+          {destinations.map((destination, i) => (
+            <Grid key={i} item xs={6} md={4} lg={3}>
+              <SimpleCard item={destination} />
+            </Grid>
+          ))}
+        </Grid>
       </Block>
 
       {/* Categories and their packages */}
-      {categoryOffers.map(category => (
-        <Block title={category.name} subtitle={`Find the best ${category.name} we have`}>
-          <Grid marginTop={6} container rowSpacing={5} spacing={5} justifyContent="center">
-            {category.offers.map((offer, i) => (
-              <Grid key={i} item xs={6} md={4} lg={3}>
-                <PriceCard offer={offer} />
+      {categoryOffers.map((category, i) => {
+        if (category.offers.length > 0) {
+          return (
+            <Block
+              key={i}
+              title={category.name}
+              subtitle={`Find the best ${category.name} we have`}>
+              <Grid marginTop={6} container rowSpacing={5} spacing={5} justifyContent="center">
+                {category.offers.map((offer, i) => (
+                  <Grid key={i} item xs={6} md={4} lg={3}>
+                    <PriceCard offer={offer} />
+                  </Grid>
+                ))}
               </Grid>
-            ))}
-          </Grid>
-        </Block>
-      ))}
+            </Block>
+          );
+        }
+      })}
 
       {/* Blogs Block */}
       <section className="bg-zinc-100">
@@ -117,7 +128,13 @@ const Home = ({
       <Block
         title="Things to do in Kashmir"
         subtitle="Mostly located in the Himalayan ranges, Kashmir offers a plethora of experiences that one must take by indulging in the below listed exciting things to do. The location and the terrain make some of the things are exclusive to this destination, so go ahead and enjoy all of these.">
-        <CardStack items={activities} />
+        <Grid marginTop={6} container rowSpacing={5} spacing={5} justifyContent="center">
+          {activities.map((activity, i) => (
+            <Grid key={i} item xs={6} md={4} lg={3}>
+              <SimpleCard item={activity} />
+            </Grid>
+          ))}
+        </Grid>
       </Block>
     </HomeLayout>
   );
