@@ -6,7 +6,7 @@ type BlockProps = PropsWithChildren & {
   subtitle?: string;
 };
 
-const Block: FC<BlockProps> = ({ title, subtitle, children }) => (
+export const Block: FC<BlockProps> = ({ title, subtitle, children }) => (
   <Container maxWidth="lg" sx={{ py: 6 }}>
     <Typography
       variant="h4"
