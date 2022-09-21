@@ -20,7 +20,8 @@ export type SlidesProps = ImageProps & {
 };
 
 export type ItemsProps = ImageProps & {
-  name: string;
+  title?: string;
+  name?: string;
   slug: string;
 };
 
