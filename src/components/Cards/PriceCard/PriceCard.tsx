@@ -1,6 +1,6 @@
-import { OfferProps } from '@/pages';
-import { Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material';
 import { FC } from 'react';
+import { Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material';
+import { OfferProps } from '@/pages';
 
 type PriceCardProps = {
   offer: OfferProps;
