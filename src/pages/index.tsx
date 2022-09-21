@@ -36,7 +36,7 @@ export type ContentProps = {
   }>;
 };
 
-export type BlogProps = ImageProps & {
+export type BlogsProps = ImageProps & {
   title: string;
   slug: string;
   content: ContentProps;
@@ -62,7 +62,7 @@ type HomeProps = {
   slides: SlidesProps[];
   destinations: ItemsProps[];
   activities: ItemsProps[];
-  blogs: BlogProps[];
+  blogs: BlogsProps[];
   categoryOffers: CategoryProps[];
 };
 
