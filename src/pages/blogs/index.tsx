@@ -2,11 +2,11 @@ import Block from '@/components/Block/Block';
 import SimpleCard from '@/components/Cards/SimpleCard/SimpleCard';
 import ImageHeaderLayout from '@/layouts/ImageHeaderLayout';
 import axios from '@/lib/axios';
+import { BlogsProps } from '@/pages';
 import { Grid } from '@mui/material';
 import { FC } from 'react';
-import { BlogProps } from '.';
 
-export const Blogs: FC<{ blogs: BlogProps[] }> = ({ blogs }) => (
+export const Blogs: FC<{ blogs: BlogsProps[] }> = ({ blogs }) => (
   <ImageHeaderLayout title="Blogs - Countryside Kashmir" heading="Blogs">
     <Block title="Blogs">
       <Grid marginTop={6} container rowSpacing={5} spacing={5} justifyContent="center">
