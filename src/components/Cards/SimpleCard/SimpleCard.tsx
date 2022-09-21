@@ -16,7 +16,7 @@ const SimpleCard: FC<SimpleCardProps> = ({ item: { image_url, image_alt, name, t
       justifyContent: 'space-between',
     }}>
     <CardMedia component="img" height="140" image={image_url} alt={image_alt} />
-    <div>
+    <>
       <CardContent>
         <Typography
           gutterBottom
@@ -24,7 +24,8 @@ const SimpleCard: FC<SimpleCardProps> = ({ item: { image_url, image_alt, name, t
           component="div"
           fontWeight="bold"
           textTransform="uppercase">
-          {name ? name : title}
+          {name}
+          {title}
         </Typography>
       </CardContent>
       <CardActions>
@@ -32,7 +33,7 @@ const SimpleCard: FC<SimpleCardProps> = ({ item: { image_url, image_alt, name, t
           Learn More
         </Button>
       </CardActions>
-    </div>
+    </>
   </Card>
 );
 
