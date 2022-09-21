@@ -20,13 +20,12 @@ export type SlidesProps = ImageProps & {
 };
 
 export type ItemsProps = ImageProps & {
-  name: string;
+  title?: string;
+  name?: string;
   slug: string;
 };
 
-export type BlogsProps = ImageProps & {
-  title: string;
-  slug: string;
+export type ContentProps = {
   content: {
     time: number;
     blocks: Array<{
@@ -38,6 +37,12 @@ export type BlogsProps = ImageProps & {
     }>;
   };
 };
+
+export type BlogsProps = ImageProps &
+  ContentProps & {
+    title: string;
+    slug: string;
+  };
 
 export type OfferProps = ItemsProps & {
   days: number;
