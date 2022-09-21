@@ -19,7 +19,7 @@ const pages = [
   { name: 'Destinations', url: '/destinations' },
   { name: 'Packages', url: '/packages' },
   { name: 'Things to do', url: '/activities' },
-  { name: 'Blog', url: '/blog' },
+  { name: 'Blog', url: '/blogs' },
   { name: 'Gallery', url: '/gallery' },
   { name: 'Contact Us', url: '/contact-us' },
 ];
