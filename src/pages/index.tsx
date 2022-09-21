@@ -24,19 +24,21 @@ export type ItemsProps = ImageProps & {
   slug: string;
 };
 
-export type BlogsProps = ImageProps & {
+export type ContentProps = {
+  time: number;
+  blocks: Array<{
+    id: string;
+    type: string;
+    data: {
+      text: string;
+    };
+  }>;
+};
+
+export type BlogProps = ImageProps & {
   title: string;
   slug: string;
-  content: {
-    time: number;
-    blocks: Array<{
-      id: string;
-      type: string;
-      data: {
-        text: string;
-      };
-    }>;
-  };
+  content: ContentProps;
 };
 
 export type OfferProps = ItemsProps & {
@@ -59,7 +61,7 @@ type HomeProps = {
   slides: SlidesProps[];
   destinations: ItemsProps[];
   activities: ItemsProps[];
-  blogs: BlogsProps[];
+  blogs: BlogProps[];
   categoryOffers: CategoryProps[];
 };
 
