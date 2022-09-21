@@ -2,7 +2,6 @@ import Block from '@/components/Block/Block';
 import ImageHeaderLayout from '@/layouts/ImageHeaderLayout';
 import axios from '@/lib/axios';
 import moment from 'moment';
-import { redirect } from 'next/dist/server/api-utils';
 import { FC } from 'react';
 import { BlogsProps } from '..';
 
@@ -29,7 +28,10 @@ export const getServerSideProps = async ({ params: { slug } }) => {
   const blog = await axios
     .get(`/api/guest/blogs/${slug}`)
     .then(res => res.data.data)
-    .catch(error => {});
+    .catch(error => {
+      // eslint-disable-next-line no-console
+      console.log(error);
+    });
 
   if (!blog) {
     return {

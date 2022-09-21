@@ -1,5 +1,4 @@
-import Head from 'next/head';
-import { useAuth } from '@/hooks/auth';
+// import { useAuth } from '@/hooks/auth';
 import axios from '@/lib/axios';
 import HomeLayout from '@/layouts/HomeLayout';
 import AboutSection from '@/blocks/HomePageBlocks/AboutSection';
@@ -75,7 +74,7 @@ const Home = ({
   blogs,
   categoryOffers,
 }: HomeProps): JSX.Element => {
-  const { user } = useAuth({ middleware: 'guest' });
+  // const { user } = useAuth({ middleware: 'guest' });
 
   return (
     <HomeLayout

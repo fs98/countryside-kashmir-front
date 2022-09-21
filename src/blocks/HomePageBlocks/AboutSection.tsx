@@ -1,5 +1,5 @@
 import Block from '@/components/Block/Block';
-import { Button, Container, Grid, Typography } from '@mui/material';
+import { Button, Grid, Typography } from '@mui/material';
 import { FC } from 'react';
 
 export type AboutSectionProps = {

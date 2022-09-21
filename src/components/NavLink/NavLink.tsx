@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { LinkProps } from 'next/dist/client/link';
-import { FC, PropsWithChildren, ReactNode } from 'react';
+import { FC, PropsWithChildren } from 'react';
 
 export type NavLinkProps = LinkProps &
   PropsWithChildren & {

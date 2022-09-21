@@ -1,4 +1,4 @@
-import React, { FC, PropsWithChildren, ReactNode, useState } from 'react';
+import React, { FC, PropsWithChildren, ReactNode } from 'react';
 import { Menu, Transition } from '@headlessui/react';
 
 export type DropdownProps = PropsWithChildren & {
@@ -36,7 +36,7 @@ const Dropdown: FC<DropdownProps> = ({
       break;
   }
 
-  const [open, setOpen] = useState(false);
+  // const [open, setOpen] = useState(false);
 
   return (
     <Menu as="div" className="relative">
