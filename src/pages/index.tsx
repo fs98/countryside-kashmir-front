@@ -26,21 +26,23 @@ export type ItemsProps = ImageProps & {
 };
 
 export type ContentProps = {
-  time: number;
-  blocks: Array<{
-    id: string;
-    type: string;
-    data: {
-      text: string;
-    };
-  }>;
+  content: {
+    time: number;
+    blocks: Array<{
+      id: string;
+      type: string;
+      data: {
+        text: string;
+      };
+    }>;
+  };
 };
 
-export type BlogsProps = ImageProps & {
-  title: string;
-  slug: string;
-  content: ContentProps;
-};
+export type BlogsProps = ImageProps &
+  ContentProps & {
+    title: string;
+    slug: string;
+  };
 
 export type OfferProps = ItemsProps & {
   days: number;
