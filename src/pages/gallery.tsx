@@ -46,7 +46,7 @@ export const getServerSideProps = async () => {
   const galleryImages = await axios
     .get('/api/guest/gallery-images')
     .then(res => {
-      return res.data;
+      return res.data.data;
     })
     .catch(error => {
       if (error.response.status !== 409) throw error;
