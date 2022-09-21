@@ -6,7 +6,7 @@ type SimpleCardProps = {
   item: ItemsProps;
 };
 
-const SimpleCard: FC<SimpleCardProps> = ({ item: { image_url, image_alt, name } }) => (
+const SimpleCard: FC<SimpleCardProps> = ({ item: { image_url, image_alt, name, title } }) => (
   <Card
     sx={{
       maxWidth: 345,
@@ -24,7 +24,7 @@ const SimpleCard: FC<SimpleCardProps> = ({ item: { image_url, image_alt, name } 
           component="div"
           fontWeight="bold"
           textTransform="uppercase">
-          {name}
+          {name ? name : title}
         </Typography>
       </CardContent>
       <CardActions>
