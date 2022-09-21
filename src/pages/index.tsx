@@ -104,28 +104,23 @@ const Home = ({
       </Block>
 
       {/* Categories and their packages */}
-      {categoryOffers.map((category, i) => {
-        if (category.packages.length > 0) {
-          return (
-            <Block
-              key={i}
-              title={category.name}
-              subtitle={`Find the best ${category.name} we have`}>
-              <Grid marginTop={6} container rowSpacing={5} spacing={5} justifyContent="center">
-                {category.packages.map((offer, i) => (
-                  <Grid key={i} item xs={6} md={4} lg={3}>
-                    <PriceCard offer={offer} />
-                  </Grid>
-                ))}
-              </Grid>
-            </Block>
-          );
-        }
-      })}
+      {categoryOffers
+        .filter(({ packages }) => packages.length > 0)
+        .map(({ packages, name }, i) => (
+          <Block key={i} title={name} subtitle={`Find the best ${name} we have`}>
+            <Grid marginTop={6} container rowSpacing={5} spacing={5} justifyContent="center">
+              {packages.map((offer, i) => (
+                <Grid key={i} item xs={6} md={4} lg={3}>
+                  <PriceCard offer={offer} />
+                </Grid>
+              ))}
+            </Grid>
+          </Block>
+        ))}
 
       {/* Blogs Block */}
       <section className="bg-zinc-100">
-        {blogs.length ? <BlogsPreview blogs={blogs} /> : 'No blogs'}
+        {blogs.length > 0 ? <BlogsPreview blogs={blogs} /> : 'No blogs'}
       </section>
 
       {/* Activities Block */}
@@ -147,45 +142,35 @@ const Home = ({
 export const getServerSideProps = async () => {
   const slides = await axios
     .get('/api/guest/slides')
-    .then(res => {
-      return res.data.data;
-    })
+    .then(res => res.data.data)
     .catch(error => {
       if (error.response.status !== 409) throw error;
     });
 
   const destinations = await axios
     .get('/api/guest/destinations')
-    .then(res => {
-      return res.data.data;
-    })
+    .then(res => res.data.data)
     .catch(error => {
       if (error.response.status !== 409) throw error;
     });
 
   const activities = await axios
     .get('/api/guest/activities')
-    .then(res => {
-      return res.data.data;
-    })
+    .then(res => res.data.data)
     .catch(error => {
       if (error.response.status !== 409) throw error;
     });
 
   const blogs = await axios
     .get('/api/guest/blogs')
-    .then(res => {
-      return res.data.data;
-    })
+    .then(res => res.data.data)
     .catch(error => {
       if (error.response.status !== 409) throw error;
     });
 
   const categoryOffers = await axios
     .get('api/guest/categories')
-    .then(res => {
-      return res.data.data;
-    })
+    .then(res => res.data.data)
     .catch(error => {
       if (error.response.status !== 409) throw error;
     });
