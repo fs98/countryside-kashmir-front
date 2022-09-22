@@ -1,6 +1,6 @@
 import React from 'react';
 import Block from '@/components/Block/Block';
-import ImageHeaderLayout from '@/layouts/ImageHeaderLayout';
+import { ImageHeaderLayout } from '@/layouts/ImageHeaderLayout';
 import { Typography } from '@mui/material';
 
 const AboutUs = (): JSX.Element => {

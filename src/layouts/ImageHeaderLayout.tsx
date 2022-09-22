@@ -3,14 +3,14 @@ import { Box } from '@mui/system';
 import Head from 'next/head';
 import { FC, PropsWithChildren } from 'react';
 import { Footer } from './Footer';
-import MainNavbar from './MainNavbar';
+import { MainNavbar } from './MainNavbar';
 
 export type LayoutProps = PropsWithChildren & {
   title: string;
   heading: string;
 };
 
-const ImageHeaderLayout: FC<LayoutProps> = ({ title, heading, children }) => {
+export const ImageHeaderLayout: FC<LayoutProps> = ({ title, heading, children }) => {
   return (
     <>
       <Head>
@@ -50,5 +50,3 @@ const ImageHeaderLayout: FC<LayoutProps> = ({ title, heading, children }) => {
     </>
   );
 };
-
-export default ImageHeaderLayout;

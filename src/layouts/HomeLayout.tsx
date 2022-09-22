@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { FC, PropsWithChildren } from 'react';
 import { Footer } from './Footer';
-import MainNavbar from './MainNavbar';
+import { MainNavbar } from './MainNavbar';
 import { Swiper, SwiperSlide } from 'swiper/react';
 // import Swiper core and required modules
 import SwiperCore, { Navigation, Autoplay } from 'swiper';
@@ -12,12 +12,12 @@ import 'swiper/css/navigation';
 import { Typography } from '@mui/material';
 import type { SlidesProps } from '@/pages';
 
-export type LayoutProps = PropsWithChildren & {
+export type HomeLayoutProps = PropsWithChildren & {
   slides: SlidesProps[];
   title: string;
 };
 
-const Layout: FC<LayoutProps> = ({ slides, title, children }) => {
+export const HomeLayout: FC<HomeLayoutProps> = ({ slides, title, children }) => {
   SwiperCore.use([Autoplay]);
 
   return (
@@ -77,5 +77,3 @@ const Layout: FC<LayoutProps> = ({ slides, title, children }) => {
     </>
   );
 };
-
-export default Layout;

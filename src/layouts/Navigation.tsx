@@ -17,7 +17,7 @@ export type NavigationProps = {
   };
 };
 
-const Navigation: FC<NavigationProps> = ({ user }) => {
+export const Navigation: FC<NavigationProps> = ({ user }) => {
   const router = useRouter();
 
   const { logout } = useAuth();
@@ -148,5 +148,3 @@ const Navigation: FC<NavigationProps> = ({ user }) => {
     </nav>
   );
 };
-
-export default Navigation;

@@ -2,7 +2,7 @@ import ApplicationLogo from '@/components/ApplicationLogo/ApplicationLogo';
 import AuthCard from '@/components/AuthCard/AuthCard';
 import AuthSessionStatus from '@/components/AuthSessionStatus/AuthSessionStatus';
 import Button from '@/components/Button/Button';
-import GuestLayout from '@/layouts/GuestLayout';
+import { GuestLayout } from '@/layouts/GuestLayout';
 import Input from '@/components/Input/Input';
 import InputError from '@/components/InputError/InputError';
 import Label from '@/components/Label/Label';

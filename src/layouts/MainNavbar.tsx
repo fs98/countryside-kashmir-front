@@ -24,7 +24,7 @@ const pages = [
   { name: 'Contact Us', url: '/contact-us' },
 ];
 
-const MainNavbar: React.FC<AppBarProps> = ({ position, color }) => {
+export const MainNavbar: React.FC<AppBarProps> = ({ position, color }) => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -187,4 +187,3 @@ const MainNavbar: React.FC<AppBarProps> = ({ position, color }) => {
     </AppBar>
   );
 };
-export default MainNavbar;

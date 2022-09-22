@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { FC, PropsWithChildren } from 'react';
 
-const GuestLayout: FC<PropsWithChildren> = ({ children }) => {
+export const GuestLayout: FC<PropsWithChildren> = ({ children }) => {
   return (
     <>
       <Head>
@@ -12,5 +12,3 @@ const GuestLayout: FC<PropsWithChildren> = ({ children }) => {
     </>
   );
 };
-
-export default GuestLayout;

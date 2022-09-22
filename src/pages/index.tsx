@@ -1,12 +1,12 @@
 // import { useAuth } from '@/hooks/auth';
 import axios from '@/lib/axios';
-import HomeLayout from '@/layouts/HomeLayout';
+import { HomeLayout } from '@/layouts/HomeLayout';
 import AboutSection from '@/blocks/HomePageBlocks/AboutSection';
 import BlogsPreview from '@/blocks/HomePageBlocks/BlogsPreview';
 import Block from '@/components/Block/Block';
-import PriceCard from '@/components/Cards/PriceCard/PriceCard';
+import { CardPrice } from '@/components/CardPrice/CardPrice';
 import { Grid } from '@mui/material';
-import SimpleCard from '@/components/Cards/SimpleCard/SimpleCard';
+import { CardSimple } from '@/components/CardSimple/CardSimple';
 
 export type ImageProps = {
   image_url: string;
@@ -96,7 +96,7 @@ const Home = ({
         <Grid marginTop={6} container rowSpacing={5} spacing={5} justifyContent="center">
           {destinations.map((destination, i) => (
             <Grid key={i} item xs={6} md={4} lg={3}>
-              <SimpleCard item={destination} />
+              <CardSimple item={destination} />
             </Grid>
           ))}
         </Grid>
@@ -110,7 +110,7 @@ const Home = ({
             <Grid marginTop={6} container rowSpacing={5} spacing={5} justifyContent="center">
               {packages.map((offer, i) => (
                 <Grid key={i} item xs={6} md={4} lg={3}>
-                  <PriceCard offer={offer} />
+                  <CardPrice offer={offer} />
                 </Grid>
               ))}
             </Grid>
@@ -129,7 +129,7 @@ const Home = ({
         <Grid marginTop={6} container rowSpacing={5} spacing={5} justifyContent="center">
           {activities.map((activity, i) => (
             <Grid key={i} item xs={6} md={4} lg={3}>
-              <SimpleCard item={activity} />
+              <CardSimple item={activity} />
             </Grid>
           ))}
         </Grid>
