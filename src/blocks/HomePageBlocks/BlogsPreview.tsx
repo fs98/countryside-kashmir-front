@@ -69,5 +69,3 @@ export const BlogsPreview: FC<BlogsPreviewProps> = ({ blogs }) => {
     </Block>
   );
 };
-
-export default BlogsPreview;

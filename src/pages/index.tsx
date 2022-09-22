@@ -1,8 +1,8 @@
 // import { useAuth } from '@/hooks/auth';
 import axios from '@/lib/axios';
 import { HomeLayout } from '@/layouts/HomeLayout';
-import AboutSection from '@/blocks/HomePageBlocks/AboutSection';
-import BlogsPreview from '@/blocks/HomePageBlocks/BlogsPreview';
+import { AboutSection } from '@/blocks/HomePageBlocks/AboutSection';
+import { BlogsPreview } from '@/blocks/HomePageBlocks/BlogsPreview';
 import Block from '@/components/Block/Block';
 import { CardPrice } from '@/components/CardPrice/CardPrice';
 import { Grid } from '@mui/material';

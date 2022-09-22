@@ -7,7 +7,7 @@ export type AboutSectionProps = {
   subtitle: string;
 };
 
-const AboutSection: FC<AboutSectionProps> = ({ title, subtitle }) => {
+export const AboutSection: FC<AboutSectionProps> = ({ title, subtitle }) => {
   return (
     <Block title={title} subtitle={subtitle}>
       <Grid marginTop={6} container rowSpacing={5} spacing={5}>
@@ -47,5 +47,3 @@ const AboutSection: FC<AboutSectionProps> = ({ title, subtitle }) => {
     </Block>
   );
 };
-
-export default AboutSection;
