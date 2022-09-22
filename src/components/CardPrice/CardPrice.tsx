@@ -2,11 +2,11 @@ import { FC } from 'react';
 import { Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material';
 import { OfferProps } from '@/pages';
 
-type PriceCardProps = {
+type CardPriceProps = {
   offer: OfferProps;
 };
 
-const PriceCard: FC<PriceCardProps> = ({ offer }) => (
+export const CardPrice: FC<CardPriceProps> = ({ offer }) => (
   <Card
     sx={{
       maxWidth: 345,
@@ -70,5 +70,3 @@ const PriceCard: FC<PriceCardProps> = ({ offer }) => (
     </div>
   </Card>
 );
-
-export default PriceCard;
