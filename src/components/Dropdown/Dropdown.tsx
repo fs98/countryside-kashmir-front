@@ -8,7 +8,7 @@ export type DropdownProps = PropsWithChildren & {
   trigger: ReactNode;
 };
 
-const Dropdown: FC<DropdownProps> = ({
+export const Dropdown: FC<DropdownProps> = ({
   align = 'right',
   width = 48,
   contentClasses = 'py-1 bg-white',
@@ -65,5 +65,3 @@ const Dropdown: FC<DropdownProps> = ({
     </Menu>
   );
 };
-
-export default Dropdown;

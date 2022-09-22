@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { ButtonHTMLAttributes, FC } from 'react';
 import { NavLinkProps } from '../NavLink/NavLink';
 
-const ResponsiveNavLink: FC<NavLinkProps> = ({ active = false, children, ...props }) => (
+export const ResponsiveNavLink: FC<NavLinkProps> = ({ active = false, children, ...props }) => (
   <Link {...props}>
     <a
       className={`block pl-3 pr-4 py-2 border-l-4 text-base font-medium leading-5 focus:outline-none transition duration-150 ease-in-out ${
@@ -21,5 +21,3 @@ export const ResponsiveNavButton: FC<ButtonHTMLAttributes<HTMLButtonElement>> = 
     {...props}
   />
 );
-
-export default ResponsiveNavLink;

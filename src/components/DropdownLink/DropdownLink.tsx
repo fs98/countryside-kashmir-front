@@ -5,7 +5,7 @@ import { ButtonHTMLAttributes, FC, PropsWithChildren } from 'react';
 
 export type DropdownLinkProps = LinkProps & PropsWithChildren;
 
-const DropdownLink: FC<DropdownLinkProps> = ({ children, ...props }) => (
+export const DropdownLink: FC<DropdownLinkProps> = ({ children, ...props }) => (
   <Menu.Item>
     {({ active }) => (
       <Link {...props}>
@@ -35,5 +35,3 @@ export const DropdownButton: FC<DropdownButtonProps> = ({ children, ...props }) 
     )}
   </Menu.Item>
 );
-
-export default DropdownLink;

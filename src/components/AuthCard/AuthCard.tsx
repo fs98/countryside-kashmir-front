@@ -4,7 +4,7 @@ export type AuthCardProps = PropsWithChildren & {
   logo: ReactNode;
 };
 
-const AuthCard: FC<AuthCardProps> = ({ logo, children }) => (
+export const AuthCard: FC<AuthCardProps> = ({ logo, children }) => (
   <div className="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
     <div>{logo}</div>
 
@@ -13,5 +13,3 @@ const AuthCard: FC<AuthCardProps> = ({ logo, children }) => (
     </div>
   </div>
 );
-
-export default AuthCard;

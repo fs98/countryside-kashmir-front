@@ -31,5 +31,3 @@ export const Block: FC<BlockProps> = ({ title, subtitle, children }) => (
     {children}
   </Container>
 );
-
-export default Block;

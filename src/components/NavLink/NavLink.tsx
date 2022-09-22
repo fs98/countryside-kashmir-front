@@ -7,7 +7,7 @@ export type NavLinkProps = LinkProps &
     active?: boolean;
   };
 
-const NavLink: FC<NavLinkProps> = ({ active = false, children, ...props }) => (
+export const NavLink: FC<NavLinkProps> = ({ active = false, children, ...props }) => (
   <Link {...props}>
     <a
       className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium leading-5 focus:outline-none transition duration-150 ease-in-out ${
@@ -19,5 +19,3 @@ const NavLink: FC<NavLinkProps> = ({ active = false, children, ...props }) => (
     </a>
   </Link>
 );
-
-export default NavLink;

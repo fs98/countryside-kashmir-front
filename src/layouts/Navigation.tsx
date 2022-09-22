@@ -1,8 +1,9 @@
-import ApplicationLogo from '@/components/ApplicationLogo/ApplicationLogo';
-import Dropdown from '@/components/Dropdown/Dropdown';
+import { ApplicationLogo } from '@/components/ApplicationLogo/ApplicationLogo';
+import { Dropdown } from '@/components/Dropdown/Dropdown';
 import Link from 'next/link';
-import NavLink from '@/components/NavLink/NavLink';
-import ResponsiveNavLink, {
+import { NavLink } from '@/components/NavLink/NavLink';
+import {
+  ResponsiveNavLink,
   ResponsiveNavButton,
 } from '@/components/ResponsiveNavLink/ResponsiveNavLink';
 import { DropdownButton } from '@/components/DropdownLink/DropdownLink';

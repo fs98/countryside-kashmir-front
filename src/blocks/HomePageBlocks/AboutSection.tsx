@@ -1,4 +1,4 @@
-import Block from '@/components/Block/Block';
+import { Block } from '@/components/Block/Block';
 import { Button, Grid, Typography } from '@mui/material';
 import { FC } from 'react';
 
