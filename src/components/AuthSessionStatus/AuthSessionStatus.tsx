@@ -5,7 +5,7 @@ export type AuthSessionStatusProps = HTMLAttributes<HTMLDivElement> & {
   className: string;
 };
 
-const AuthSessionStatus: FC<AuthSessionStatusProps> = ({ status, className, ...props }) => (
+export const AuthSessionStatus: FC<AuthSessionStatusProps> = ({ status, className, ...props }) => (
   <>
     {status && (
       <div className={`${className} font-medium text-sm text-green-600`} {...props}>
@@ -14,5 +14,3 @@ const AuthSessionStatus: FC<AuthSessionStatusProps> = ({ status, className, ...p
     )}
   </>
 );
-
-export default AuthSessionStatus;

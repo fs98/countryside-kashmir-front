@@ -1,5 +1,5 @@
-import Block from '@/components/Block/Block';
-import { Button, Container, Grid, Typography } from '@mui/material';
+import { Block } from '@/components/Block/Block';
+import { Button, Grid, Typography } from '@mui/material';
 import { FC } from 'react';
 
 export type AboutSectionProps = {
@@ -7,7 +7,7 @@ export type AboutSectionProps = {
   subtitle: string;
 };
 
-const AboutSection: FC<AboutSectionProps> = ({ title, subtitle }) => {
+export const AboutSection: FC<AboutSectionProps> = ({ title, subtitle }) => {
   return (
     <Block title={title} subtitle={subtitle}>
       <Grid marginTop={6} container rowSpacing={5} spacing={5}>
@@ -47,5 +47,3 @@ const AboutSection: FC<AboutSectionProps> = ({ title, subtitle }) => {
     </Block>
   );
 };
-
-export default AboutSection;

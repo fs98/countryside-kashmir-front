@@ -5,7 +5,7 @@ export type InputErrorProps = {
   messages: string[];
 };
 
-const InputError: FC<InputErrorProps> = ({ messages = [], className = '' }) => (
+export const InputError: FC<InputErrorProps> = ({ messages = [], className = '' }) => (
   <>
     {messages.length > 0 && (
       <>
@@ -18,5 +18,3 @@ const InputError: FC<InputErrorProps> = ({ messages = [], className = '' }) => (
     )}
   </>
 );
-
-export default InputError;

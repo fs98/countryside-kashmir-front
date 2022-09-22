@@ -9,7 +9,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import { AppBarProps, Avatar, Link } from '@mui/material';
+import { AppBarProps, Link } from '@mui/material';
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
 
@@ -19,12 +19,12 @@ const pages = [
   { name: 'Destinations', url: '/destinations' },
   { name: 'Packages', url: '/packages' },
   { name: 'Things to do', url: '/activities' },
-  { name: 'Blog', url: '/blog' },
+  { name: 'Blog', url: '/blogs' },
   { name: 'Gallery', url: '/gallery' },
   { name: 'Contact Us', url: '/contact-us' },
 ];
 
-const MainNavbar: React.FC<AppBarProps> = ({ position, color }) => {
+export const MainNavbar: React.FC<AppBarProps> = ({ position, color }) => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -187,4 +187,3 @@ const MainNavbar: React.FC<AppBarProps> = ({ position, color }) => {
     </AppBar>
   );
 };
-export default MainNavbar;

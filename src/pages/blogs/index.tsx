@@ -1,7 +1,7 @@
-import Block from '@/components/Block/Block';
-import SimpleCard from '@/components/Cards/SimpleCard/SimpleCard';
-import ImageHeaderLayout from '@/layouts/ImageHeaderLayout';
-import axios from '@/lib/axios';
+import { Block } from '@/components/Block/Block';
+import { CardSimple } from '@/components/CardSimple/CardSimple';
+import { ImageHeaderLayout } from '@/layouts/ImageHeaderLayout';
+import { axios } from '@/lib/axios';
 import { BlogsProps } from '@/pages';
 import { Grid } from '@mui/material';
 import { FC } from 'react';
@@ -12,7 +12,7 @@ export const Blogs: FC<{ blogs: BlogsProps[] }> = ({ blogs }) => (
       <Grid marginTop={6} container rowSpacing={5} spacing={5} justifyContent="center">
         {blogs.map((blog, i) => (
           <Grid key={i} item xs={6} md={4} lg={3}>
-            <SimpleCard item={blog} />
+            <CardSimple item={blog} />
           </Grid>
         ))}
       </Grid>

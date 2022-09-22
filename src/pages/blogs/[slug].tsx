@@ -1,8 +1,7 @@
-import Block from '@/components/Block/Block';
-import ImageHeaderLayout from '@/layouts/ImageHeaderLayout';
-import axios from '@/lib/axios';
+import { Block } from '@/components/Block/Block';
+import { ImageHeaderLayout } from '@/layouts/ImageHeaderLayout';
+import { axios } from '@/lib/axios';
 import moment from 'moment';
-import { redirect } from 'next/dist/server/api-utils';
 import { FC } from 'react';
 import { BlogsProps } from '..';
 
@@ -18,7 +17,9 @@ const Blog: FC<BlogProps> = ({ blog }) => {
 
   return (
     <ImageHeaderLayout title={blog.title} heading="Blog">
-      <Block title={blog.title} subtitle={published_at}></Block>
+      <Block title={blog.title} subtitle={published_at}>
+        {JSON.stringify(blog.content.blocks)}
+      </Block>
     </ImageHeaderLayout>
   );
 };
@@ -26,13 +27,17 @@ const Blog: FC<BlogProps> = ({ blog }) => {
 export const getServerSideProps = async ({ params: { slug } }) => {
   const blog = await axios
     .get(`/api/guest/blogs/${slug}`)
-    .then(res => {
-      console.log(res.data.data);
-      return res.data.data;
-    })
+    .then(res => res.data.data)
     .catch(error => {
-      if (error.response.status !== 409) throw error;
+      // eslint-disable-next-line no-console
+      console.log(error);
     });
+
+  if (!blog) {
+    return {
+      notFound: true,
+    };
+  }
 
   return {
     props: {

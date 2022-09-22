@@ -1,8 +1,7 @@
-import Block from '@/components/Block/Block';
-import ImageHeaderLayout from '@/layouts/ImageHeaderLayout';
-import axios from '@/lib/axios';
+import React from 'react';
+import { Block } from '@/components/Block/Block';
+import { ImageHeaderLayout } from '@/layouts/ImageHeaderLayout';
 import { Typography } from '@mui/material';
-import { SlidesProps } from '.';
 
 const AboutUs = (): JSX.Element => {
   return (

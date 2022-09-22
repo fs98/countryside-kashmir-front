@@ -1,12 +1,13 @@
-import { Box, Button, Container, Grid, Link, Typography } from '@mui/material';
+import React, { FC } from 'react';
+import { Box, Button, Grid, Link, Typography } from '@mui/material';
 import { BlogsProps } from '@/pages';
-import Block from '@/components/Block/Block';
+import { Block } from '@/components/Block/Block';
 
 type BlogsPreviewProps = {
   blogs: BlogsProps[];
 };
 
-const BlogsPreview = ({ blogs }: BlogsPreviewProps): JSX.Element => {
+export const BlogsPreview: FC<BlogsPreviewProps> = ({ blogs }) => {
   const [mainPost, ...sidePosts] = blogs;
 
   return (
@@ -68,5 +69,3 @@ const BlogsPreview = ({ blogs }: BlogsPreviewProps): JSX.Element => {
     </Block>
   );
 };
-
-export default BlogsPreview;

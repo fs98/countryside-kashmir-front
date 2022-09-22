@@ -1,7 +1,7 @@
 import { FC } from 'react';
-import axios from '@/lib/axios';
-import ImageHeaderLayout from '@/layouts/ImageHeaderLayout';
-import Block from '@/components/Block/Block';
+import { axios } from '@/lib/axios';
+import { ImageHeaderLayout } from '@/layouts/ImageHeaderLayout';
+import { Block } from '@/components/Block/Block';
 import LightGallery from 'lightgallery/react';
 import { ImageProps } from '.';
 
@@ -29,7 +29,7 @@ const Gallery: FC<GalleryProps> = ({ galleryImages }) => (
         plugins={[lgThumbnail, lgZoom]}
         animateThumb={true}>
         {galleryImages.map(({ image_url, image_alt }, i) => (
-          <a href={image_url}>
+          <a key={i} href={image_url}>
             <img
               className="object-fill bg-gray-500 m-0 w-full h-full"
               alt={image_alt}

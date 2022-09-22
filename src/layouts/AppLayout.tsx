@@ -1,4 +1,4 @@
-import Navigation from './Navigation';
+import { Navigation } from './Navigation';
 import { useAuth } from '@/hooks/auth';
 import { FC, PropsWithChildren, ReactNode } from 'react';
 
@@ -6,7 +6,7 @@ export type AppLayoutProps = PropsWithChildren & {
   header: ReactNode;
 };
 
-const AppLayout: FC<AppLayoutProps> = ({ header, children }) => {
+export const AppLayout: FC<AppLayoutProps> = ({ header, children }) => {
   const { user } = useAuth({ middleware: 'auth' });
 
   return (
@@ -23,5 +23,3 @@ const AppLayout: FC<AppLayoutProps> = ({ header, children }) => {
     </div>
   );
 };
-
-export default AppLayout;

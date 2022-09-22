@@ -1,4 +1,4 @@
-import React, { FC, PropsWithChildren, ReactNode, useState } from 'react';
+import React, { FC, PropsWithChildren, ReactNode } from 'react';
 import { Menu, Transition } from '@headlessui/react';
 
 export type DropdownProps = PropsWithChildren & {
@@ -8,7 +8,7 @@ export type DropdownProps = PropsWithChildren & {
   trigger: ReactNode;
 };
 
-const Dropdown: FC<DropdownProps> = ({
+export const Dropdown: FC<DropdownProps> = ({
   align = 'right',
   width = 48,
   contentClasses = 'py-1 bg-white',
@@ -36,7 +36,7 @@ const Dropdown: FC<DropdownProps> = ({
       break;
   }
 
-  const [open, setOpen] = useState(false);
+  // const [open, setOpen] = useState(false);
 
   return (
     <Menu as="div" className="relative">
@@ -65,5 +65,3 @@ const Dropdown: FC<DropdownProps> = ({
     </Menu>
   );
 };
-
-export default Dropdown;

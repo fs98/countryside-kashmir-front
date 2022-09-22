@@ -1,8 +1,9 @@
-import ApplicationLogo from '@/components/ApplicationLogo/ApplicationLogo';
-import Dropdown from '@/components/Dropdown/Dropdown';
+import { ApplicationLogo } from '@/components/ApplicationLogo/ApplicationLogo';
+import { Dropdown } from '@/components/Dropdown/Dropdown';
 import Link from 'next/link';
-import NavLink from '@/components/NavLink/NavLink';
-import ResponsiveNavLink, {
+import { NavLink } from '@/components/NavLink/NavLink';
+import {
+  ResponsiveNavLink,
   ResponsiveNavButton,
 } from '@/components/ResponsiveNavLink/ResponsiveNavLink';
 import { DropdownButton } from '@/components/DropdownLink/DropdownLink';
@@ -17,7 +18,7 @@ export type NavigationProps = {
   };
 };
 
-const Navigation: FC<NavigationProps> = ({ user }) => {
+export const Navigation: FC<NavigationProps> = ({ user }) => {
   const router = useRouter();
 
   const { logout } = useAuth();
@@ -148,5 +149,3 @@ const Navigation: FC<NavigationProps> = ({ user }) => {
     </nav>
   );
 };
-
-export default Navigation;
