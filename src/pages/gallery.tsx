@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import axios from '@/lib/axios';
+import { axios } from '@/lib/axios';
 import { ImageHeaderLayout } from '@/layouts/ImageHeaderLayout';
 import { Block } from '@/components/Block/Block';
 import LightGallery from 'lightgallery/react';

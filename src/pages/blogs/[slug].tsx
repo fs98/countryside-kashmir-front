@@ -1,6 +1,6 @@
 import { Block } from '@/components/Block/Block';
 import { ImageHeaderLayout } from '@/layouts/ImageHeaderLayout';
-import axios from '@/lib/axios';
+import { axios } from '@/lib/axios';
 import moment from 'moment';
 import { FC } from 'react';
 import { BlogsProps } from '..';

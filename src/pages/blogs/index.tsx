@@ -1,7 +1,7 @@
 import { Block } from '@/components/Block/Block';
 import { CardSimple } from '@/components/CardSimple/CardSimple';
 import { ImageHeaderLayout } from '@/layouts/ImageHeaderLayout';
-import axios from '@/lib/axios';
+import { axios } from '@/lib/axios';
 import { BlogsProps } from '@/pages';
 import { Grid } from '@mui/material';
 import { FC } from 'react';
