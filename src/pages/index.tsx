@@ -34,6 +34,7 @@ export type ContentProps = {
         text: string;
       };
     }>;
+    version: string;
   };
 };
 
