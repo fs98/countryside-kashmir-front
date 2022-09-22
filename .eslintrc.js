@@ -21,6 +21,7 @@ module.exports = {
     'no-nested-ternary': 0,
     'no-underscore-dangle': 0,
     'no-unused-expressions': ['error', { allowTernary: true }],
+    'no-unused-vars': 2,
     camelcase: 0,
     'react/self-closing-comp': 1,
     'react/jsx-filename-extension': [1, { extensions: ['.js', 'jsx', '.tsx'] }],
@@ -33,7 +34,9 @@ module.exports = {
     'react/require-default-props': 0,
     'react/react-in-jsx-scope': 0,
     'linebreak-style': ['error', 'unix'],
-    semi: ['error', 'never'],
-    'prettier/prettier': ['error', { endOfLine: 'off' }, { usePrettierrc: true }],
+    'prettier/prettier': ['error', { endOfLine: 'auto' }, { usePrettierrc: true }],
+  },
+  globals: {
+    JSX: true,
   },
 };
