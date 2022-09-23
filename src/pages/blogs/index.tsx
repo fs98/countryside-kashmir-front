@@ -3,7 +3,7 @@ import { CardSimple } from '@/components/CardSimple/CardSimple';
 import { ImageHeaderLayout } from '@/layouts/ImageHeaderLayout';
 import { axios } from '@/lib/axios';
 import { BlogsProps } from '@/pages';
-import { Grid } from '@mui/material';
+import { Grid, Link } from '@mui/material';
 import { FC } from 'react';
 
 export const Blogs: FC<{ blogs: BlogsProps[] }> = ({ blogs }) => (
@@ -12,7 +12,9 @@ export const Blogs: FC<{ blogs: BlogsProps[] }> = ({ blogs }) => (
       <Grid marginTop={6} container rowSpacing={5} spacing={5} justifyContent="center">
         {blogs.map((blog, i) => (
           <Grid key={i} item xs={6} md={4} lg={3}>
-            <CardSimple item={blog} />
+            <Link href={`/blogs/${blog.slug}`} sx={{ textDecoration: 'none', cursor: 'pointer' }}>
+              <CardSimple item={blog} />
+            </Link>
           </Grid>
         ))}
       </Grid>
