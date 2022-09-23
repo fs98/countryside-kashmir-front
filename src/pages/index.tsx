@@ -18,6 +18,7 @@ export type SlidesProps = ImageProps & {
   subtitle: string;
 };
 
+// ItemsProps correspond to destinations, activities and packages
 export type ItemsProps = ImageProps & {
   title?: string;
   name?: string;
@@ -25,24 +26,22 @@ export type ItemsProps = ImageProps & {
 };
 
 export type ContentProps = {
-  content: {
-    time: number;
-    blocks: Array<{
-      id: string;
-      type: string;
-      data: {
-        text: string;
-      };
-    }>;
-    version: string;
-  };
+  time: number;
+  blocks: Array<{
+    id: string;
+    type: string;
+    data: {
+      text: string;
+    };
+  }>;
+  version: string;
 };
 
-export type BlogsProps = ImageProps &
-  ContentProps & {
-    title: string;
-    slug: string;
-  };
+export type BlogsProps = ImageProps & {
+  content: ContentProps;
+  title: string;
+  slug: string;
+};
 
 export type OfferProps = ItemsProps & {
   days: number;

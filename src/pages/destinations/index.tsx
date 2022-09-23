@@ -2,18 +2,23 @@ import { Block } from '@/components/Block/Block';
 import { CardSimple } from '@/components/CardSimple/CardSimple';
 import { ImageHeaderLayout } from '@/layouts/ImageHeaderLayout';
 import { axios } from '@/lib/axios';
-import { BlogsProps } from '@/pages';
 import { Grid, Link } from '@mui/material';
-import { FC } from 'react';
+import { ItemsProps } from '..';
 
-export const Blogs: FC<{ blogs: BlogsProps[] }> = ({ blogs }) => (
-  <ImageHeaderLayout title="Blogs - Countryside Kashmir" heading="Blogs">
-    <Block title="Blogs">
+type DestinationsProps = {
+  destinations: ItemsProps[];
+};
+
+const Destinations = ({ destinations }: DestinationsProps): JSX.Element => (
+  <ImageHeaderLayout title="Destinations - Countryside Kashmir" heading="Destinations">
+    <Block title="Destinations">
       <Grid marginTop={6} container rowSpacing={5} spacing={5} justifyContent="center">
-        {blogs.map((blog, i) => (
+        {destinations.map((destination, i) => (
           <Grid key={i} item xs={6} md={4} lg={3}>
-            <Link href={`/blogs/${blog.slug}`} sx={{ textDecoration: 'none', cursor: 'pointer' }}>
-              <CardSimple item={blog} />
+            <Link
+              href={`/destinations/${destination.slug}`}
+              sx={{ textDecoration: 'none', cursor: 'pointer' }}>
+              <CardSimple item={destination} />
             </Link>
           </Grid>
         ))}
@@ -23,8 +28,8 @@ export const Blogs: FC<{ blogs: BlogsProps[] }> = ({ blogs }) => (
 );
 
 export const getServerSideProps = async () => {
-  const blogs = await axios
-    .get('/api/guest/blogs')
+  const destinations = await axios
+    .get('/api/guest/destinations')
     .then(res => {
       return res.data.data;
     })
@@ -34,9 +39,9 @@ export const getServerSideProps = async () => {
 
   return {
     props: {
-      blogs,
+      destinations,
     },
   };
 };
 
-export default Blogs;
+export default Destinations;
