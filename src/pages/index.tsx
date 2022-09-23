@@ -18,6 +18,7 @@ export type SlidesProps = ImageProps & {
   subtitle: string;
 };
 
+// ItemsProps correspond to destinations, activities and packages
 export type ItemsProps = ImageProps & {
   title?: string;
   name?: string;
