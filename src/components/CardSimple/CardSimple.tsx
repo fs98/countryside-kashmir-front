@@ -1,5 +1,5 @@
 import { ItemsProps } from '@/pages';
-import { Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material';
+import { Card, CardContent, CardMedia, Typography } from '@mui/material';
 import { FC } from 'react';
 
 type CardSimpleProps = {
@@ -30,11 +30,6 @@ export const CardSimple: FC<CardSimpleProps> = ({
           {title}
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button size="small" color="warning">
-          Learn More
-        </Button>
-      </CardActions>
     </>
   </Card>
 );
