@@ -34,8 +34,6 @@ export const getServerSideProps = async () => {
       if (error.response.status !== 409) throw error;
     });
 
-  console.log(activities);
-
   return {
     props: {
       activities,
