@@ -7,19 +7,19 @@ import { ImageHeaderLayout } from '@/layouts/ImageHeaderLayout';
 
 import { axios } from '@/lib/axios';
 
-type DestinationProps = {
-  destination: ItemsProps & {
+type ActivityProps = {
+  activity: ItemsProps & {
     description: ContentProps;
     keywords: string;
-    destination_images: ImageProps[];
+    activity_images: ImageProps[];
   };
 };
 
-const Destination = ({ destination }: DestinationProps) => (
-  <ImageHeaderLayout title={destination.name} heading="Blog">
-    <Block title={destination.name} subtitle="subtitle">
+const Activity = ({ activity }: ActivityProps) => (
+  <ImageHeaderLayout title={activity.name} heading="Blog">
+    <Block title={activity.name} subtitle="subtitle">
       <Blocks
-        data={destination.description}
+        data={activity.description}
         config={{
           code: {
             className: 'language-js',
@@ -66,15 +66,15 @@ const Destination = ({ destination }: DestinationProps) => (
 );
 
 export const getServerSideProps = async ({ params: { slug } }) => {
-  const destination = await axios
-    .get(`/api/guest/destinations/${slug}`)
+  const activity = await axios
+    .get(`/api/guest/activities/${slug}`)
     .then(res => res.data.data)
     .catch(error => {
       // eslint-disable-next-line no-console
       console.log(error);
     });
 
-  if (!destination) {
+  if (!activity) {
     return {
       notFound: true,
     };
@@ -82,9 +82,9 @@ export const getServerSideProps = async ({ params: { slug } }) => {
 
   return {
     props: {
-      destination,
+      activity,
     },
   };
 };
 
-export default Destination;
+export default Activity;

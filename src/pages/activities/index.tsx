@@ -4,16 +4,18 @@ import { Block } from '@/components/Block/Block';
 import { CardSimple } from '@/components/CardSimple/CardSimple';
 import { ImageHeaderLayout } from '@/layouts/ImageHeaderLayout';
 import { axios } from '@/lib/axios';
-import { BlogsProps } from '@/pages';
+import { ItemsProps } from '@/pages';
 
-export const Blogs: FC<{ blogs: BlogsProps[] }> = ({ blogs }) => (
-  <ImageHeaderLayout title="Blogs - Countryside Kashmir" heading="Blogs">
-    <Block title="Blogs">
+export const Activities: FC<{ activities: ItemsProps[] }> = ({ activities }) => (
+  <ImageHeaderLayout title="Activities - Countryside Kashmir" heading="Activities">
+    <Block title="Activities">
       <Grid marginTop={6} container rowSpacing={5} spacing={5} justifyContent="center">
-        {blogs.map((blog, i) => (
+        {activities.map((activity, i) => (
           <Grid key={i} item xs={6} md={4} lg={3}>
-            <Link href={`/blogs/${blog.slug}`} sx={{ textDecoration: 'none', cursor: 'pointer' }}>
-              <CardSimple item={blog} />
+            <Link
+              href={`/activities/${activity.slug}`}
+              sx={{ textDecoration: 'none', cursor: 'pointer' }}>
+              <CardSimple item={activity} />
             </Link>
           </Grid>
         ))}
@@ -23,8 +25,8 @@ export const Blogs: FC<{ blogs: BlogsProps[] }> = ({ blogs }) => (
 );
 
 export const getServerSideProps = async () => {
-  const blogs = await axios
-    .get('/api/guest/blogs')
+  const activities = await axios
+    .get('/api/guest/activities')
     .then(res => {
       return res.data.data;
     })
@@ -34,9 +36,9 @@ export const getServerSideProps = async () => {
 
   return {
     props: {
-      blogs,
+      activities,
     },
   };
 };
 
-export default Blogs;
+export default Activities;

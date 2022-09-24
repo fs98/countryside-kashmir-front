@@ -1,9 +1,11 @@
 import { FC } from 'react';
+import LightGallery from 'lightgallery/react';
+import lgZoom from 'lightgallery/plugins/zoom';
+import lgThumbnail from 'lightgallery/plugins/thumbnail';
+import { ImageProps } from '.';
 import { axios } from '@/lib/axios';
 import { ImageHeaderLayout } from '@/layouts/ImageHeaderLayout';
 import { Block } from '@/components/Block/Block';
-import LightGallery from 'lightgallery/react';
-import { ImageProps } from '.';
 
 // import styles
 import 'lightgallery/css/lightgallery.css';
@@ -11,8 +13,6 @@ import 'lightgallery/css/lg-zoom.css';
 import 'lightgallery/css/lg-thumbnail.css';
 
 // import plugins
-import lgThumbnail from 'lightgallery/plugins/thumbnail';
-import lgZoom from 'lightgallery/plugins/zoom';
 
 type GalleryProps = {
   galleryImages: ImageProps[];

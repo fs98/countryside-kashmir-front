@@ -1,6 +1,6 @@
+import { FC, PropsWithChildren, ReactNode } from 'react';
 import { Navigation } from './Navigation';
 import { useAuth } from '@/hooks/auth';
-import { FC, PropsWithChildren, ReactNode } from 'react';
 
 export type AppLayoutProps = PropsWithChildren & {
   header: ReactNode;
