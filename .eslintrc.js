@@ -14,7 +14,7 @@ module.exports = {
     },
     ecmaVersion: 2020,
   },
-  plugins: ['react', '@next/eslint-plugin-next', 'prettier'],
+  plugins: ['react', '@next/eslint-plugin-next', 'prettier', 'eslint-plugin-import'],
   rules: {
     'import/prefer-default-export': 0,
     'no-console': 'warn',
@@ -35,6 +35,11 @@ module.exports = {
     'react/react-in-jsx-scope': 0,
     'linebreak-style': ['error', 'unix'],
     'prettier/prettier': ['error', { endOfLine: 'auto' }, { usePrettierrc: true }],
+    'sort-imports': ['error', { ignoreCase: true, ignoreDeclarationSort: true }],
+    'import/order': [
+      1,
+      { groups: ['external', 'builtin', 'internal', 'sibling', 'index', 'parent'] },
+    ],
   },
   globals: {
     JSX: true,
