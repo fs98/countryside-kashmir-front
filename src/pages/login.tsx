@@ -1,3 +1,6 @@
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import { ApplicationLogo } from '@/components/ApplicationLogo/ApplicationLogo';
 import { AuthCard } from '@/components/AuthCard/AuthCard';
 import { AuthSessionStatus } from '@/components/AuthSessionStatus/AuthSessionStatus';
@@ -6,10 +9,7 @@ import { GuestLayout } from '@/layouts/GuestLayout';
 import { Input } from '@/components/Input/Input';
 import { InputError } from '@/components/InputError/InputError';
 import { Label } from '@/components/Label/Label';
-import Link from 'next/link';
 import { useAuth } from '@/hooks/auth';
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
 
 const Login = () => {
   const router = useRouter();

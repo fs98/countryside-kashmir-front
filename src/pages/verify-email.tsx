@@ -1,10 +1,10 @@
+import Link from 'next/link';
+import { useState } from 'react';
 import { ApplicationLogo } from '@/components/ApplicationLogo/ApplicationLogo';
 import { AuthCard } from '@/components/AuthCard/AuthCard';
 import { Button } from '@/components/Button/Button';
 import { GuestLayout } from '@/layouts/GuestLayout';
-import Link from 'next/link';
 import { useAuth } from '@/hooks/auth';
-import { useState } from 'react';
 
 const VerifyEmail = () => {
   const { logout, resendEmailVerification } = useAuth({

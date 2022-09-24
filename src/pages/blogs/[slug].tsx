@@ -1,14 +1,12 @@
 import { FC } from 'react';
 
+import Blocks from 'editorjs-blocks-react-renderer';
+import moment from 'moment';
+import { BlogsProps } from '..';
 import { Block } from '@/components/Block/Block';
 import { ImageHeaderLayout } from '@/layouts/ImageHeaderLayout';
 
-import Blocks from 'editorjs-blocks-react-renderer';
-
-import { BlogsProps } from '..';
-
 import { axios } from '@/lib/axios';
-import moment from 'moment';
 
 type BlogProps = {
   blog: BlogsProps & {

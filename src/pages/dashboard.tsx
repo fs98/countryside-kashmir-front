@@ -1,5 +1,5 @@
-import { AppLayout } from '@/layouts/AppLayout';
 import Head from 'next/head';
+import { AppLayout } from '@/layouts/AppLayout';
 
 const Dashboard = () => {
   return (

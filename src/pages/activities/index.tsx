@@ -1,10 +1,10 @@
+import { Grid, Link } from '@mui/material';
+import { FC } from 'react';
 import { Block } from '@/components/Block/Block';
 import { CardSimple } from '@/components/CardSimple/CardSimple';
 import { ImageHeaderLayout } from '@/layouts/ImageHeaderLayout';
 import { axios } from '@/lib/axios';
 import { ItemsProps } from '@/pages';
-import { Grid, Link } from '@mui/material';
-import { FC } from 'react';
 
 export const Activities: FC<{ activities: ItemsProps[] }> = ({ activities }) => (
   <ImageHeaderLayout title="Activities - Countryside Kashmir" heading="Activities">

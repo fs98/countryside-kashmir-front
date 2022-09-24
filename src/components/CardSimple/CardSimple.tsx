@@ -1,6 +1,6 @@
-import { ItemsProps } from '@/pages';
 import { Card, CardContent, CardMedia, Typography } from '@mui/material';
 import { FC } from 'react';
+import { ItemsProps } from '@/pages';
 
 type CardSimpleProps = {
   item: ItemsProps;

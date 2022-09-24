@@ -1,10 +1,10 @@
+import { Grid, Link } from '@mui/material';
+import { FC } from 'react';
 import { Block } from '@/components/Block/Block';
 import { CardSimple } from '@/components/CardSimple/CardSimple';
 import { ImageHeaderLayout } from '@/layouts/ImageHeaderLayout';
 import { axios } from '@/lib/axios';
 import { BlogsProps } from '@/pages';
-import { Grid, Link } from '@mui/material';
-import { FC } from 'react';
 
 export const Blogs: FC<{ blogs: BlogsProps[] }> = ({ blogs }) => (
   <ImageHeaderLayout title="Blogs - Countryside Kashmir" heading="Blogs">

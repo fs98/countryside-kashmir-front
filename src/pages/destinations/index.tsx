@@ -1,9 +1,9 @@
+import { Grid, Link } from '@mui/material';
+import { ItemsProps } from '..';
 import { Block } from '@/components/Block/Block';
 import { CardSimple } from '@/components/CardSimple/CardSimple';
 import { ImageHeaderLayout } from '@/layouts/ImageHeaderLayout';
 import { axios } from '@/lib/axios';
-import { Grid, Link } from '@mui/material';
-import { ItemsProps } from '..';
 
 type DestinationsProps = {
   destinations: ItemsProps[];
