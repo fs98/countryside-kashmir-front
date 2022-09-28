@@ -1,12 +1,13 @@
 import React from 'react';
 
 import Blocks from 'editorjs-blocks-react-renderer';
-import { Box, Grid, Link, Typography } from '@mui/material';
+import { Box, Container, Grid, Link, Typography } from '@mui/material';
 import { Block } from '@/components/Block/Block';
 import { ImageHeaderLayout } from '@/layouts/ImageHeaderLayout';
 
 import { axios } from '@/lib/axios';
 import { CardSimple } from '@/components/CardSimple/CardSimple';
+import BookingForm from '@/blocks/PackagesPageBlocks/BookingForm';
 
 const Package = ({ offer }): JSX.Element => (
   <ImageHeaderLayout title={offer.name} heading="Blog">
@@ -85,6 +86,11 @@ const Package = ({ offer }): JSX.Element => (
           )}
         </Grid>
       </Grid>
+    </Block>
+    <Block title="Book Now">
+      <Container maxWidth="md">
+        <BookingForm />
+      </Container>
     </Block>
   </ImageHeaderLayout>
 );
