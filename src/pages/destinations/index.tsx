@@ -11,7 +11,9 @@ type DestinationsProps = {
 
 const Destinations = ({ destinations }: DestinationsProps): JSX.Element => (
   <ImageHeaderLayout title="Destinations - Countryside Kashmir" heading="Destinations">
-    <Block title="Destinations">
+    <Block
+      title="Places to go"
+      subtitle="Check out our top destinations! Which one is going to be your choice?">
       <Grid marginTop={6} container rowSpacing={5} spacing={5} justifyContent="center">
         {destinations.map((destination, i) => (
           <Grid key={i} item xs={6} md={4} lg={3}>
