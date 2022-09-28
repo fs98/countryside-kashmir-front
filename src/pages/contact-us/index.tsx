@@ -5,6 +5,7 @@ import {
   Fade,
   FormControl,
   FormGroup,
+  FormHelperText,
   Grid,
   Input,
   InputLabel,
@@ -12,40 +13,40 @@ import {
   Stack,
   Typography,
 } from '@mui/material';
-import { SyntheticEvent, useRef, useState } from 'react';
+import { useState } from 'react';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import MailIcon from '@mui/icons-material/Mail';
 import PhoneEnabledIcon from '@mui/icons-material/PhoneEnabled';
 import PeopleIcon from '@mui/icons-material/People';
+import { useForm } from 'react-hook-form';
 import { Block } from '@/components/Block/Block';
 import { ImageHeaderLayout } from '@/layouts/ImageHeaderLayout';
 import { axios } from '@/lib/axios';
 
-export const ContactUs = () => {
-  const [message, setMessage] = useState<{ title: string; type: 'success' | 'error' }>();
+type FormData = {
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
+  email: string;
+  content: string;
+};
 
-  const firstNameRef = useRef<HTMLInputElement>();
-  const lastNameRef = useRef<HTMLInputElement>();
-  const phoneNumberRef = useRef<HTMLInputElement>();
-  const emailRef = useRef<HTMLInputElement>();
-  const contentRef = useRef<HTMLInputElement>();
+const ContactUs = () => {
+  const {
+    register,
+    // setValue,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>();
 
-  const submitHandler = (event: SyntheticEvent) => {
-    event.preventDefault();
-
-    const firstName = firstNameRef.current.value;
-    const lastName = lastNameRef.current.value;
-    const phoneNumber = phoneNumberRef.current.value;
-    const email = emailRef.current.value;
-    const content = contentRef.current.value;
-
+  const onSubmit = handleSubmit(data => {
     axios
       .post('/api/guest/messages', {
-        first_name: firstName,
-        last_name: lastName,
-        phone_number: phoneNumber,
-        email: email,
-        content: content,
+        first_name: data.firstName,
+        last_name: data.lastName,
+        phone_number: data.phoneNumber,
+        email: data.email,
+        content: data.content,
       })
       .then(res =>
         setMessage({
@@ -86,14 +87,10 @@ export const ContactUs = () => {
           setMessage(undefined);
         }, 3000);
       })
-      .finally(() => {
-        firstNameRef.current.value = '';
-        lastNameRef.current.value = '';
-        phoneNumberRef.current.value = '';
-        emailRef.current.value = '';
-        contentRef.current.value = '';
-      });
-  };
+      .finally(() => {});
+  });
+
+  const [message, setMessage] = useState<{ title: string; type: 'success' | 'error' }>();
 
   return (
     <ImageHeaderLayout title="Contact us - Countryside Kashmir" heading="Contact us">
@@ -174,31 +171,46 @@ export const ContactUs = () => {
               Or Fill Out Our Contact Form
             </Typography>
             {/* Contact Form */}
-            <form onSubmit={submitHandler}>
+            <form onSubmit={onSubmit}>
               <FormGroup row={true}>
                 <FormControl color="warning">
                   <InputLabel htmlFor="first-name">First name</InputLabel>
-                  <Input id="first-name" inputRef={firstNameRef} />
+
+                  <Input {...register('firstName', { required: true })} id="first-name" />
+
+                  {errors.firstName?.type === 'required' && (
+                    <FormHelperText error id="component-error-text">
+                      First name is required.
+                    </FormHelperText>
+                  )}
                 </FormControl>
                 <FormControl sx={{ marginLeft: 2 }}>
                   <InputLabel htmlFor="last-name">Last name</InputLabel>
-                  <Input id="last-name" inputRef={lastNameRef} />
+
+                  <Input {...register('lastName')} id="last-name" />
                 </FormControl>
               </FormGroup>
               <FormGroup row={true} sx={{ marginTop: 4 }}>
                 <FormControl color="warning">
                   <InputLabel htmlFor="phone-number">Phone number</InputLabel>
-                  <Input id="phone-number" inputRef={phoneNumberRef} />
+
+                  <Input {...register('phoneNumber', { required: true })} id="phone-number" />
+
+                  {errors.phoneNumber?.type === 'required' && (
+                    <FormHelperText error id="component-error-text">
+                      Phone number is required.
+                    </FormHelperText>
+                  )}
                 </FormControl>
                 <FormControl sx={{ marginLeft: 2 }}>
                   <InputLabel htmlFor="email">Email</InputLabel>
-                  <Input id="email" inputRef={emailRef} />
+                  <Input {...register('email')} id="email" />
                 </FormControl>
               </FormGroup>
               <FormGroup sx={{ marginTop: 4 }}>
                 <FormControl color="warning" sx={{ width: '70%' }}>
                   <InputLabel htmlFor="email">Content</InputLabel>
-                  <Input id="content" multiline rows={3} inputRef={contentRef} />
+                  <Input {...register('content')} id="content" multiline rows={3} />
                 </FormControl>
               </FormGroup>
               <Button variant="outlined" color="warning" type="submit" sx={{ marginTop: 4 }}>
