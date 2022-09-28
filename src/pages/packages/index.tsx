@@ -1,4 +1,4 @@
-import { Grid } from '@mui/material';
+import { Grid, Link } from '@mui/material';
 import { CategoryProps } from '..';
 import { Block } from '@/components/Block/Block';
 import { CardPrice } from '@/components/CardPrice/CardPrice';
@@ -20,7 +20,11 @@ const Packages = ({ categoryOffers }: PackagesProps): JSX.Element => {
             <Grid marginTop={6} container rowSpacing={5} spacing={5} justifyContent="center">
               {packages.map((offer, i) => (
                 <Grid key={i} item xs={6} md={4} lg={3}>
-                  <CardPrice offer={offer} />
+                  <Link
+                    href={`/packages/${offer.slug}`}
+                    sx={{ textDecoration: 'none', cursor: 'pointer' }}>
+                    <CardPrice offer={offer} />
+                  </Link>
                 </Grid>
               ))}
             </Grid>
