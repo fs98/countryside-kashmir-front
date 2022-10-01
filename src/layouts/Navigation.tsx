@@ -45,6 +45,9 @@ export const Navigation: FC<NavigationProps> = ({ user }) => {
               <NavLink href="/dashboard" active={router.pathname === '/dashboard'}>
                 Dashboard
               </NavLink>
+              <NavLink href="/admin/categories" active={router.pathname === '/admin/categories'}>
+                Categories
+              </NavLink>
             </div>
           </div>
 
@@ -111,6 +114,11 @@ export const Navigation: FC<NavigationProps> = ({ user }) => {
           <div className="pt-2 pb-3 space-y-1">
             <ResponsiveNavLink href="/dashboard" active={router.pathname === '/dashboard'}>
               Dashboard
+            </ResponsiveNavLink>
+            <ResponsiveNavLink
+              href="/admin/categories"
+              active={router.pathname === '/admin/categories'}>
+              Categories
             </ResponsiveNavLink>
           </div>
 
