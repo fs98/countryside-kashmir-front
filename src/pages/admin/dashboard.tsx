@@ -18,7 +18,8 @@ const messagesColumns: GridColDef[] = [
   { field: 'user', headerName: 'User', width: 150 },
 ];
 
-const Dashboard = ({ messages }) => {
+const Dashboard = ({ messages, bookings }) => {
+  console.log(bookings);
   const [displayed, setDisplayed] = useState({
     rows: messages,
     columns: messagesColumns,
@@ -76,9 +77,24 @@ export const getServerSideProps = async ({
       if (error.response.status !== 409) throw error;
     });
 
+  const bookings = await axios
+    .get('/api/bookings', {
+      headers: {
+        Cookie: cookie,
+        Referer: host,
+      },
+    })
+    .then(res => {
+      return res.data.data;
+    })
+    .catch(error => {
+      if (error.response.status !== 409) throw error;
+    });
+
   return {
     props: {
       messages,
+      bookings,
     },
   };
 };
