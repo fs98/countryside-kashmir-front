@@ -20,6 +20,10 @@ const navLinks: NavLinkProps = [
     title: 'Categories',
     url: '/admin/categories',
   },
+  {
+    title: 'Slides',
+    url: '/admin/slides',
+  },
 ];
 
 type NavLinkProps = Array<{
