@@ -11,6 +11,26 @@ import {
 import { DropdownButton } from '@/components/DropdownLink/DropdownLink';
 import { useAuth } from '@/hooks/auth';
 
+const navLinks: NavLinkProps = [
+  {
+    title: 'Dashboard',
+    url: '/admin/dashboard',
+  },
+  {
+    title: 'Categories',
+    url: '/admin/categories',
+  },
+  {
+    title: 'Slides',
+    url: '/admin/slides',
+  },
+];
+
+type NavLinkProps = Array<{
+  title: string;
+  url: string;
+}>;
+
 export type NavigationProps = {
   user?: {
     name: string;
@@ -42,12 +62,11 @@ export const Navigation: FC<NavigationProps> = ({ user }) => {
 
             {/* Navigation Links */}
             <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-              <NavLink href="/admin/dashboard" active={router.pathname === '/admin/dashboard'}>
-                Dashboard
-              </NavLink>
-              <NavLink href="/admin/categories" active={router.pathname === '/admin/categories'}>
-                Categories
-              </NavLink>
+              {navLinks.map((navLink, i) => (
+                <NavLink key={i} href={navLink.url} active={router.pathname === navLink.url}>
+                  {navLink.title}
+                </NavLink>
+              ))}
             </div>
           </div>
 
@@ -112,16 +131,14 @@ export const Navigation: FC<NavigationProps> = ({ user }) => {
       {open && (
         <div className="block sm:hidden">
           <div className="pt-2 pb-3 space-y-1">
-            <ResponsiveNavLink
-              href="/admin/dashboard"
-              active={router.pathname === '/admin/dashboard'}>
-              Dashboard
-            </ResponsiveNavLink>
-            <ResponsiveNavLink
-              href="/admin/categories"
-              active={router.pathname === '/admin/categories'}>
-              Categories
-            </ResponsiveNavLink>
+            {navLinks.map((navLink, i) => (
+              <ResponsiveNavLink
+                key={i}
+                href={navLink.url}
+                active={router.pathname === navLink.url}>
+                {navLink.title}
+              </ResponsiveNavLink>
+            ))}
           </div>
 
           {/* Responsive Settings Options */}
