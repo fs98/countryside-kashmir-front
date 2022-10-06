@@ -24,6 +24,26 @@ const navLinks: NavLinkProps = [
     title: 'Slides',
     url: '/admin/slides',
   },
+  {
+    title: 'Destinations',
+    url: '/admin/destinations',
+  },
+  {
+    title: 'Packages',
+    url: '/admin/packages',
+  },
+  {
+    title: 'Mail',
+    url: '/admin/mail',
+  },
+  {
+    title: 'Blog',
+    url: '/admin/blog',
+  },
+  {
+    title: 'Things to do',
+    url: '/admin/activities',
+  },
 ];
 
 type NavLinkProps = Array<{
