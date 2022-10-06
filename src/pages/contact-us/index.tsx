@@ -31,10 +31,9 @@ type FormData = {
   content: string;
 };
 
-const ContactUs = () => {
+const ContactUs = (): JSX.Element => {
   const {
     register,
-    // setValue,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>();
