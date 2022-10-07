@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { FC, useState } from 'react';
-import { ApplicationLogo } from '@/components/ApplicationLogo/ApplicationLogo';
 import { Dropdown } from '@/components/Dropdown/Dropdown';
 import { NavLink } from '@/components/NavLink/NavLink';
 import {
@@ -23,6 +22,26 @@ const navLinks: NavLinkProps = [
   {
     title: 'Slides',
     url: '/admin/slides',
+  },
+  {
+    title: 'Destinations',
+    url: '/admin/destinations',
+  },
+  {
+    title: 'Packages',
+    url: '/admin/packages',
+  },
+  {
+    title: 'Mail',
+    url: '/admin/mail',
+  },
+  {
+    title: 'Blog',
+    url: '/admin/blog',
+  },
+  {
+    title: 'Things to do',
+    url: '/admin/activities',
   },
 ];
 
@@ -55,7 +74,11 @@ export const Navigation: FC<NavigationProps> = ({ user }) => {
             <div className="flex-shrink-0 flex items-center">
               <Link href="/admin/dashboard">
                 <a>
-                  <ApplicationLogo className="block h-10 w-auto fill-current text-gray-600" />
+                  <img
+                    src="https://countrysidekashmir.com/img/inline-logo.png"
+                    alt=""
+                    className="block h-6 w-auto fill-current text-gray-600"
+                  />
                 </a>
               </Link>
             </div>

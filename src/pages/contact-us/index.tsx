@@ -31,10 +31,9 @@ type FormData = {
   content: string;
 };
 
-const ContactUs = () => {
+const ContactUs = (): JSX.Element => {
   const {
     register,
-    // setValue,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>();
@@ -55,8 +54,6 @@ const ContactUs = () => {
         }),
       )
       .catch(error => {
-        const errors = [];
-
         if (error.response.status === 500) {
           setMessage({
             title: error.response.data.message,
@@ -65,20 +62,8 @@ const ContactUs = () => {
         }
 
         if (error.response.status === 422) {
-          if (error.response.data.errors.first_name) {
-            error.response.data.errors.first_name.map((error: string) => {
-              errors.push(error);
-            });
-          }
-
-          if (error.response.data.errors.phone_number) {
-            error.response.data.errors.phone_number.map((error: string) => {
-              errors.push(error);
-            });
-          }
-
           setMessage({
-            title: errors.join(' '),
+            title: error.response.data.message,
             type: 'error',
           });
         }
@@ -86,8 +71,7 @@ const ContactUs = () => {
         setTimeout(() => {
           setMessage(undefined);
         }, 3000);
-      })
-      .finally(() => {});
+      });
   });
 
   const [message, setMessage] = useState<{ title: string; type: 'success' | 'error' }>();
