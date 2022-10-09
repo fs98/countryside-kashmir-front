@@ -1,9 +1,9 @@
 import Head from 'next/head';
 import AddIcon from '@mui/icons-material/Add';
+import Link from 'next/link';
 import { SlidesProps } from '../..';
 import { AppLayout } from '@/layouts/AppLayout';
 import { axios } from '@/lib/axios';
-import Link from 'next/link';
 
 type adminSlidesProps = SlidesProps & {
   id: number;
