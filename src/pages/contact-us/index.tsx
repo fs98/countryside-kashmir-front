@@ -4,7 +4,6 @@ import {
   Button,
   Fade,
   FormControl,
-  FormGroup,
   FormHelperText,
   Grid,
   Input,
@@ -19,11 +18,13 @@ import MailIcon from '@mui/icons-material/Mail';
 import PhoneEnabledIcon from '@mui/icons-material/PhoneEnabled';
 import PeopleIcon from '@mui/icons-material/People';
 import { useForm } from 'react-hook-form';
+import { fromPairs } from 'lodash';
+import { contactUsFormFields } from './fieldsData';
 import { Block } from '@/components/Block/Block';
 import { ImageHeaderLayout } from '@/layouts/ImageHeaderLayout';
 import { axios } from '@/lib/axios';
 
-type FormData = {
+export type FormData = {
   firstName: string;
   lastName: string;
   phoneNumber: string;
@@ -149,57 +150,43 @@ const ContactUs = (): JSX.Element => {
             </Stack>
           </Grid>
 
-          {/* Left Side */}
+          {/* Right Side */}
           <Grid item sm={12} md={6}>
             <Typography variant="h5" fontWeight="bold" marginBottom={4}>
               Or Fill Out Our Contact Form
             </Typography>
             {/* Contact Form */}
             <form onSubmit={onSubmit}>
-              <FormGroup row={true}>
-                <FormControl color="warning">
-                  <InputLabel htmlFor="first-name">First name</InputLabel>
+              <Stack spacing={2}>
+                {contactUsFormFields.map(({ id, label, type, rules }) => {
+                  const errorHelperText =
+                    errors?.[id]?.type && rules.find(err => err.name === errors[id].type);
 
-                  <Input {...register('firstName', { required: true })} id="first-name" />
+                  return (
+                    <FormControl key={id} fullWidth={true} color="warning">
+                      <InputLabel htmlFor={id} {...(type === 'date' && { shrink: true })}>
+                        {label}
+                      </InputLabel>
 
-                  {errors.firstName?.type === 'required' && (
-                    <FormHelperText error id="component-error-text">
-                      First name is required.
-                    </FormHelperText>
-                  )}
-                </FormControl>
-                <FormControl sx={{ marginLeft: 2 }}>
-                  <InputLabel htmlFor="last-name">Last name</InputLabel>
+                      <Input
+                        {...register(id, fromPairs(rules.map(rule => [rule.name, rule.value])))}
+                        id={id}
+                        type={type}
+                      />
 
-                  <Input {...register('lastName')} id="last-name" />
-                </FormControl>
-              </FormGroup>
-              <FormGroup row={true} sx={{ marginTop: 4 }}>
-                <FormControl color="warning">
-                  <InputLabel htmlFor="phone-number">Phone number</InputLabel>
+                      {errorHelperText?.text && (
+                        <FormHelperText error id="component-error-text">
+                          {errorHelperText.text}
+                        </FormHelperText>
+                      )}
+                    </FormControl>
+                  );
+                })}
 
-                  <Input {...register('phoneNumber', { required: true })} id="phone-number" />
-
-                  {errors.phoneNumber?.type === 'required' && (
-                    <FormHelperText error id="component-error-text">
-                      Phone number is required.
-                    </FormHelperText>
-                  )}
-                </FormControl>
-                <FormControl sx={{ marginLeft: 2 }}>
-                  <InputLabel htmlFor="email">Email</InputLabel>
-                  <Input {...register('email')} id="email" />
-                </FormControl>
-              </FormGroup>
-              <FormGroup sx={{ marginTop: 4 }}>
-                <FormControl color="warning" sx={{ width: '70%' }}>
-                  <InputLabel htmlFor="email">Content</InputLabel>
-                  <Input {...register('content')} id="content" multiline rows={3} />
-                </FormControl>
-              </FormGroup>
-              <Button variant="outlined" color="warning" type="submit" sx={{ marginTop: 4 }}>
-                Submit
-              </Button>
+                <Button variant="outlined" color="warning" type="submit" sx={{ marginTop: 4 }}>
+                  Submit
+                </Button>
+              </Stack>
             </form>
             {message && (
               <Fade in={true}>
