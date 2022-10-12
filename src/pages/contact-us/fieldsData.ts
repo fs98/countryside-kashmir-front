@@ -1,4 +1,21 @@
-export const bookingFormFields = [
+import { FormData } from '.';
+
+type FormFieldRulesProps = {
+  name: string;
+  value: unknown;
+  text: string;
+};
+
+type FormFieldProps = {
+  id: keyof FormData;
+  label: string;
+  type: 'text' | 'number' | 'date' | 'email';
+  rules: FormFieldRulesProps[];
+};
+
+type ContactUsFormFieldProps = FormFieldProps[];
+
+export const contactUsFormFields: ContactUsFormFieldProps = [
   {
     id: 'firstName',
     label: 'First name',
@@ -26,23 +43,6 @@ export const bookingFormFields = [
         name: 'required',
         value: true,
         text: 'Phone number is required.',
-      },
-    ],
-  },
-  {
-    id: 'address',
-    label: 'Address',
-    type: 'text',
-    rules: [
-      {
-        name: 'required',
-        value: true,
-        text: 'Address is required.',
-      },
-      {
-        name: 'maxLength',
-        value: 128,
-        text: 'Address should be shorther than 128 characters.',
       },
     ],
   },
