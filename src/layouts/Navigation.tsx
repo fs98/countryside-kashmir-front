@@ -9,6 +9,7 @@ import {
 } from '@/components/ResponsiveNavLink/ResponsiveNavLink';
 import { DropdownButton } from '@/components/DropdownLink/DropdownLink';
 import { useAuth } from '@/hooks/auth';
+import { ApplicationLogo } from '@/components/ApplicationLogo/ApplicationLogo';
 
 const navLinks: NavLinkProps = [
   {
@@ -73,13 +74,7 @@ export const Navigation: FC<NavigationProps> = ({ user }) => {
             {/* Logo */}
             <div className="flex-shrink-0 flex items-center">
               <Link href="/admin/dashboard">
-                <a>
-                  <img
-                    src="https://countrysidekashmir.com/img/inline-logo.png"
-                    alt=""
-                    className="block h-6 w-auto fill-current text-gray-600"
-                  />
-                </a>
+                <ApplicationLogo />
               </Link>
             </div>
 

@@ -12,6 +12,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { AppBarProps, Link } from '@mui/material';
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
+import { ApplicationLogo } from '@/components/ApplicationLogo/ApplicationLogo';
 
 const pages = [
   { name: 'Home', url: '/' },
@@ -94,12 +95,7 @@ export const MainNavbar: React.FC<AppBarProps> = ({ position, color }) => {
               xs: 'none',
               md: 'flex',
             }}>
-            <img
-              width={120}
-              className="mr-1 bg-slate-50 p-2 rounded-xl"
-              src="https://countrysidekashmir.com/img/inline-logo.png"
-              alt="logo"
-            />
+            <ApplicationLogo className="mr-1 bg-slate-50 p-2 rounded-xl w-28 h-auto" />
           </Box>
 
           <Box
@@ -154,12 +150,7 @@ export const MainNavbar: React.FC<AppBarProps> = ({ position, color }) => {
               md: 'none',
             }}
             marginRight={2}>
-            <img
-              width={120}
-              className="mr-1 bg-slate-50 p-2 rounded-xl"
-              src="https://countrysidekashmir.com/img/inline-logo.png"
-              alt="logo"
-            />
+            <ApplicationLogo className="mr-1 bg-slate-50 p-2 rounded-xl w-28 h-auto" />
           </Box>
           <Box
             display={{
