@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { FC, useState } from 'react';
 import { Dropdown } from '@/components/Dropdown/Dropdown';
@@ -73,9 +72,7 @@ export const Navigation: FC<NavigationProps> = ({ user }) => {
           <div className="flex">
             {/* Logo */}
             <div className="flex-shrink-0 flex items-center">
-              <Link href="/admin/dashboard">
-                <ApplicationLogo />
-              </Link>
+              <ApplicationLogo />
             </div>
 
             {/* Navigation Links */}
