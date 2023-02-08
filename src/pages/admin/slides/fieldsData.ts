@@ -18,7 +18,7 @@ type SlideFormFieldProps = FormFieldProps[];
 export const slideFormFields: SlideFormFieldProps = [
   {
     id: 'image',
-    label: 'Image',
+    label: 'Image (png, jpg, jpeg)',
     type: 'file',
     rules: [
       {
