@@ -1,6 +1,8 @@
 import Head from 'next/head';
 import AddIcon from '@mui/icons-material/Add';
 import Link from 'next/link';
+import { useState } from 'react';
+import { Button } from '@mui/material';
 import { SlidesProps } from '../..';
 import { AppLayout } from '@/layouts/AppLayout';
 import { axios } from '@/lib/axios';
@@ -13,6 +15,20 @@ type adminSlidesProps = SlidesProps & {
 };
 
 const Slides = ({ slides }: { slides: adminSlidesProps[] }): JSX.Element => {
+  const [updatedSlides, setUpdatedSlides] = useState<adminSlidesProps[]>(slides);
+
+  const handleDelete = (slideId: Number) => {
+    axios
+      .delete(`/api/slides/${slideId}`)
+      .then(res => {
+        setUpdatedSlides(updatedSlides.filter(slide => slide.id !== slideId));
+        window.alert(res.data.message);
+      })
+      .catch(error => {
+        window.alert(error.response.data.message);
+      });
+  };
+
   return (
     <AppLayout
       header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Slides</h2>}>
@@ -31,12 +47,20 @@ const Slides = ({ slides }: { slides: adminSlidesProps[] }): JSX.Element => {
               </Link>
             </div>
             <div className="p-6 bg-white border-b border-gray-200 w-full grid grid-cols-3 gap-4">
-              {slides.map(slide => (
+              {updatedSlides.map(slide => (
                 <div key={slide.id} className="max-w-sm rounded overflow-hidden shadow-lg">
                   <img className="w-full" src={slide.image_url} alt={slide.image_alt} />
                   <div className="px-6 py-4">
                     <div className="font-bold text-xl mb-2">{slide.title}</div>
                     <p className="text-gray-700 text-base">{slide.subtitle}</p>
+                    <Button
+                      onClick={() => handleDelete(slide.id)}
+                      variant="outlined"
+                      color="error"
+                      type="submit"
+                      sx={{ marginTop: 1 }}>
+                      Delete
+                    </Button>
                   </div>
                   <div className="px-6 pt-4 pb-2">
                     <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
