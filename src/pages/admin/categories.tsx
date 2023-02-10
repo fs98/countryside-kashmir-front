@@ -11,23 +11,26 @@ const columns: GridColDef[] = [
   { field: 'updated_at', headerName: 'Updated At', width: 210 },
 ];
 
-const Categories = ({ categories }) => (
-  <AppLayout
-    header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Categories</h2>}>
-    <Head>
-      <title>Countryside Kashmir - Categories</title>
-    </Head>
-    <div className="py-12">
-      <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-          <div className="p-6 bg-white border-b border-gray-200 w-full">
-            <DataGrid rows={categories} columns={columns} />
+const Categories = ({ categories }) => {
+  console.log(categories);
+  return (
+    <AppLayout
+      header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Categories</h2>}>
+      <Head>
+        <title>Countryside Kashmir - Categories</title>
+      </Head>
+      <div className="py-12">
+        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+          <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div className="p-6 bg-white border-b border-gray-200 w-full h-screen">
+              <DataGrid rows={categories} columns={columns} />
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </AppLayout>
-);
+    </AppLayout>
+  );
+};
 
 export const getServerSideProps = async ({
   req: {
