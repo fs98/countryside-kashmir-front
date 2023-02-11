@@ -4,9 +4,9 @@ import { Button, FormControl, FormHelperText, Input, InputLabel } from '@mui/mat
 import { useState } from 'react';
 import { fromPairs } from 'lodash';
 import Router from 'next/router';
+import { slideFormFields } from '../fieldsData';
 import { axios } from '@/lib/axios';
 import { AppLayout } from '@/layouts/AppLayout';
-import { slideFormFields } from './fieldsData';
 
 export type FormData = {
   image: File;
