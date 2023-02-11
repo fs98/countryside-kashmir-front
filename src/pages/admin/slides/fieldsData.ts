@@ -10,7 +10,10 @@ type FormFieldProps = {
   id: keyof FormData;
   label: string;
   type: 'text' | 'number' | 'file';
-  rules: FormFieldRulesProps[];
+  rules: {
+    creating: FormFieldRulesProps[];
+    updating: FormFieldRulesProps[];
+  };
 };
 
 type SlideFormFieldProps = FormFieldProps[];
@@ -20,65 +23,109 @@ export const slideFormFields: SlideFormFieldProps = [
     id: 'image',
     label: 'Image (png, jpg, jpeg)',
     type: 'file',
-    rules: [
-      {
-        name: 'required',
-        value: true,
-        text: 'Image is required.',
-      },
-    ],
+    rules: {
+      creating: [
+        {
+          name: 'required',
+          value: true,
+          text: 'Image is required.',
+        },
+      ],
+      updating: [],
+    },
   },
   {
     id: 'imageAlt',
     label: 'Image Alt',
     type: 'text',
-    rules: [
-      {
-        name: 'required',
-        value: true,
-        text: 'Image Alt is required.',
-      },
-      {
-        name: 'max',
-        value: 64,
-        text: 'Image Alt must be shorter than 64 characters.',
-      },
-    ],
+    rules: {
+      creating: [
+        {
+          name: 'required',
+          value: true,
+          text: 'Image Alt is required.',
+        },
+        {
+          name: 'max',
+          value: 64,
+          text: 'Image Alt must be shorter than 64 characters.',
+        },
+      ],
+      updating: [
+        {
+          name: 'required',
+          value: true,
+          text: 'Image Alt is required.',
+        },
+        {
+          name: 'max',
+          value: 64,
+          text: 'Image Alt must be shorter than 64 characters.',
+        },
+      ],
+    },
   },
   {
     id: 'order',
     label: 'Order',
     type: 'number',
-    rules: [
-      {
-        name: 'required',
-        value: true,
-        text: 'Order is required.',
-      },
-    ],
+    rules: {
+      creating: [
+        {
+          name: 'required',
+          value: true,
+          text: 'Order is required.',
+        },
+      ],
+      updating: [
+        {
+          name: 'required',
+          value: true,
+          text: 'Order is required.',
+        },
+      ],
+    },
   },
   {
     id: 'title',
     label: 'Title',
     type: 'text',
-    rules: [
-      {
-        name: 'max',
-        value: 64,
-        text: 'Title must be shorter than 64 characters.',
-      },
-    ],
+    rules: {
+      creating: [
+        {
+          name: 'max',
+          value: 64,
+          text: 'Title must be shorter than 64 characters.',
+        },
+      ],
+      updating: [
+        {
+          name: 'max',
+          value: 64,
+          text: 'Title must be shorter than 64 characters.',
+        },
+      ],
+    },
   },
   {
     id: 'subtitle',
     label: 'Subtitle',
     type: 'text',
-    rules: [
-      {
-        name: 'max',
-        value: 32,
-        text: 'Title must be shorter than 32 characters.',
-      },
-    ],
+    rules: {
+      creating: [
+        {
+          name: 'max',
+          value: 32,
+          text: 'Title must be shorter than 32 characters.',
+        },
+      ],
+      updating: [
+        {
+          name: 'max',
+          value: 32,
+          text: 'Title must be shorter than 32 characters.',
+        },
+      ],
+    },
   },
 ];
