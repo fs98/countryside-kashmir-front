@@ -61,7 +61,7 @@ const Slides = ({ slides }: { slides: adminSlidesProps[] }): JSX.Element => {
                       sx={{ marginTop: 1 }}>
                       Delete
                     </Button>
-                    <Link href={`slides/${slide.id}`} className="hidden">
+                    <Link href={`slides/${slide.id}/edit`} className="hidden">
                       <Button
                         variant="outlined"
                         color="primary"
