@@ -4,9 +4,9 @@ import { Button, FormControl, FormHelperText, Input, InputLabel } from '@mui/mat
 import { useState } from 'react';
 import { fromPairs } from 'lodash';
 import Router from 'next/router';
-import { slideFormFields } from './editFieldsData';
 import { axios } from '@/lib/axios';
 import { AppLayout } from '@/layouts/AppLayout';
+import { slideFormFields } from './fieldsData';
 
 export type FormData = {
   image: File;
@@ -108,7 +108,7 @@ const Slide = ({ slide }): JSX.Element => {
               <form onSubmit={onSubmit}>
                 {slideFormFields.map(({ id, label, type, rules }) => {
                   const errorHelperText =
-                    errors?.[id]?.type && rules.find(err => err.name === errors[id].type);
+                    errors?.[id]?.type && rules.updating.find(err => err.name === errors[id].type);
 
                   return (
                     <FormControl key={id} fullWidth={true} color="warning" sx={{ marginBottom: 5 }}>
@@ -117,7 +117,10 @@ const Slide = ({ slide }): JSX.Element => {
                       </InputLabel>
 
                       <Input
-                        {...register(id, fromPairs(rules.map(rule => [rule.name, rule.value])))}
+                        {...register(
+                          id,
+                          fromPairs(rules.updating.map(rule => [rule.name, rule.value])),
+                        )}
                         id={id}
                         type={type}
                         {...inputProps.filter(inputProp => inputProp.id === id)[0]?.attributes}
