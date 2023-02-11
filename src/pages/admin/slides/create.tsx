@@ -79,7 +79,7 @@ const Slides = (): JSX.Element => {
               <form onSubmit={onSubmit}>
                 {slideFormFields.map(({ id, label, type, rules }) => {
                   const errorHelperText =
-                    errors?.[id]?.type && rules.find(err => err.name === errors[id].type);
+                    errors?.[id]?.type && rules.creating.find(err => err.name === errors[id].type);
 
                   return (
                     <FormControl key={id} fullWidth={true} color="warning" sx={{ marginBottom: 5 }}>
@@ -88,7 +88,10 @@ const Slides = (): JSX.Element => {
                       </InputLabel>
 
                       <Input
-                        {...register(id, fromPairs(rules.map(rule => [rule.name, rule.value])))}
+                        {...register(
+                          id,
+                          fromPairs(rules.creating.map(rule => [rule.name, rule.value])),
+                        )}
                         id={id}
                         type={type}
                       />
