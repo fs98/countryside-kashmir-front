@@ -39,7 +39,16 @@ export const slideFormFields: SlideFormFieldProps = [
           text: 'Image must not exceed 5MB.',
         },
       ],
-      updating: [],
+      updating: [
+        {
+          name: 'filetype',
+          text: 'Image must be of type jpg,jpeg or png.',
+        },
+        {
+          name: 'filesize',
+          text: 'Image must not exceed 5MB.',
+        },
+      ],
     },
   },
   {
