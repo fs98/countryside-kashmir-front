@@ -1,9 +1,7 @@
 import Head from 'next/head';
-import { Button, FormControl, FormHelperText, Input, InputLabel } from '@mui/material';
 import { useForm } from 'react-hook-form';
-import { fromPairs } from 'lodash';
 import { useState } from 'react';
-import { slideFormFields } from './fieldsData';
+import { SlideForm } from './slideForm';
 import { AppLayout } from '@/layouts/AppLayout';
 import { axios } from '@/lib/axios';
 
@@ -85,38 +83,13 @@ const Slides = (): JSX.Element => {
           <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div className="p-6 bg-white border-b border-gray-200 grid gap-5">
               {message && <div>{message.title}</div>}
-              <form onSubmit={onSubmit}>
-                {slideFormFields.map(({ id, label, type, rules }) => {
-                  const errorHelperText =
-                    errors?.[id]?.type && rules.creating.find(err => err.name === errors[id].type);
-
-                  return (
-                    <FormControl key={id} fullWidth={true} color="warning" sx={{ marginBottom: 5 }}>
-                      <InputLabel htmlFor={id} shrink>
-                        {label}
-                      </InputLabel>
-
-                      <Input
-                        {...register(
-                          id,
-                          fromPairs(rules.creating.map(rule => [rule.name, rule.value])),
-                        )}
-                        id={id}
-                        type={type}
-                      />
-
-                      {errorHelperText?.text && (
-                        <FormHelperText error id="component-error-text">
-                          {errorHelperText.text}
-                        </FormHelperText>
-                      )}
-                    </FormControl>
-                  );
-                })}
-                <Button variant="outlined" color="warning" type="submit" sx={{ marginTop: 4 }}>
-                  Submit
-                </Button>
-              </form>
+              <SlideForm
+                onSubmit={onSubmit}
+                errors={errors}
+                register={register}
+                editing={false}
+                inputAttributes={[]}
+              />
             </div>
           </div>
         </div>
