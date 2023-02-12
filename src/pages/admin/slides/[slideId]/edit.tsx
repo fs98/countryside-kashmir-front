@@ -47,6 +47,7 @@ const Slide = ({ slide }): JSX.Element => {
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors },
   } = useForm<FormData>();
 
@@ -59,6 +60,14 @@ const Slide = ({ slide }): JSX.Element => {
     formData.append('subtitle', subtitle);
 
     if (image[0]) {
+      if (image[0].type !== 'image/jpeg' && image[0].type !== 'image/png') {
+        return setError('image', { type: 'filetype' });
+      }
+
+      if (image[0].size >= 5000000) {
+        return setError('image', { type: 'filesize' });
+      }
+
       formData.append('image', image[0]);
     }
 
