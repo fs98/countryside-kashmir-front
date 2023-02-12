@@ -2,7 +2,7 @@ import { FormData } from './create';
 
 type FormFieldRulesProps = {
   name: string;
-  value: unknown;
+  value?: unknown;
   text: string;
 };
 
@@ -29,6 +29,14 @@ export const slideFormFields: SlideFormFieldProps = [
           name: 'required',
           value: true,
           text: 'Image is required.',
+        },
+        {
+          name: 'filetype',
+          text: 'Image must be of type jpg,jpeg or png.',
+        },
+        {
+          name: 'filesize',
+          text: 'Image must not exceed 5MB.',
         },
       ],
       updating: [],
