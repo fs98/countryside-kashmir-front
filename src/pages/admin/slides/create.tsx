@@ -19,10 +19,19 @@ const Slides = (): JSX.Element => {
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors },
   } = useForm<FormData>();
 
   const onSubmit = handleSubmit(({ image, imageAlt, order, title, subtitle }) => {
+    if (image[0].type !== 'image/jpeg' && image[0].type !== 'image/png') {
+      return setError('image', { type: 'filetype' });
+    }
+
+    if (image[0].size >= 5000000) {
+      return setError('image', { type: 'filesize' });
+    }
+
     const formData = new FormData();
     formData.append('image', image[0]);
     formData.append('image_alt', imageAlt);
