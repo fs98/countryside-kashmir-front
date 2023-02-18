@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Head from 'next/head';
-import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, GridRowParams, GridValueGetterParams } from '@mui/x-data-grid';
 import { AppLayout } from '@/layouts/AppLayout';
 import { axios } from '@/lib/axios';
 import { Button } from '@/components/Button/Button';
@@ -24,6 +24,19 @@ const messagesColumns: GridColDef[] = [
   { field: 'created_at', headerName: 'Created At', width: 150 },
   { field: 'updated_at', headerName: 'Updated At', width: 150 },
   { field: 'user', headerName: 'User', width: 150 },
+  {
+    field: 'action',
+    headerName: 'Action',
+    sortable: false,
+    renderCell: ({ row }: Partial<GridRowParams>) => (
+      <Button
+        onClick={() => {
+          console.log(row.id);
+        }}>
+        Delete
+      </Button>
+    ),
+  },
 ];
 
 const bookingsColumns: GridColDef[] = [
