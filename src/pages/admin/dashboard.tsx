@@ -5,7 +5,7 @@ import { AppLayout } from '@/layouts/AppLayout';
 import { axios } from '@/lib/axios';
 import { Button } from '@/components/Button/Button';
 
-type userProps = {
+type UserProps = {
   id: Number;
   name: string;
   email: string;
@@ -14,7 +14,7 @@ type userProps = {
   updated_at: string;
 };
 
-type messagesProps = {
+type MessageProps = {
   id: Number;
   first_name: string;
   last_name: string;
@@ -22,15 +22,42 @@ type messagesProps = {
   email: string;
   content: string;
   user_id: Number;
-  user: userProps;
+  user: UserProps;
   created_at: string;
   updated_at: string;
+};
+
+type BookingProps = {
+  id: Number;
+  name: string;
+  email: string;
+  phone_number: string;
+  address: string;
+  city: string;
+  country: string;
+  persons: Number;
+  adults: Number;
+  children: Number;
+  arrival_date: string;
+  days: Number;
+  nights: Number;
+  package_id: Number;
+  user_id: Number;
+  created_at: string;
+  updated_at: string;
+  user: UserProps;
 };
 
 const getFullName = (params: GridValueGetterParams) =>
   `${params.row.first_name || ''} ${params.row.last_name || ''}`;
 
-const Dashboard = ({ messages, bookings }: { messages: messagesProps[]; bookings: any }) => {
+const Dashboard = ({
+  messages,
+  bookings,
+}: {
+  messages: MessageProps[];
+  bookings: BookingProps[];
+}) => {
   const deleteMessage = (messageId: Number) => {
     axios
       .delete(`/api/messages/${messageId}`)
@@ -93,7 +120,11 @@ const Dashboard = ({ messages, bookings }: { messages: messagesProps[]; bookings
     // { field: 'user', headerName: 'User', width: 150 },
   ];
 
-  const [displayed, setDisplayed] = useState({
+  const [displayed, setDisplayed] = useState<{
+    rows: any;
+    columns: any;
+    heading: string;
+  }>({
     rows: messages,
     columns: messagesColumns,
     heading: 'Messages',
