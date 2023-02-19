@@ -9,58 +9,69 @@ function getFullName(params: GridValueGetterParams) {
   return `${params.row.first_name || ''} ${params.row.last_name || ''}`;
 }
 
-const messagesColumns: GridColDef[] = [
-  { field: 'id', headerName: 'ID', width: 150 },
-  {
-    field: 'fullName',
-    headerName: 'Full name',
-    width: 160,
-    valueGetter: getFullName,
-  },
-  { field: 'phone_number', headerName: 'Phone Number', width: 150 },
-  { field: 'email', headerName: 'Email', width: 150 },
-  { field: 'content', headerName: 'Content', width: 150 },
-  { field: 'user_id', headerName: 'User ID', width: 150 },
-  { field: 'created_at', headerName: 'Created At', width: 150 },
-  { field: 'updated_at', headerName: 'Updated At', width: 150 },
-  { field: 'user', headerName: 'User', width: 150 },
-  {
-    field: 'action',
-    headerName: 'Action',
-    sortable: false,
-    renderCell: ({ row }: Partial<GridRowParams>) => (
-      <Button
-        onClick={() => {
-          console.log(row.id);
-        }}>
-        Delete
-      </Button>
-    ),
-  },
-];
-
-const bookingsColumns: GridColDef[] = [
-  { field: 'id', headerName: 'ID', width: 150 },
-  { field: 'name', headerName: 'Name', width: 150 },
-  { field: 'email', headerName: 'Email', width: 150 },
-  { field: 'phone_number', headerName: 'Phone Number', width: 150 },
-  { field: 'address', headerName: 'Address', width: 150 },
-  { field: 'city', headerName: 'City', width: 150 },
-  { field: 'country', headerName: 'Country', width: 150 },
-  { field: 'persons', headerName: 'Persons', width: 150 },
-  { field: 'adults', headerName: 'Adults', width: 150 },
-  { field: 'children', headerName: 'Children', width: 150 },
-  { field: 'days', headerName: 'Days', width: 150 },
-  { field: 'nights', headerName: 'Nights', width: 150 },
-  // { field: 'user_id', headerName: 'User ID', width: 150 },
-  // { field: 'package_id', headerName: 'Package ID', width: 150 },
-  { field: 'arrival_date', headerName: 'Arrival Date', width: 150 },
-  { field: 'created_at', headerName: 'Created At', width: 150 },
-  { field: 'updated_at', headerName: 'Updated At', width: 150 },
-  // { field: 'user', headerName: 'User', width: 150 },
-];
-
 const Dashboard = ({ messages, bookings }) => {
+  const deleteMessage = (messageId: Number) => {
+    axios
+      .delete(`/api/messages/${messageId}`)
+      .then(res => {
+        setDisplayed({
+          rows: messages.filter(message => message.id !== messageId),
+          columns: messagesColumns,
+          heading: 'Messages',
+        });
+        window.alert(res.data.message);
+      })
+      .catch(error => {
+        window.alert(error.response.data.error);
+      });
+  };
+
+  const messagesColumns: GridColDef[] = [
+    { field: 'id', headerName: 'ID', width: 150 },
+    {
+      field: 'fullName',
+      headerName: 'Full name',
+      width: 160,
+      valueGetter: getFullName,
+    },
+    { field: 'phone_number', headerName: 'Phone Number', width: 150 },
+    { field: 'email', headerName: 'Email', width: 150 },
+    { field: 'content', headerName: 'Content', width: 150 },
+    { field: 'user_id', headerName: 'User ID', width: 150 },
+    { field: 'created_at', headerName: 'Created At', width: 150 },
+    { field: 'updated_at', headerName: 'Updated At', width: 150 },
+    { field: 'user', headerName: 'User', width: 150 },
+    {
+      field: 'action',
+      headerName: 'Action',
+      sortable: false,
+      renderCell: ({ row }: Partial<GridRowParams>) => (
+        <Button onClick={() => deleteMessage(row.id)}>Delete</Button>
+      ),
+    },
+  ];
+
+  const bookingsColumns: GridColDef[] = [
+    { field: 'id', headerName: 'ID', width: 150 },
+    { field: 'name', headerName: 'Name', width: 150 },
+    { field: 'email', headerName: 'Email', width: 150 },
+    { field: 'phone_number', headerName: 'Phone Number', width: 150 },
+    { field: 'address', headerName: 'Address', width: 150 },
+    { field: 'city', headerName: 'City', width: 150 },
+    { field: 'country', headerName: 'Country', width: 150 },
+    { field: 'persons', headerName: 'Persons', width: 150 },
+    { field: 'adults', headerName: 'Adults', width: 150 },
+    { field: 'children', headerName: 'Children', width: 150 },
+    { field: 'days', headerName: 'Days', width: 150 },
+    { field: 'nights', headerName: 'Nights', width: 150 },
+    // { field: 'user_id', headerName: 'User ID', width: 150 },
+    // { field: 'package_id', headerName: 'Package ID', width: 150 },
+    { field: 'arrival_date', headerName: 'Arrival Date', width: 150 },
+    { field: 'created_at', headerName: 'Created At', width: 150 },
+    { field: 'updated_at', headerName: 'Updated At', width: 150 },
+    // { field: 'user', headerName: 'User', width: 150 },
+  ];
+
   const [displayed, setDisplayed] = useState({
     rows: messages,
     columns: messagesColumns,
