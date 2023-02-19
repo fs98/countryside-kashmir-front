@@ -5,9 +5,8 @@ import { AppLayout } from '@/layouts/AppLayout';
 import { axios } from '@/lib/axios';
 import { Button } from '@/components/Button/Button';
 
-function getFullName(params: GridValueGetterParams) {
-  return `${params.row.first_name || ''} ${params.row.last_name || ''}`;
-}
+const getFullName = (params: GridValueGetterParams) =>
+  `${params.row.first_name || ''} ${params.row.last_name || ''}`;
 
 const Dashboard = ({ messages, bookings }) => {
   const deleteMessage = (messageId: Number) => {
