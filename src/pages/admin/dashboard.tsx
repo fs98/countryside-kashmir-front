@@ -5,10 +5,32 @@ import { AppLayout } from '@/layouts/AppLayout';
 import { axios } from '@/lib/axios';
 import { Button } from '@/components/Button/Button';
 
+type userProps = {
+  id: Number;
+  name: string;
+  email: string;
+  email_verified_at: string;
+  created_at: string;
+  updated_at: string;
+};
+
+type messagesProps = {
+  id: Number;
+  first_name: string;
+  last_name: string;
+  phone_number: string;
+  email: string;
+  content: string;
+  user_id: Number;
+  user: userProps;
+  created_at: string;
+  updated_at: string;
+};
+
 const getFullName = (params: GridValueGetterParams) =>
   `${params.row.first_name || ''} ${params.row.last_name || ''}`;
 
-const Dashboard = ({ messages, bookings }) => {
+const Dashboard = ({ messages, bookings }: { messages: messagesProps[]; bookings: any }) => {
   const deleteMessage = (messageId: Number) => {
     axios
       .delete(`/api/messages/${messageId}`)
