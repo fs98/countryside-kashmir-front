@@ -59,19 +59,21 @@ const Dashboard = ({
   bookings: BookingProps[];
 }) => {
   const deleteMessage = (messageId: Number) => {
-    axios
-      .delete(`/api/messages/${messageId}`)
-      .then(res => {
-        setDisplayed({
-          rows: messages.filter(message => message.id !== messageId),
-          columns: messagesColumns,
-          heading: 'Messages',
+    if (window.confirm('Are you sure? This action cannot be undone.')) {
+      axios
+        .delete(`/api/messages/${messageId}`)
+        .then(res => {
+          setDisplayed({
+            rows: messages.filter(message => message.id !== messageId),
+            columns: messagesColumns,
+            heading: 'Messages',
+          });
+          window.alert(res.data.message);
+        })
+        .catch(error => {
+          window.alert(error.response.data.error);
         });
-        window.alert(res.data.message);
-      })
-      .catch(error => {
-        window.alert(error.response.data.error);
-      });
+    }
   };
 
   const messagesColumns: GridColDef[] = [
