@@ -1,9 +1,6 @@
 import { useState } from 'react';
 import Head from 'next/head';
 import { DataGrid, GridColDef, GridRowParams, GridValueGetterParams } from '@mui/x-data-grid';
-import { AppLayout } from '@/layouts/AppLayout';
-import { axios } from '@/lib/axios';
-import { Button } from '@/components/Button/Button';
 import {
   Dialog,
   DialogActions,
@@ -11,6 +8,9 @@ import {
   DialogContentText,
   DialogTitle,
 } from '@mui/material';
+import { AppLayout } from '@/layouts/AppLayout';
+import { axios } from '@/lib/axios';
+import { Button } from '@/components/Button/Button';
 
 type UserProps = {
   id: Number;
@@ -66,7 +66,13 @@ const Dashboard = ({
   bookings: BookingProps[];
 }) => {
   const [openDialog, setOpenDialog] = useState<boolean>(false);
-  const [deleteItemId, setDeleteItemId] = useState<Number | null>(null);
+  const [deleteItem, setDeleteItem] = useState<{
+    type: 'message' | 'booking';
+    id: Number | null;
+  }>({
+    type: 'message',
+    id: null,
+  });
 
   const deleteMessage = (messageId: Number) => {
     axios
@@ -76,6 +82,23 @@ const Dashboard = ({
           rows: messages.filter(message => message.id !== messageId),
           columns: messagesColumns,
           heading: 'Messages',
+        });
+        window.alert(res.data.message);
+      })
+      .catch(error => {
+        window.alert(error.response.data.error);
+      });
+    setOpenDialog(false);
+  };
+
+  const deleteBooking = (bookingId: Number) => {
+    axios
+      .delete(`/api/bookings/${bookingId}`)
+      .then(res => {
+        setDisplayed({
+          rows: bookings.filter(booking => booking.id !== bookingId),
+          columns: bookingsColumns,
+          heading: 'Bookings',
         });
         window.alert(res.data.message);
       })
@@ -108,7 +131,10 @@ const Dashboard = ({
         <Button
           onClick={() => {
             setOpenDialog(true);
-            setDeleteItemId(row.id);
+            setDeleteItem({
+              type: 'message',
+              id: row.id,
+            });
           }}>
           Delete
         </Button>
@@ -135,6 +161,23 @@ const Dashboard = ({
     { field: 'created_at', headerName: 'Created At', width: 150 },
     { field: 'updated_at', headerName: 'Updated At', width: 150 },
     // { field: 'user', headerName: 'User', width: 150 },
+    {
+      field: 'action',
+      headerName: 'Action',
+      sortable: false,
+      renderCell: ({ row }: Partial<GridRowParams>) => (
+        <Button
+          onClick={() => {
+            setOpenDialog(true);
+            setDeleteItem({
+              type: 'booking',
+              id: row.id,
+            });
+          }}>
+          Delete
+        </Button>
+      ),
+    },
   ];
 
   const [displayed, setDisplayed] = useState<{
@@ -168,7 +211,13 @@ const Dashboard = ({
             </DialogContent>
             <DialogActions>
               <Button onClick={() => setOpenDialog(false)}>Cancel</Button>
-              <Button onClick={() => deleteMessage(deleteItemId)} color="secondary">
+              <Button
+                onClick={() =>
+                  deleteItem.type === 'message'
+                    ? deleteMessage(deleteItem.id)
+                    : deleteBooking(deleteItem.id)
+                }
+                color="secondary">
                 Delete
               </Button>
             </DialogActions>
