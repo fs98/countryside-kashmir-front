@@ -55,16 +55,18 @@ type BookingProps = {
   user: UserProps;
 };
 
+type DashboardProps = {
+  retrievedMessages: MessageProps[];
+  retrievedBookings: BookingProps[];
+};
+
 const getFullName = (params: GridValueGetterParams) =>
   `${params.row.first_name || ''} ${params.row.last_name || ''}`;
 
-const Dashboard = ({
-  messages,
-  bookings,
-}: {
-  messages: MessageProps[];
-  bookings: BookingProps[];
-}) => {
+const Dashboard = ({ retrievedMessages, retrievedBookings }: DashboardProps) => {
+  const [messages, setMessages] = useState(retrievedMessages);
+  const [bookings, setBookings] = useState(retrievedBookings);
+
   const [openDialog, setOpenDialog] = useState<boolean>(false);
   const [deleteItem, setDeleteItem] = useState<{
     type: 'message' | 'booking';
@@ -78,6 +80,7 @@ const Dashboard = ({
     axios
       .delete(`/api/messages/${messageId}`)
       .then(res => {
+        setMessages(prevState => prevState.filter(message => message.id !== messageId));
         setDisplayed({
           rows: messages.filter(message => message.id !== messageId),
           columns: messagesColumns,
@@ -95,6 +98,7 @@ const Dashboard = ({
     axios
       .delete(`/api/bookings/${bookingId}`)
       .then(res => {
+        setBookings(prevState => prevState.filter(booking => booking.id !== bookingId));
         setDisplayed({
           rows: bookings.filter(booking => booking.id !== bookingId),
           columns: bookingsColumns,
@@ -291,8 +295,8 @@ export const getServerSideProps = async ({
 
   return {
     props: {
-      messages,
-      bookings,
+      retrievedMessages: messages,
+      retrievedBookings: bookings,
     },
   };
 };
