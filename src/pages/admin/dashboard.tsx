@@ -4,6 +4,13 @@ import { DataGrid, GridColDef, GridRowParams, GridValueGetterParams } from '@mui
 import { AppLayout } from '@/layouts/AppLayout';
 import { axios } from '@/lib/axios';
 import { Button } from '@/components/Button/Button';
+import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+} from '@mui/material';
 
 type UserProps = {
   id: Number;
@@ -58,22 +65,24 @@ const Dashboard = ({
   messages: MessageProps[];
   bookings: BookingProps[];
 }) => {
+  const [openDialog, setOpenDialog] = useState<boolean>(false);
+  const [deleteItemId, setDeleteItemId] = useState<Number | null>(null);
+
   const deleteMessage = (messageId: Number) => {
-    if (window.confirm('Are you sure? This action cannot be undone.')) {
-      axios
-        .delete(`/api/messages/${messageId}`)
-        .then(res => {
-          setDisplayed({
-            rows: messages.filter(message => message.id !== messageId),
-            columns: messagesColumns,
-            heading: 'Messages',
-          });
-          window.alert(res.data.message);
-        })
-        .catch(error => {
-          window.alert(error.response.data.error);
+    axios
+      .delete(`/api/messages/${messageId}`)
+      .then(res => {
+        setDisplayed({
+          rows: messages.filter(message => message.id !== messageId),
+          columns: messagesColumns,
+          heading: 'Messages',
         });
-    }
+        window.alert(res.data.message);
+      })
+      .catch(error => {
+        window.alert(error.response.data.error);
+      });
+    setOpenDialog(false);
   };
 
   const messagesColumns: GridColDef[] = [
@@ -96,7 +105,13 @@ const Dashboard = ({
       headerName: 'Action',
       sortable: false,
       renderCell: ({ row }: Partial<GridRowParams>) => (
-        <Button onClick={() => deleteMessage(row.id)}>Delete</Button>
+        <Button
+          onClick={() => {
+            setOpenDialog(true);
+            setDeleteItemId(row.id);
+          }}>
+          Delete
+        </Button>
       ),
     },
   ];
@@ -144,6 +159,21 @@ const Dashboard = ({
       </Head>
       <div className="py-12">
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+          <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
+            <DialogTitle>Delete item?</DialogTitle>
+            <DialogContent>
+              <DialogContentText>
+                Are you sure you want to delete this item? This action cannot be undone.
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={() => setOpenDialog(false)}>Cancel</Button>
+              <Button onClick={() => deleteMessage(deleteItemId)} color="secondary">
+                Delete
+              </Button>
+            </DialogActions>
+          </Dialog>
+
           <div className="space-x-2 mb-2">
             <Button
               className={displayed.rows === messages ? 'bg-gray-400' : ''}
