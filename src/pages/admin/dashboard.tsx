@@ -56,16 +56,16 @@ type BookingProps = {
 };
 
 type DashboardProps = {
-  retrievedMessages: MessageProps[];
-  retrievedBookings: BookingProps[];
+  messages: MessageProps[];
+  bookings: BookingProps[];
 };
 
 const getFullName = (params: GridValueGetterParams) =>
   `${params.row.first_name || ''} ${params.row.last_name || ''}`;
 
-const Dashboard = ({ retrievedMessages, retrievedBookings }: DashboardProps) => {
-  const [messages, setMessages] = useState(retrievedMessages);
-  const [bookings, setBookings] = useState(retrievedBookings);
+const Dashboard = (props: DashboardProps) => {
+  const [messages, setMessages] = useState(props.messages);
+  const [bookings, setBookings] = useState(props.bookings);
 
   const [openDialog, setOpenDialog] = useState<boolean>(false);
   const [deleteItem, setDeleteItem] = useState<{
@@ -295,8 +295,8 @@ export const getServerSideProps = async ({
 
   return {
     props: {
-      retrievedMessages: messages,
-      retrievedBookings: bookings,
+      messages,
+      bookings,
     },
   };
 };

@@ -14,14 +14,14 @@ type adminSlidesProps = SlidesProps & {
   updated_at: string;
 };
 
-const Slides = ({ slides }: { slides: adminSlidesProps[] }): JSX.Element => {
-  const [updatedSlides, setUpdatedSlides] = useState<adminSlidesProps[]>(slides);
+const Slides = (props: { slides: adminSlidesProps[] }): JSX.Element => {
+  const [slides, setSlides] = useState<adminSlidesProps[]>(props.slides);
 
   const handleDelete = (slideId: Number) => {
     axios
       .delete(`/api/slides/${slideId}`)
       .then(res => {
-        setUpdatedSlides(updatedSlides.filter(slide => slide.id !== slideId));
+        setSlides(slides.filter(slide => slide.id !== slideId));
         window.alert(res.data.message);
       })
       .catch(error => {
@@ -47,7 +47,7 @@ const Slides = ({ slides }: { slides: adminSlidesProps[] }): JSX.Element => {
               </Link>
             </div>
             <div className="p-6 bg-white border-b border-gray-200 w-full grid grid-cols-3 gap-4">
-              {updatedSlides.map(slide => (
+              {slides.map(slide => (
                 <div key={slide.id} className="max-w-sm rounded overflow-hidden shadow-lg">
                   <img className="w-full" src={slide.image_url} alt={slide.image_alt} />
                   <div className="px-6 py-4">
