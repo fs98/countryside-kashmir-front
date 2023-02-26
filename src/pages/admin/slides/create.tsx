@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
+import Router from 'next/router';
 import { SlideForm } from './slideForm';
 import { AppLayout } from '@/layouts/AppLayout';
 import { axios } from '@/lib/axios';
@@ -43,12 +44,13 @@ const Slides = (): JSX.Element => {
           'Content-Type': 'multipart/form-data',
         },
       })
-      .then(res =>
+      .then(res => {
         setMessage({
           title: res.data.message,
           type: 'success',
-        }),
-      )
+        });
+        Router.push('/admin/slides');
+      })
       .catch(error => {
         if (error.response.status === 500) {
           setMessage({
