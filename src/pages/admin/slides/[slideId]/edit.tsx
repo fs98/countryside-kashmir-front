@@ -25,19 +25,27 @@ const Slide = ({ slide }): JSX.Element => {
   const inputAttributes: InputAttributesProps[] = [
     {
       id: 'imageAlt',
-      attributes: { defaultValue: slide.image_alt },
+      attributes: {
+        defaultValue: slide.image_alt,
+      },
     },
     {
       id: 'order',
-      attributes: { defaultValue: slide.order },
+      attributes: {
+        defaultValue: slide.order,
+      },
     },
     {
       id: 'title',
-      attributes: { defaultValue: slide.title },
+      attributes: {
+        defaultValue: slide.title,
+      },
     },
     {
       id: 'subtitle',
-      attributes: { defaultValue: slide.subtitle },
+      attributes: {
+        defaultValue: slide.subtitle,
+      },
     },
   ];
 
