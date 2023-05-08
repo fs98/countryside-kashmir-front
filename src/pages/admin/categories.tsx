@@ -12,7 +12,19 @@ import { AppLayout } from '@/layouts/AppLayout';
 import { axios } from '@/lib/axios';
 import { Button } from '@/components/Button/Button';
 
-const Categories = props => {
+type CategoryProps = {
+  id: Number;
+  name: string;
+  slug: string;
+  created_at: string;
+  updated_at: string;
+};
+
+type CategoriesProps = {
+  categories: CategoryProps[];
+};
+
+const Categories = (props: CategoriesProps) => {
   const [categories, setCategories] = useState(props.categories);
   const [openDialog, setOpenDialog] = useState<boolean>(false);
   const [deleteItem, setDeleteItem] = useState<{
