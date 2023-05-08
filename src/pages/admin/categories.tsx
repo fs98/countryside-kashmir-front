@@ -25,13 +25,9 @@ type CategoriesProps = {
 };
 
 const Categories = (props: CategoriesProps) => {
-  const [categories, setCategories] = useState(props.categories);
+  const [categories, setCategories] = useState<CategoryProps[]>(props.categories);
   const [openDialog, setOpenDialog] = useState<boolean>(false);
-  const [deleteItem, setDeleteItem] = useState<{
-    id: Number | null;
-  }>({
-    id: null,
-  });
+  const [deleteItem, setDeleteItem] = useState<{ id: Number | null }>({ id: null });
 
   const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 210 },
