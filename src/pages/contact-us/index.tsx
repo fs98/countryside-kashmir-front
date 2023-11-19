@@ -19,7 +19,7 @@ import PhoneEnabledIcon from '@mui/icons-material/PhoneEnabled';
 import PeopleIcon from '@mui/icons-material/People';
 import { useForm } from 'react-hook-form';
 import { fromPairs } from 'lodash';
-import { contactUsFormFields } from './fieldsData';
+import { contactUsFormFields } from '../../forms/contactFieldsData';
 import { Block } from '@/components/Block/Block';
 import { ImageHeaderLayout } from '@/layouts/ImageHeaderLayout';
 import { axios } from '@/lib/axios';
@@ -31,6 +31,46 @@ export type FormData = {
   email: string;
   content: string;
 };
+
+const SOCIAL_NETWORKS = [
+  {
+    link:
+      'https://www.tripadvisor.in/Attraction_Review-g297623-d15557712-Reviews-Countryside_Kashmir_Tour_Travel-Srinagar_Srinagar_District_Kashmir_Jammu_and_Kas.html',
+    image: {
+      url: 'https://countrysidekashmir.com/img/tripadvisor.png',
+      alt: 'Trip Advisor Social Media Photo',
+    },
+  },
+  {
+    link: 'https://www.fLinkcebook.com/countrysidekashmir',
+    image: {
+      url: 'https://countrysidekashmir.com/img/facebook.png',
+      alt: 'Facebook Social Media Photo',
+    },
+  },
+  {
+    link: 'https://www.instagram.com/countrysidekashmir/',
+    image: {
+      url: 'https://countrysidekashmir.com/img/instagram.png',
+      alt: 'Instagram Social Media Photo',
+    },
+  },
+  {
+    link:
+      'https://www.google.com/maps/place/Countryside+Kashmir+Tour+%26+Travel/@34.0690528,74.4500511,15z/data=!4m5!3m4!1s0x0:0x8ce50dbaaad9ca86!8m2!3d34.0690528!4d74.4500511?shorturl=1',
+    image: {
+      url: 'https://countrysidekashmir.com/img/google_map.png',
+      alt: 'Google Maps Logo',
+    },
+  },
+  {
+    link: 'https://www.youtube.com/channel/UCxe23fscAkpQ2TOsnnKtkpQ',
+    image: {
+      url: 'https://countrysidekashmir.com/img/youtube.png',
+      alt: 'YouTube Channel Logo',
+    },
+  },
+];
 
 const ContactUs = (): JSX.Element => {
   const {
@@ -86,6 +126,7 @@ const ContactUs = (): JSX.Element => {
             <Typography variant="h5" fontWeight="bold" marginBottom={4}>
               Please Feel Free To Contact Us
             </Typography>
+
             <Stack marginBottom={4}>
               <Typography variant="h6" fontWeight="bold" color="warning.main">
                 <LocationOnIcon />
@@ -94,6 +135,7 @@ const ContactUs = (): JSX.Element => {
               <Typography variant="body1">Gulmarg Road, Chandilora Tangmarg Baramulla</Typography>
               <Typography variant="body1">193402 Jammu and Kashmir - India</Typography>
             </Stack>
+
             <Stack marginBottom={4}>
               <Typography variant="h6" fontWeight="bold" color="warning.main">
                 <LocationOnIcon />
@@ -105,6 +147,7 @@ const ContactUs = (): JSX.Element => {
               <Typography variant="body1">Dhaka, Bangladesh</Typography>
               <Typography variant="body1">Contact : +8801700767245</Typography>
             </Stack>
+
             <Stack marginBottom={4}>
               <Typography variant="h6" fontWeight="bold" color="warning.main">
                 <MailIcon />
@@ -112,6 +155,7 @@ const ContactUs = (): JSX.Element => {
               </Typography>
               <Typography variant="body1">countrysidekashmir@gmail.com</Typography>
             </Stack>
+
             <Stack marginBottom={4}>
               <Typography variant="h6" fontWeight="bold" color="warning.main">
                 <PhoneEnabledIcon />
@@ -121,31 +165,19 @@ const ContactUs = (): JSX.Element => {
               <Typography variant="body1">+91-9596404875</Typography>
               <Typography variant="body1">+91-9419555772</Typography>
             </Stack>
+
             <Stack marginBottom={4}>
               <Typography variant="h6" fontWeight="bold" color="warning.main">
                 <PeopleIcon />
                 Social Media:
               </Typography>
-              <Box display="flex" alignItems="center" marginTop={1}>
-                <Link href="https://www.tripadvisor.in/Attraction_Review-g297623-d15557712-Reviews-Countryside_Kashmir_Tour_Travel-Srinagar_Srinagar_District_Kashmir_Jammu_and_Kas.html">
-                  <img width={30} src="https://countrysidekashmir.com/img/tripadvisor.png" alt="" />
-                </Link>
-                <Link marginLeft={1} href="https://www.fLinkcebook.com/countrysidekashmir">
-                  <img width={30} src="https://countrysidekashmir.com/img/facebook.png" alt="" />
-                </Link>
-                <Link marginLeft={1} href="https://www.instagram.com/countrysidekashmir/">
-                  <img width={30} src="https://countrysidekashmir.com/img/instagram.png" alt="" />
-                </Link>
-                <Link
-                  marginLeft={1}
-                  href="https://www.google.com/maps/place/Countryside+Kashmir+Tour+%26+Travel/@34.0690528,74.4500511,15z/data=!4m5!3m4!1s0x0:0x8ce50dbaaad9ca86!8m2!3d34.0690528!4d74.4500511?shorturl=1">
-                  <img width={30} src="https://countrysidekashmir.com/img/google_map.png" alt="" />
-                </Link>
-                <Link
-                  marginLeft={1}
-                  href="https://www.youtube.com/channel/UCxe23fscAkpQ2TOsnnKtkpQ">
-                  <img width={30} src="https://countrysidekashmir.com/img/youtube.png" alt="" />
-                </Link>
+
+              <Box display="flex" alignItems="center" marginTop={1} gap={1}>
+                {SOCIAL_NETWORKS.map((network, i) => (
+                  <Link key={i} href={network.link}>
+                    <img width={30} src={network.image.url} alt="" />
+                  </Link>
+                ))}
               </Box>
             </Stack>
           </Grid>
@@ -155,6 +187,7 @@ const ContactUs = (): JSX.Element => {
             <Typography variant="h5" fontWeight="bold" marginBottom={4}>
               Or Fill Out Our Contact Form
             </Typography>
+
             {/* Contact Form */}
             <form onSubmit={onSubmit}>
               <Stack spacing={2}>
@@ -188,6 +221,7 @@ const ContactUs = (): JSX.Element => {
                 </Button>
               </Stack>
             </form>
+
             {message && (
               <Fade in={true}>
                 <Alert
