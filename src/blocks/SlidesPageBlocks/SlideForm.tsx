@@ -1,7 +1,7 @@
 import { Button, FormControl, FormHelperText, Input, InputLabel } from '@mui/material';
 import { fromPairs } from 'lodash';
-import { slideFormFields } from './fieldsData';
-import { InputAttributesProps } from './[slideId]/edit';
+import { InputAttributesProps } from '../../pages/admin/slides/[slideId]/edit';
+import { slideFormFields } from '../../forms/slideFieldsData';
 
 export const SlideForm = ({
   onSubmit,

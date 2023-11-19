@@ -1,4 +1,4 @@
-import { FormData } from '.';
+import { FormData } from '../pages/admin/mail';
 
 type FormFieldRulesProps = {
   name: string;

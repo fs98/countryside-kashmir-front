@@ -1,4 +1,4 @@
-import { FormData } from './BookingForm';
+import { FormData } from '../blocks/PackagesPageBlocks/BookingForm';
 
 type FormFieldRulesProps = {
   name: string;

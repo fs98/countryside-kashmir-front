@@ -11,8 +11,8 @@ import {
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { fromPairs } from 'lodash';
-import { bookingFormFields } from './fieldsData';
 import { axios } from '@/lib/axios';
+import { bookingFormFields } from '@/forms/bookingFieldsData';
 
 export type FormData = {
   name: string;

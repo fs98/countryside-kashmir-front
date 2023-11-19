@@ -1,4 +1,4 @@
-import { FormData } from './create';
+import { FormData } from '../pages/admin/slides/create';
 
 type FormFieldRulesProps = {
   name: string;

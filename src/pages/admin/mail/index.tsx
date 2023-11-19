@@ -11,7 +11,7 @@ import { fromPairs } from 'lodash';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import Router from 'next/router';
-import { mailFormFields } from './fieldsData';
+import { mailFormFields } from '../../../forms/mailFieldsData';
 import { AppLayout } from '@/layouts/AppLayout';
 import { axios } from '@/lib/axios';
 

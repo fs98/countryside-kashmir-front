@@ -2,9 +2,9 @@ import Head from 'next/head';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import Router from 'next/router';
-import { SlideForm } from './slideForm';
 import { AppLayout } from '@/layouts/AppLayout';
 import { axios } from '@/lib/axios';
+import { SlideForm } from '@/blocks/SlidesPageBlocks/SlideForm';
 
 export type FormData = {
   image: File;
