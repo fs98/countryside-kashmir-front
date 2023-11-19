@@ -139,50 +139,38 @@ const Home = ({
 };
 
 export const getServerSideProps = async () => {
-  const slides = await axios
-    .get('/api/guest/slides')
-    .then(res => res.data.data)
-    .catch(error => {
-      if (error.response.status !== 409) throw error;
-    });
+  try {
+    const slides = await axios.get('/api/guest/slides').then(res => res.data.data);
+    const destinations = await axios.get('/api/guest/destinations').then(res => res.data.data);
+    const activities = await axios.get('/api/guest/activities').then(res => res.data.data);
+    const blogs = await axios.get('/api/guest/blogs').then(res => res.data.data);
+    const categoryOffers = await axios.get('api/guest/categories').then(res => res.data.data);
 
-  const destinations = await axios
-    .get('/api/guest/destinations')
-    .then(res => res.data.data)
-    .catch(error => {
-      if (error.response.status !== 409) throw error;
-    });
+    return {
+      props: {
+        slides,
+        destinations,
+        activities,
+        blogs,
+        categoryOffers,
+      },
+    };
+  } catch (error) {
+    console.error('API request failed:', error);
+    // Handle error case here
+    // if (error.response?.status !== 409) throw error;
 
-  const activities = await axios
-    .get('/api/guest/activities')
-    .then(res => res.data.data)
-    .catch(error => {
-      if (error.response.status !== 409) throw error;
-    });
-
-  const blogs = await axios
-    .get('/api/guest/blogs')
-    .then(res => res.data.data)
-    .catch(error => {
-      if (error.response.status !== 409) throw error;
-    });
-
-  const categoryOffers = await axios
-    .get('api/guest/categories')
-    .then(res => res.data.data)
-    .catch(error => {
-      if (error.response.status !== 409) throw error;
-    });
-
-  return {
-    props: {
-      slides,
-      destinations,
-      activities,
-      blogs,
-      categoryOffers,
-    }, // will be passed to the page component as props
-  };
+    // Return default values in case of failure
+    return {
+      props: {
+        slides: [],
+        destinations: [],
+        activities: [],
+        blogs: [],
+        categoryOffers: [],
+      },
+    };
+  }
 };
 
 export default Home;
