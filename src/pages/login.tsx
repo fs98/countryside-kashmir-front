@@ -11,6 +11,13 @@ import { InputError } from '@/components/InputError/InputError';
 import { Label } from '@/components/Label/Label';
 import { useAuth } from '@/hooks/auth';
 
+type ValidationErrors = {
+  email?: any[];
+  password?: any[];
+  remember?: any[];
+  length?: number;
+};
+
 const Login = () => {
   const router = useRouter();
 
@@ -22,12 +29,7 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [shouldRemember, setShouldRemember] = useState(false);
-  const [errors, setErrors] = useState<{
-    email?: any[];
-    password?: any[];
-    remember?: any[];
-    length?: number;
-  }>({});
+  const [errors, setErrors] = useState<ValidationErrors>({});
   const [status, setStatus] = useState(null);
 
   useEffect(() => {

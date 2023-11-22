@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { useState } from 'react';
+import { SyntheticEvent, useState } from 'react';
 import { ApplicationLogo } from '@/components/ApplicationLogo/ApplicationLogo';
 import { AuthCard } from '@/components/AuthCard/AuthCard';
 import { AuthSessionStatus } from '@/components/AuthSessionStatus/AuthSessionStatus';
@@ -15,11 +15,11 @@ const ForgotPassword = () => {
 
   const [email, setEmail] = useState('');
   const [errors, setErrors] = useState<{
-    email?: any[];
+    email?: string[];
   }>({});
   const [status, setStatus] = useState(null);
 
-  const submitForm = event => {
+  const submitForm = (event: SyntheticEvent) => {
     event.preventDefault();
 
     forgotPassword({ email, setErrors, setStatus });

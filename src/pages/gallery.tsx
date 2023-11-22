@@ -12,8 +12,6 @@ import 'lightgallery/css/lightgallery.css';
 import 'lightgallery/css/lg-zoom.css';
 import 'lightgallery/css/lg-thumbnail.css';
 
-// import plugins
-
 type GalleryProps = {
   galleryImages: ImageProps[];
 };
@@ -45,9 +43,7 @@ const Gallery: FC<GalleryProps> = ({ galleryImages }) => (
 export const getServerSideProps = async () => {
   const galleryImages = await axios
     .get('/api/guest/gallery-images')
-    .then(res => {
-      return res.data.data;
-    })
+    .then(res => res.data.data)
     .catch(error => {
       if (error.response.status !== 409) throw error;
     });

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { useState } from 'react';
+import { SyntheticEvent, useState } from 'react';
 import { ApplicationLogo } from '@/components/ApplicationLogo/ApplicationLogo';
 import { AuthCard } from '@/components/AuthCard/AuthCard';
 import { Button } from '@/components/Button/Button';
@@ -8,6 +8,13 @@ import { Input } from '@/components/Input/Input';
 import { InputError } from '@/components/InputError/InputError';
 import { Label } from '@/components/Label/Label';
 import { useAuth } from '@/hooks/auth';
+
+type ValidationErrors = {
+  name?: any[];
+  email?: any[];
+  password?: any[];
+  password_confirmation?: any[];
+};
 
 const Register = () => {
   const { register } = useAuth({
@@ -19,14 +26,9 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
-  const [errors, setErrors] = useState<{
-    name?: any[];
-    email?: any[];
-    password?: any[];
-    password_confirmation?: any[];
-  }>({});
+  const [errors, setErrors] = useState<ValidationErrors>({});
 
-  const submitForm = event => {
+  const submitForm = (event: SyntheticEvent) => {
     event.preventDefault();
 
     register({ name, email, password, password_confirmation: passwordConfirmation, setErrors });
