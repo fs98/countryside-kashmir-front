@@ -1,6 +1,3 @@
-import { DataGrid, GridColDef, GridRowParams } from '@mui/x-data-grid';
-import Head from 'next/head';
-import { useState } from 'react';
 import {
   Dialog,
   DialogActions,
@@ -8,8 +5,11 @@ import {
   DialogContentText,
   DialogTitle,
 } from '@mui/material';
-import { AppLayout } from '@/layouts/AppLayout';
+import { DataGrid, GridColDef, GridRowParams } from '@mui/x-data-grid';
+import Head from 'next/head';
+import { useState } from 'react';
 import { axios } from '@/lib/axios';
+import { AppLayout } from '@/layouts/AppLayout';
 import { Button } from '@/components/Button/Button';
 
 type CategoryProps = {
@@ -31,7 +31,7 @@ const Categories = (props: CategoriesProps) => {
 
   const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 210 },
-    { field: 'name', headerName: 'Name', width: 210 },
+    { field: 'name', headerName: 'Name', width: 210, editable: true },
     { field: 'slug', headerName: 'Slug', width: 210 },
     { field: 'created_at', headerName: 'Created At', width: 210 },
     { field: 'updated_at', headerName: 'Updated At', width: 210 },
@@ -67,6 +67,28 @@ const Categories = (props: CategoriesProps) => {
     setOpenDialog(false);
   };
 
+  const handleEditingRow = (data: GridRowParams) => {
+    axios
+      .post(`/api/categories/${data.id}?_method=PUT`, {
+        name: data.row.name,
+      })
+      .then(result => {
+        const updatedCategory = result.data.data;
+
+        // Update the state with the new data
+        setCategories(prevState => {
+          return prevState.map(category =>
+            category.id === updatedCategory.id ? updatedCategory : category,
+          );
+        });
+
+        window.alert('Category successfully updated!');
+      })
+      .catch(error => {
+        window.alert(error.response.data.message);
+      });
+  };
+
   return (
     <AppLayout
       header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Categories</h2>}>
@@ -92,7 +114,12 @@ const Categories = (props: CategoriesProps) => {
 
           <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div className="p-6 bg-white border-b border-gray-200 w-full h-screen">
-              <DataGrid rows={categories} columns={columns} />
+              <DataGrid
+                editMode="row"
+                rows={categories}
+                columns={columns}
+                onRowEditStop={handleEditingRow}
+              />
             </div>
           </div>
         </div>
