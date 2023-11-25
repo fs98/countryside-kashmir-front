@@ -5,7 +5,8 @@ import {
   DialogContentText,
   DialogTitle,
 } from '@mui/material';
-import { DataGrid, GridColDef, GridRowParams } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, GridRowParams, GridValueGetterParams } from '@mui/x-data-grid';
+import moment from 'moment';
 import Head from 'next/head';
 import { useState } from 'react';
 import { axios } from '@/lib/axios';
@@ -33,8 +34,22 @@ const Categories = (props: CategoriesProps) => {
     { field: 'id', headerName: 'ID', width: 210 },
     { field: 'name', headerName: 'Name', width: 210, editable: true },
     { field: 'slug', headerName: 'Slug', width: 210 },
-    { field: 'created_at', headerName: 'Created At', width: 210 },
-    { field: 'updated_at', headerName: 'Updated At', width: 210 },
+    {
+      field: 'created_at',
+      headerName: 'Created At',
+      width: 210,
+      valueGetter: (params: GridValueGetterParams) => {
+        return moment(params.row.created_at).format('lll');
+      },
+    },
+    {
+      field: 'updated_at',
+      headerName: 'Updated At',
+      width: 210,
+      valueGetter: (params: GridValueGetterParams) => {
+        return moment(params.row.updated_at).format('lll');
+      },
+    },
     {
       field: 'action',
       headerName: 'Action',
@@ -53,7 +68,7 @@ const Categories = (props: CategoriesProps) => {
     },
   ];
 
-  const deleteCategory = (categoryId: Number) => {
+  const handleDelete = (categoryId: Number) => {
     axios
       .delete(`/api/categories/${categoryId}`)
       .then(res => {
@@ -67,7 +82,7 @@ const Categories = (props: CategoriesProps) => {
     setOpenDialog(false);
   };
 
-  const handleEditingRow = (data: GridRowParams) => {
+  const handleEdit = (data: GridRowParams) => {
     axios
       .post(`/api/categories/${data.id}?_method=PUT`, {
         name: data.row.name,
@@ -106,7 +121,7 @@ const Categories = (props: CategoriesProps) => {
             </DialogContent>
             <DialogActions>
               <Button onClick={() => setOpenDialog(false)}>Cancel</Button>
-              <Button onClick={() => deleteCategory(deleteItem.id)} color="secondary">
+              <Button onClick={() => handleDelete(deleteItem.id)} color="secondary">
                 Delete
               </Button>
             </DialogActions>
@@ -118,7 +133,7 @@ const Categories = (props: CategoriesProps) => {
                 editMode="row"
                 rows={categories}
                 columns={columns}
-                onRowEditStop={handleEditingRow}
+                onRowEditStop={handleEdit}
               />
             </div>
           </div>
