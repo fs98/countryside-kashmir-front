@@ -37,7 +37,7 @@ const BookingForm = () => {
     formState: { errors },
   } = useForm<FormData>();
 
-  const onSubmit = handleSubmit(({ phoneNumber, arrivalDate, ...dataFields }) => {
+  const onSubmit = handleSubmit(({ phoneNumber, arrivalDate, ...dataFields }: FormData) => {
     axios
       .post('/api/guest/bookings', {
         ...dataFields,
