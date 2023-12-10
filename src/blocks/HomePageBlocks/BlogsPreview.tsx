@@ -24,7 +24,7 @@ export const BlogsPreview: FC<BlogsPreviewProps> = ({ blogs }) => {
             {mainPost.title}
           </Typography>
 
-          {mainPost.content.blocks.slice(0, 3).map((block, i) => (
+          {mainPost.content.blocks?.slice(0, 3).map((block, i) => (
             <Typography
               key={i}
               variant="body1"
