@@ -107,6 +107,7 @@ const BookingForm = () => {
           </Button>
         </Stack>
       </form>
+
       {message && (
         <Fade in={true}>
           <Alert sx={{ marginTop: 2 }} onClose={() => setMessage(undefined)} color={message.type}>

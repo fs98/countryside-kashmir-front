@@ -17,6 +17,7 @@ export const AboutSection: FC<AboutSectionProps> = ({ title, subtitle }) => {
             alt=""
           />
         </Grid>
+
         <Grid item xs={12} md={6} container>
           <Typography variant="h5" fontWeight="bold">
             Countryside Kashmir Tour & Travel
