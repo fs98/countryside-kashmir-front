@@ -8,14 +8,14 @@ type CardProps = {
     image_alt: string;
     title: string;
     subtitle?: string;
+    keywords?: string;
   };
   onDelete: MouseEventHandler<HTMLButtonElement>;
   editUrl: string;
-  tags?: string[];
 };
 
-export const Card = ({ data, onDelete, editUrl, tags }: CardProps) => {
-  const { image_url, image_alt, title, subtitle } = data;
+export const Card = ({ data, onDelete, editUrl }: CardProps) => {
+  const { image_url, image_alt, title, subtitle, keywords } = data;
 
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg">
@@ -45,13 +45,13 @@ export const Card = ({ data, onDelete, editUrl, tags }: CardProps) => {
         </Link>
       </div>
 
-      {tags && tags.length > 0 && (
+      {keywords && (
         <div className="px-6 pt-4 pb-2">
-          {tags.map((tag, i) => (
+          {keywords.split(',').map((keyword, i) => (
             <span
               key={i}
               className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-              #{tag.trim()}
+              #{keyword.trim()}
             </span>
           ))}
         </div>

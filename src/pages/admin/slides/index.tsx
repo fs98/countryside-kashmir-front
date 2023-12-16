@@ -53,7 +53,6 @@ const Slides = (props: { slides: AdminSlidesProps[] }): JSX.Element => {
                   key={slide.id}
                   onDelete={() => handleDelete(slide.id)}
                   editUrl={`slides/${slide.id}/edit`}
-                  tags={['photography', 'travel', 'winter']}
                 />
               ))}
             </div>
