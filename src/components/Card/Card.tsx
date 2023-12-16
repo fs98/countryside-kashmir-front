@@ -7,7 +7,7 @@ type CardProps = {
     image_url: string;
     image_alt: string;
     title: string;
-    subtitle: string;
+    subtitle?: string;
   };
   onDelete: MouseEventHandler<HTMLButtonElement>;
   editUrl: string;
@@ -23,7 +23,9 @@ export const Card = ({ data, onDelete, editUrl, tags }: CardProps) => {
 
       <div className="px-6 py-4">
         <div className="font-bold text-xl mb-2">{title}</div>
-        <p className="text-gray-700 text-base">{subtitle}</p>
+
+        {subtitle && <p className="text-gray-700 text-base">{subtitle}</p>}
+
         <Button
           onClick={onDelete}
           variant="outlined"
@@ -49,7 +51,7 @@ export const Card = ({ data, onDelete, editUrl, tags }: CardProps) => {
             <span
               key={i}
               className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-              #{tag}
+              #{tag.trim()}
             </span>
           ))}
         </div>
