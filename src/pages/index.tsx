@@ -7,6 +7,7 @@ import { BlogsPreview } from '@/blocks/HomePageBlocks/BlogsPreview';
 import { Block } from '@/components/Block/Block';
 import { CardPrice } from '@/components/CardPrice/CardPrice';
 import { CardSimple } from '@/components/CardSimple/CardSimple';
+import { useAuth } from '@/hooks/auth';
 
 export type ImageProps = {
   image_url: string;
@@ -74,7 +75,8 @@ const Home = ({
   blogs,
   categoryOffers,
 }: HomeProps): JSX.Element => {
-  // const { user } = useAuth({ middleware: 'guest' });
+  const { user } = useAuth({ middleware: 'guest' });
+  console.log(user);
 
   return (
     <HomeLayout

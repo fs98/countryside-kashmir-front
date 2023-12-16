@@ -37,37 +37,38 @@ export const HomeLayout: FC<HomeLayoutProps> = ({ slides, title, children }) => 
         spaceBetween={50}
         slidesPerView={1}
         className="absolute top-0 -z-1 -z-10 h-screen">
-        {slides.map((slide, i) => {
-          return (
-            <SwiperSlide
-              key={i}
-              className={`bg-black bg-opacity-60 bg-blend-overlay bg-cover bg-no-repeat bg-[url('https://picsum.photos/500/300.jpg?random=1')] flex flex-col justify-center items-center`}>
-              <Typography
-                variant="h1"
-                color="warning.main"
-                fontWeight={400}
-                textAlign="center"
-                textTransform="uppercase"
-                width="75%"
-                sx={{
-                  textShadow: '2px 2px 10px black',
-                }}>
-                {slide.title}
-              </Typography>
-              <Typography
-                variant="h3"
-                fontStyle="italic"
-                width="75%"
-                textAlign="center"
-                color="common.white"
-                sx={{
-                  textShadow: '2px 2px 10px black',
-                }}>
-                {slide.subtitle}
-              </Typography>
-            </SwiperSlide>
-          );
-        })}
+        {slides.map((slide, i) => (
+          <SwiperSlide
+            key={i}
+            style={{
+              backgroundImage: `url(${slide.image_url})`,
+            }}
+            className={`bg-black bg-opacity-60 bg-blend-overlay bg-cover bg-no-repeat flex flex-col justify-center items-center`}>
+            <Typography
+              variant="h1"
+              color="warning.main"
+              fontWeight={400}
+              textAlign="center"
+              textTransform="uppercase"
+              width="75%"
+              sx={{
+                textShadow: '2px 2px 10px black',
+              }}>
+              {slide.title}
+            </Typography>
+            <Typography
+              variant="h3"
+              fontStyle="italic"
+              width="75%"
+              textAlign="center"
+              color="common.white"
+              sx={{
+                textShadow: '2px 2px 10px black',
+              }}>
+              {slide.subtitle}
+            </Typography>
+          </SwiperSlide>
+        ))}
       </Swiper>
 
       <main>
