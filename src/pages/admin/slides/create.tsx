@@ -5,6 +5,7 @@ import Router from 'next/router';
 import { AppLayout } from '@/layouts/AppLayout';
 import { axios } from '@/lib/axios';
 import { SlideForm } from '@/blocks/SlidesPageBlocks/SlideForm';
+import { Message } from '@/types/message';
 
 export type FormData = {
   image: File;
@@ -72,7 +73,7 @@ const Slides = (): JSX.Element => {
       });
   });
 
-  const [message, setMessage] = useState<{ title: string; type: 'success' | 'error' }>();
+  const [message, setMessage] = useState<Message>();
 
   return (
     <AppLayout

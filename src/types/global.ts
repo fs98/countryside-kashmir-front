@@ -30,3 +30,8 @@ export type Author = {
   created_at: string;
   updated_at: string;
 };
+
+export type Message = {
+  title: string;
+  type: 'success' | 'error';
+};
