@@ -131,7 +131,7 @@ const Categories = (props: CategoriesProps) => {
 
           <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div className="p-6 pb-0">
-              <Link href="slides/create">
+              <Link href="categories/create">
                 <a className="btn outline p-2 rounded-sm outline-blue-500 text-blue-500 hover:outline-blue-700 hover:text-blue-700">
                   <AddIcon />
                   New Category
