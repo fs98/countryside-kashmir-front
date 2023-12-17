@@ -9,6 +9,8 @@ import { DataGrid, GridColDef, GridRowParams, GridValueGetterParams } from '@mui
 import moment from 'moment';
 import Head from 'next/head';
 import { useState } from 'react';
+import Link from 'next/link';
+import AddIcon from '@mui/icons-material/Add';
 import { axios } from '@/lib/axios';
 import { AppLayout } from '@/layouts/AppLayout';
 import { Button } from '@/components/Button/Button';
@@ -128,6 +130,14 @@ const Categories = (props: CategoriesProps) => {
           </Dialog>
 
           <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div className="p-6 pb-0">
+              <Link href="slides/create">
+                <a className="btn outline p-2 rounded-sm outline-blue-500 text-blue-500 hover:outline-blue-700 hover:text-blue-700">
+                  <AddIcon />
+                  New Category
+                </a>
+              </Link>
+            </div>
             <div className="p-6 bg-white border-b border-gray-200 w-full h-screen">
               <DataGrid
                 editMode="row"
