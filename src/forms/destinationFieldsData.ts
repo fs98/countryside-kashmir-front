@@ -1,10 +1,6 @@
-import { FormData } from '../pages/admin/destinations/create';
+import { FormFieldRulesProps, ruleFile, ruleMax, ruleRequired } from '@/utils/formRules';
 
-type FormFieldRulesProps = {
-  name: string;
-  value?: unknown;
-  text: string;
-};
+import { FormData } from '../pages/admin/destinations/create';
 
 type FormFieldProps = {
   id: keyof FormData;
@@ -23,29 +19,13 @@ export const destinationFormFields: FormFieldProps[] = [
     type: 'file',
     rules: {
       creating: [
-        {
-          name: 'required',
-          value: true,
-          text: 'Image is required.',
-        },
-        {
-          name: 'filetype',
-          text: 'Image must be of type jpg,jpeg or png.',
-        },
-        {
-          name: 'filesize',
-          text: 'Image must not exceed 5MB.',
-        },
+        ruleRequired({ text: 'Image is required.' }),
+        ruleFile('filetype', 'Image must be of type jpg,jpeg or png.'),
+        ruleFile('filesize', 'Image must not exceed 5MB.'),
       ],
       updating: [
-        {
-          name: 'filetype',
-          text: 'Image must be of type jpg,jpeg or png.',
-        },
-        {
-          name: 'filesize',
-          text: 'Image must not exceed 5MB.',
-        },
+        ruleFile('filetype', 'Image must be of type jpg,jpeg or png.'),
+        ruleFile('filesize', 'Image must not exceed 5MB.'),
       ],
     },
   },
@@ -55,28 +35,12 @@ export const destinationFormFields: FormFieldProps[] = [
     type: 'text',
     rules: {
       creating: [
-        {
-          name: 'required',
-          value: true,
-          text: 'Image Alt is required.',
-        },
-        {
-          name: 'max',
-          value: 64,
-          text: 'Image Alt must be shorter than 64 characters.',
-        },
+        ruleRequired({ text: 'Image Alt is required.' }),
+        ruleMax({ text: 'Image Alt must be shorter than 64 characters.' }),
       ],
       updating: [
-        {
-          name: 'required',
-          value: true,
-          text: 'Image Alt is required.',
-        },
-        {
-          name: 'max',
-          value: 64,
-          text: 'Image Alt must be shorter than 64 characters.',
-        },
+        ruleRequired({ text: 'Image Alt is required.' }),
+        ruleMax({ text: 'Image Alt must be shorter than 64 characters.' }),
       ],
     },
   },
@@ -86,28 +50,12 @@ export const destinationFormFields: FormFieldProps[] = [
     type: 'text',
     rules: {
       creating: [
-        {
-          name: 'required',
-          value: true,
-          text: 'Name is required.',
-        },
-        {
-          name: 'max',
-          value: 64,
-          text: 'Name must be shorter than 64 characters.',
-        },
+        ruleRequired({ text: 'Name is required.' }),
+        ruleMax({ text: 'Name must be shorter than 64 characters.' }),
       ],
       updating: [
-        {
-          name: 'required',
-          value: true,
-          text: 'Name is required.',
-        },
-        {
-          name: 'max',
-          value: 64,
-          text: 'Name must be shorter than 64 characters.',
-        },
+        ruleRequired({ text: 'Name is required.' }),
+        ruleMax({ text: 'Name must be shorter than 64 characters.' }),
       ],
     },
   },
@@ -117,28 +65,12 @@ export const destinationFormFields: FormFieldProps[] = [
     type: 'text',
     rules: {
       creating: [
-        {
-          name: 'required',
-          value: true,
-          text: 'Keywords is required.',
-        },
-        {
-          name: 'max',
-          value: 64,
-          text: 'Keywords must be shorter than 64 characters.',
-        },
+        ruleRequired({ text: 'Keywords is required.' }),
+        ruleMax({ text: 'Keywords must be shorter than 64 characters.' }),
       ],
       updating: [
-        {
-          name: 'required',
-          value: true,
-          text: 'Keywords is required.',
-        },
-        {
-          name: 'max',
-          value: 64,
-          text: 'Keywords must be shorter than 64 characters.',
-        },
+        ruleRequired({ text: 'Keywords is required.' }),
+        ruleMax({ text: 'Keywords must be shorter than 64 characters.' }),
       ],
     },
   },
