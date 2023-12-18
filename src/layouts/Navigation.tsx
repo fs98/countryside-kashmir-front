@@ -38,8 +38,8 @@ const navLinks: NavLinkProps = [
     url: '/admin/mail',
   },
   {
-    title: 'Blog',
-    url: '/admin/blog',
+    title: 'Blogs',
+    url: '/admin/blogs',
   },
   {
     title: 'Things to do',
