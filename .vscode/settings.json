@@ -1,0 +1,16 @@
+{
+  "javascript.preferences.useAliasesForRenames": true,
+  "typescript.preferences.useAliasesForRenames": true,
+  "gitlens.advanced.fileHistoryFollowsRenames": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+  "editor.formatOnSave": true,
+  "[typescript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  }
+}
