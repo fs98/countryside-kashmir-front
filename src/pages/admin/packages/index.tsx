@@ -1,7 +1,7 @@
 import { Card } from '@/components/Card/Card';
 import { PageLayout } from '@/layouts/PageLayout';
 import { axios } from '@/lib/axios';
-import { Package } from '@/types/package';
+import { Package } from '@/types/resources';
 
 type PackagesProps = {
   packages: Package[];
