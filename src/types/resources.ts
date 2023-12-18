@@ -15,3 +15,11 @@ export interface Destination extends ImageProps, BasicResourceType {
   user: User;
   author: Author;
 }
+
+export interface Activity extends ImageProps, BasicResourceType {
+  slug: string;
+  description: ContentProps;
+  keywords: string;
+  user: User;
+  author: Author;
+}
