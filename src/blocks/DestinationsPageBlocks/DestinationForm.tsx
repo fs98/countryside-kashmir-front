@@ -1,9 +1,20 @@
 import { Button, FormControl, FormHelperText, Input, InputLabel } from '@mui/material';
+import dynamic from 'next/dynamic';
+
 import { fromPairs } from 'lodash';
 import { Controller } from 'react-hook-form';
-import { InputAttributesProps } from '../../pages/admin/slides/[slideId]/edit';
+
 import { destinationFormFields } from '@/forms/destinationFieldsData';
-import { CustomEditor } from '@/components/CustomEditor/CustomEditor';
+
+import { InputAttributesProps } from '../../pages/admin/slides/[slideId]/edit';
+
+const CustomEditor = dynamic(
+  () =>
+    import('../../components/CustomEditor/CustomEditor').then(({ CustomEditor }) => CustomEditor),
+  {
+    ssr: false,
+  },
+);
 
 export const DestinationForm = ({
   onSubmit,
@@ -29,9 +40,8 @@ export const DestinationForm = ({
               {...register(id, fromPairs(rules.updating.map(rule => [rule.name, rule.value])))}
               id={id}
               type={type}
-              {...inputAttributes.filter(
-                (inputProp: InputAttributesProps) => inputProp.id === id,
-              )[0]?.attributes}
+              {...inputAttributes.find((inputProp: InputAttributesProps) => inputProp.id === id)
+                ?.attributes}
             />
           )}
 
