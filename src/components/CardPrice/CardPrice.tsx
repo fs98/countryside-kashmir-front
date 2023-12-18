@@ -1,5 +1,7 @@
 import { FC } from 'react';
+
 import { Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material';
+
 import { OfferProps } from '@/pages';
 
 type CardPriceProps = {
@@ -21,6 +23,7 @@ export const CardPrice: FC<CardPriceProps> = ({ offer }) => (
       image="https://picsum.photos/id/1018/200/200"
       alt={offer.image_alt}
     />
+
     <Typography
       position="absolute"
       marginTop={2}
@@ -31,6 +34,7 @@ export const CardPrice: FC<CardPriceProps> = ({ offer }) => (
       bgcolor="warning.main">
       {offer.price} ₹
     </Typography>
+
     <div>
       <CardContent>
         <Typography
@@ -62,6 +66,7 @@ export const CardPrice: FC<CardPriceProps> = ({ offer }) => (
           {offer.days} days {offer.nights} nights
         </Typography>
       </CardContent>
+
       <CardActions>
         <Button size="small" color="warning">
           Learn More

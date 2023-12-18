@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import {
   Alert,
   Button,
@@ -8,11 +10,13 @@ import {
   InputLabel,
   Stack,
 } from '@mui/material';
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+
 import { fromPairs } from 'lodash';
-import { axios } from '@/lib/axios';
+import { useForm } from 'react-hook-form';
+
 import { bookingFormFields } from '@/forms/bookingFieldsData';
+import { axios } from '@/lib/axios';
+import { Message } from '@/types/message';
 
 export type FormData = {
   name: string;
@@ -71,7 +75,7 @@ const BookingForm = () => {
       });
   });
 
-  const [message, setMessage] = useState<{ title: string; type: 'success' | 'error' }>();
+  const [message, setMessage] = useState<Message>();
 
   return (
     <>

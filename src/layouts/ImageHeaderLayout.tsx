@@ -1,7 +1,9 @@
+import { FC, PropsWithChildren } from 'react';
+
 import { Divider, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import Head from 'next/head';
-import { FC, PropsWithChildren } from 'react';
+
 import { Footer } from './Footer';
 import { MainNavbar } from './MainNavbar';
 

@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { Typography } from '@mui/material';
+
 import { Block } from '@/components/Block/Block';
 import { ImageHeaderLayout } from '@/layouts/ImageHeaderLayout';
 

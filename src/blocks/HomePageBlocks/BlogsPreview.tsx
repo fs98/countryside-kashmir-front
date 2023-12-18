@@ -1,7 +1,9 @@
 import React, { FC } from 'react';
+
 import { Box, Button, Grid, Link, Typography } from '@mui/material';
-import { BlogsProps } from '@/pages';
+
 import { Block } from '@/components/Block/Block';
+import { BlogsProps } from '@/pages';
 
 type BlogsPreviewProps = {
   blogs: BlogsProps[];

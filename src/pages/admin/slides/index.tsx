@@ -1,11 +1,14 @@
+import { useState } from 'react';
+
 import AddIcon from '@mui/icons-material/Add';
 import Head from 'next/head';
 import Link from 'next/link';
-import { useState } from 'react';
-import { SlidesProps } from '../..';
+
+import { Card } from '@/components/Card/Card';
 import { AppLayout } from '@/layouts/AppLayout';
 import { axios } from '@/lib/axios';
-import { Card } from '@/components/Card/Card';
+
+import { SlidesProps } from '../..';
 
 type AdminSlidesProps = SlidesProps & {
   id: number;

@@ -1,13 +1,14 @@
 // import { useAuth } from '@/hooks/auth';
 import { Grid } from '@mui/material';
-import { axios } from '@/lib/axios';
-import { HomeLayout } from '@/layouts/HomeLayout';
+
 import { AboutSection } from '@/blocks/HomePageBlocks/AboutSection';
 import { BlogsPreview } from '@/blocks/HomePageBlocks/BlogsPreview';
 import { Block } from '@/components/Block/Block';
 import { CardPrice } from '@/components/CardPrice/CardPrice';
 import { CardSimple } from '@/components/CardSimple/CardSimple';
 import { useAuth } from '@/hooks/auth';
+import { HomeLayout } from '@/layouts/HomeLayout';
+import { axios } from '@/lib/axios';
 
 export type ImageProps = {
   image_url: string;

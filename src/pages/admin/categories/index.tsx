@@ -1,3 +1,6 @@
+import { useState } from 'react';
+
+import AddIcon from '@mui/icons-material/Add';
 import {
   Dialog,
   DialogActions,
@@ -6,14 +9,14 @@ import {
   DialogTitle,
 } from '@mui/material';
 import { DataGrid, GridColDef, GridRowParams, GridValueGetterParams } from '@mui/x-data-grid';
-import moment from 'moment';
 import Head from 'next/head';
-import { useState } from 'react';
 import Link from 'next/link';
-import AddIcon from '@mui/icons-material/Add';
-import { axios } from '@/lib/axios';
-import { AppLayout } from '@/layouts/AppLayout';
+
+import moment from 'moment';
+
 import { Button } from '@/components/Button/Button';
+import { AppLayout } from '@/layouts/AppLayout';
+import { axios } from '@/lib/axios';
 
 type CategoryProps = {
   id: Number;

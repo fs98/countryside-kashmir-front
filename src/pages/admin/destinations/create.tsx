@@ -1,12 +1,15 @@
-import Head from 'next/head';
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+
+import Head from 'next/head';
 import Router from 'next/router';
-import { AppLayout } from '@/layouts/AppLayout';
-import { Message } from '@/types/message';
+
+import { useForm } from 'react-hook-form';
+
 import { DestinationForm } from '@/blocks/DestinationsPageBlocks/DestinationForm';
-import { axios } from '@/lib/axios';
 import { useAuth } from '@/hooks/auth';
+import { AppLayout } from '@/layouts/AppLayout';
+import { axios } from '@/lib/axios';
+import { Message } from '@/types/message';
 
 export type FormData = {
   image: File;
@@ -32,11 +35,11 @@ const Destinations = () => {
   const { user } = useAuth({ middleware: 'auth' });
 
   const onSubmit = handleSubmit(({ image, imageAlt, name, description, keywords }) => {
-    if (image[0].type !== 'image/jpeg' && image[0].type !== 'image/png') {
+    if (image[0]?.type !== 'image/jpeg' && image[0]?.type !== 'image/png') {
       return setError('image', { type: 'filetype' });
     }
 
-    if (image[0].size >= 5000000) {
+    if (image[0]?.size >= 5000000) {
       return setError('image', { type: 'filesize' });
     }
 
@@ -95,6 +98,7 @@ const Destinations = () => {
       <Head>
         <title>Countryside Kashmir - Destinations</title>
       </Head>
+
       <div className="py-12">
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">

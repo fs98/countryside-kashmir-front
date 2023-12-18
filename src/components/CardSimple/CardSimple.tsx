@@ -1,5 +1,7 @@
-import { Card, CardContent, CardMedia, Typography } from '@mui/material';
 import { FC } from 'react';
+
+import { Card, CardContent, CardMedia, Typography } from '@mui/material';
+
 import { ItemsProps } from '@/pages';
 
 type CardSimpleProps = {

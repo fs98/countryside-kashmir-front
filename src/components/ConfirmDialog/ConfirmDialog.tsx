@@ -1,3 +1,5 @@
+import { FC } from 'react';
+
 import {
   Dialog,
   DialogActions,
@@ -5,6 +7,7 @@ import {
   DialogContentText,
   DialogTitle,
 } from '@mui/material';
+
 import { Button } from '@/components/Button/Button';
 
 type ConfirmDialogProps = {
@@ -13,7 +16,7 @@ type ConfirmDialogProps = {
   onConfirm: () => void;
 };
 
-export const ConfirmDialog = ({ isOpen, onClose, onConfirm }: ConfirmDialogProps) => (
+export const ConfirmDialog: FC<ConfirmDialogProps> = ({ isOpen, onClose, onConfirm }) => (
   <Dialog open={isOpen} onClose={onClose}>
     <DialogTitle>Delete item?</DialogTitle>
     <DialogContent>

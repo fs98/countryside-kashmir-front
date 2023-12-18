@@ -1,5 +1,6 @@
-import { Container, Typography } from '@mui/material';
 import { FC, PropsWithChildren } from 'react';
+
+import { Container, Typography } from '@mui/material';
 
 type BlockProps = PropsWithChildren & {
   title?: string;

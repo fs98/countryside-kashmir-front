@@ -1,4 +1,5 @@
 import Head from 'next/head';
+
 import { AppLayout } from '@/layouts/AppLayout';
 import { axios } from '@/lib/axios';
 

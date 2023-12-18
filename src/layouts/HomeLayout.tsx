@@ -1,6 +1,9 @@
-import Head from 'next/head';
 import { FC, PropsWithChildren } from 'react';
+
+import { Typography } from '@mui/material';
+import Head from 'next/head';
 import { Swiper, SwiperSlide } from 'swiper/react';
+
 // import Swiper core and required modules
 import SwiperCore, { Autoplay, Navigation } from 'swiper';
 
@@ -8,10 +11,10 @@ import SwiperCore, { Autoplay, Navigation } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
-import { Typography } from '@mui/material';
+import type { SlidesProps } from '@/pages';
+
 import { Footer } from './Footer';
 import { MainNavbar } from './MainNavbar';
-import type { SlidesProps } from '@/pages';
 
 export type HomeLayoutProps = PropsWithChildren & {
   slides: SlidesProps[];

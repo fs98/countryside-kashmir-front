@@ -1,13 +1,16 @@
-import Head from 'next/head';
-import { useForm } from 'react-hook-form';
 import { useState } from 'react';
+
+import Head from 'next/head';
 import Router from 'next/router';
+
+import { useForm } from 'react-hook-form';
+
+import { SlideForm } from '@/blocks/SlidesPageBlocks/SlideForm';
 import { AppLayout } from '@/layouts/AppLayout';
 import { axios } from '@/lib/axios';
-import { SlideForm } from '@/blocks/SlidesPageBlocks/SlideForm';
 import { Message } from '@/types/message';
 
-export type FormData = {
+export type FormDataProps = {
   image: File;
   imageAlt: string;
   order: string;
@@ -21,7 +24,7 @@ const Slides = (): JSX.Element => {
     handleSubmit,
     setError,
     formState: { errors },
-  } = useForm<FormData>();
+  } = useForm<FormDataProps>();
 
   const onSubmit = handleSubmit(({ image, imageAlt, order, title, subtitle }) => {
     if (image[0].type !== 'image/jpeg' && image[0].type !== 'image/png') {

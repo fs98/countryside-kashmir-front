@@ -1,3 +1,9 @@
+import { useState } from 'react';
+
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import MailIcon from '@mui/icons-material/Mail';
+import PeopleIcon from '@mui/icons-material/People';
+import PhoneEnabledIcon from '@mui/icons-material/PhoneEnabled';
 import {
   Alert,
   Box,
@@ -12,17 +18,16 @@ import {
   Stack,
   Typography,
 } from '@mui/material';
-import { useState } from 'react';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import MailIcon from '@mui/icons-material/Mail';
-import PhoneEnabledIcon from '@mui/icons-material/PhoneEnabled';
-import PeopleIcon from '@mui/icons-material/People';
-import { useForm } from 'react-hook-form';
+
 import { fromPairs } from 'lodash';
-import { contactUsFormFields } from '../../forms/contactFieldsData';
+import { useForm } from 'react-hook-form';
+
 import { Block } from '@/components/Block/Block';
 import { ImageHeaderLayout } from '@/layouts/ImageHeaderLayout';
 import { axios } from '@/lib/axios';
+import { Message } from '@/types/message';
+
+import { contactUsFormFields } from '../../forms/contactFieldsData';
 
 export type FormData = {
   firstName: string;
@@ -115,7 +120,7 @@ const ContactUs = (): JSX.Element => {
       });
   });
 
-  const [message, setMessage] = useState<{ title: string; type: 'success' | 'error' }>();
+  const [message, setMessage] = useState<Message>();
 
   return (
     <ImageHeaderLayout title="Contact us - Countryside Kashmir" heading="Contact us">

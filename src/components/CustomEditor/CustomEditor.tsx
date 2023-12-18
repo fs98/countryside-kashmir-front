@@ -1,4 +1,5 @@
 import React, { forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
+
 import EditorJS from '@editorjs/editorjs';
 
 // Define a type for the props
