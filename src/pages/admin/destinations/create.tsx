@@ -1,13 +1,12 @@
 import { useState } from 'react';
 
-import Head from 'next/head';
 import Router from 'next/router';
 
 import { useForm } from 'react-hook-form';
 
 import { DestinationForm } from '@/blocks/DestinationsPageBlocks/DestinationForm';
 import { useAuth } from '@/hooks/auth';
-import { AppLayout } from '@/layouts/AppLayout';
+import { PageLayout } from '@/layouts/PageLayout';
 import { axios } from '@/lib/axios';
 import { Message } from '@/types/message';
 
@@ -93,30 +92,18 @@ const Destinations = () => {
   });
 
   return (
-    <AppLayout
-      header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Slides</h2>}>
-      <Head>
-        <title>Countryside Kashmir - Destinations</title>
-      </Head>
+    <PageLayout resource="destinations">
+      {message && <div>{message.title}</div>}
 
-      <div className="py-12">
-        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-          <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-            <div className="p-6 bg-white border-b border-gray-200 grid gap-5">
-              {message && <div>{message.title}</div>}
-              <DestinationForm
-                onSubmit={onSubmit}
-                errors={errors}
-                register={register}
-                editing={false}
-                inputAttributes={[]}
-                control={control}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </AppLayout>
+      <DestinationForm
+        onSubmit={onSubmit}
+        errors={errors}
+        register={register}
+        editing={false}
+        inputAttributes={[]}
+        control={control}
+      />
+    </PageLayout>
   );
 };
 
