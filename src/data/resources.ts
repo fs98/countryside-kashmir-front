@@ -1,5 +1,5 @@
 export type Resource = {
-  name: 'slides' | 'destinations' | 'packages' | 'blogs' | 'activities';
+  name: 'categories' | 'slides' | 'destinations' | 'packages' | 'blogs' | 'activities';
   variations: {
     singularCapitalized: string;
     pluralLowercase: string;
@@ -8,6 +8,11 @@ export type Resource = {
 };
 
 export const RESOURCES: Record<Resource['name'], Resource['variations']> = {
+  categories: {
+    singularCapitalized: 'Category',
+    pluralLowercase: 'categories',
+    pluralCapitalized: 'Categories',
+  },
   slides: {
     singularCapitalized: 'Slide',
     pluralLowercase: 'slides',
