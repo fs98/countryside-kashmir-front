@@ -1,8 +1,8 @@
-import { FormData } from '@/pages/admin/destinations/create';
+import { FormDataProps } from '@/pages/admin/destinations/create';
 import { FormFieldRulesProps, ruleFile, ruleMax, ruleRequired } from '@/utils/formRules';
 
 type FormFieldProps = {
-  id: keyof FormData;
+  id: keyof FormDataProps;
   label: string;
   type: 'text' | 'number' | 'file';
   rules: {

@@ -10,7 +10,7 @@ import { PageLayout } from '@/layouts/PageLayout';
 import { axios } from '@/lib/axios';
 import { Message } from '@/types/message';
 
-export type FormData = {
+export type FormDataProps = {
   image: File;
   imageAlt: string;
   name: string;
@@ -28,7 +28,7 @@ const Destinations = () => {
     setError,
     control,
     formState: { errors },
-  } = useForm<FormData>();
+  } = useForm<FormDataProps>();
 
   const [message, setMessage] = useState<Message>();
   const { user } = useAuth({ middleware: 'auth' });
