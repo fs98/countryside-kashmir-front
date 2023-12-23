@@ -6,9 +6,10 @@ import EditorJS from '@editorjs/editorjs';
 type CustomEditorProps = {
   // eslint-disable-next-line no-unused-vars
   onChange: (data: any) => void;
+  initialData?: any;
 };
 
-export const CustomEditor = forwardRef(({ onChange }: CustomEditorProps, ref) => {
+export const CustomEditor = forwardRef(({ onChange, initialData }: CustomEditorProps, ref) => {
   const editorRef = useRef(null);
 
   useImperativeHandle(ref, () => ({
@@ -28,6 +29,7 @@ export const CustomEditor = forwardRef(({ onChange }: CustomEditorProps, ref) =>
           const data = await editor.save();
           onChange(data); // Update React Hook Form
         },
+        data: initialData,
       });
 
       editorRef.current = editor;
@@ -39,9 +41,9 @@ export const CustomEditor = forwardRef(({ onChange }: CustomEditorProps, ref) =>
         editorRef.current = null;
       }
     };
-  }, []);
+  }, [initialData, onChange]);
 
-  return <div id="editor-js" />;
+  return <div className="p-3" id="editor-js" />;
 });
 
 CustomEditor.displayName = 'CustomEditor';
