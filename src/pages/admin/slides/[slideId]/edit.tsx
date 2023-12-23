@@ -9,6 +9,7 @@ import { PageLayout } from '@/layouts/PageLayout';
 import { axios } from '@/lib/axios';
 import { FormDataProps } from '@/pages/admin/slides/create';
 import { Message } from '@/types/message';
+import { validateImage } from '@/utils/validateImage';
 
 export type InputAttributesProps = {
   id: string;
@@ -66,15 +67,12 @@ const Slide = ({ slide }) => {
     const imageItem = image?.[0];
 
     if (imageItem) {
-      if (imageItem.type !== 'image/jpeg' && imageItem.type !== 'image/png') {
-        return setError('image', { type: 'filetype' });
+      const errorType = validateImage(imageItem);
+      if (errorType) {
+        return setError('image', { type: errorType });
       }
 
-      if (imageItem.size >= 5000000) {
-        return setError('image', { type: 'filesize' });
-      }
-
-      formData.append('image', imageItem);
+      formData.append('image', image[0]);
     }
 
     axios
