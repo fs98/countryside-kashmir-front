@@ -1,17 +1,16 @@
 // import { useAuth } from '@/hooks/auth';
 import { Grid } from '@mui/material';
-import { axios } from '@/lib/axios';
-import { HomeLayout } from '@/layouts/HomeLayout';
+
 import { AboutSection } from '@/blocks/HomePageBlocks/AboutSection';
 import { BlogsPreview } from '@/blocks/HomePageBlocks/BlogsPreview';
 import { Block } from '@/components/Block/Block';
 import { CardPrice } from '@/components/CardPrice/CardPrice';
 import { CardSimple } from '@/components/CardSimple/CardSimple';
-
-export type ImageProps = {
-  image_url: string;
-  image_alt: string;
-};
+import { useAuth } from '@/hooks/auth';
+import { HomeLayout } from '@/layouts/HomeLayout';
+import { axios } from '@/lib/axios';
+import { ContentProps, ImageProps } from '@/types/global';
+import { Package } from '@/types/resources';
 
 export type SlidesProps = ImageProps & {
   title: string;
@@ -25,38 +24,16 @@ export type ItemsProps = ImageProps & {
   slug: string;
 };
 
-export type ContentProps = {
-  time: number;
-  blocks: Array<{
-    id: string;
-    type: string;
-    data: {
-      text: string;
-    };
-  }>;
-  version: string;
-};
-
 export type BlogsProps = ImageProps & {
   content: ContentProps;
   title: string;
   slug: string;
 };
 
-export type OfferProps = ItemsProps & {
-  days: number;
-  nights: number;
-  persons: number;
-  price: number;
-  destinations: Array<{
-    name: string;
-  }>;
-};
-
 export type CategoryProps = {
   name: string;
   slug: string;
-  packages: OfferProps[];
+  packages: Package[];
 };
 
 type HomeProps = {
@@ -74,7 +51,8 @@ const Home = ({
   blogs,
   categoryOffers,
 }: HomeProps): JSX.Element => {
-  // const { user } = useAuth({ middleware: 'guest' });
+  const { user } = useAuth({ middleware: 'guest' });
+  console.log(user);
 
   return (
     <HomeLayout

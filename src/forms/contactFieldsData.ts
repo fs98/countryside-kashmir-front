@@ -1,4 +1,4 @@
-import { FormData } from '../pages/contact-us';
+import { FormData } from '@/pages/contact-us';
 
 type FormFieldRulesProps = {
   name: string;

@@ -1,57 +1,51 @@
 import { Button, FormControl, FormHelperText, Input, InputLabel } from '@mui/material';
+
 import { fromPairs } from 'lodash';
-import { InputAttributesProps } from '../../pages/admin/slides/[slideId]/edit';
-import { slideFormFields } from '../../forms/slideFieldsData';
 
-export const SlideForm = ({
-  onSubmit,
-  errors,
-  register,
-  editing,
-  inputAttributes,
-}): JSX.Element => {
-  return (
-    <form onSubmit={onSubmit}>
-      {slideFormFields.map(({ id, label, type, rules }) => {
-        const errorHelperText =
-          errors?.[id]?.type && rules.creating.find(err => err.name === errors[id].type);
+import { slideFormFields } from '@/forms/slideFieldsData';
+import { InputAttributesProps } from '@/pages/admin/slides/[slideId]/edit';
 
-        return (
-          <FormControl key={id} fullWidth={true} color="warning" sx={{ marginBottom: 5 }}>
-            <InputLabel htmlFor={id} shrink>
-              {label}
-            </InputLabel>
+export const SlideForm = ({ onSubmit, errors, register, editing, inputAttributes }) => (
+  <form onSubmit={onSubmit}>
+    {slideFormFields.map(({ id, label, type, rules }) => {
+      const errorHelperText =
+        errors?.[id]?.type && rules.creating.find(err => err.name === errors[id].type);
 
-            {editing && (
-              <Input
-                {...register(id, fromPairs(rules.updating.map(rule => [rule.name, rule.value])))}
-                id={id}
-                type={type}
-                {...inputAttributes.filter(
-                  (inputProp: InputAttributesProps) => inputProp.id === id,
-                )[0]?.attributes}
-              />
-            )}
+      return (
+        <FormControl key={id} fullWidth={true} color="warning" sx={{ marginBottom: 5 }}>
+          <InputLabel htmlFor={id} shrink>
+            {label}
+          </InputLabel>
 
-            {!editing && (
-              <Input
-                {...register(id, fromPairs(rules.creating.map(rule => [rule.name, rule.value])))}
-                id={id}
-                type={type}
-              />
-            )}
+          {editing && (
+            <Input
+              {...register(id, fromPairs(rules.updating.map(rule => [rule.name, rule.value])))}
+              id={id}
+              type={type}
+              {...inputAttributes.find((inputProp: InputAttributesProps) => inputProp.id === id)
+                ?.attributes}
+            />
+          )}
 
-            {errorHelperText?.text && (
-              <FormHelperText error id="component-error-text">
-                {errorHelperText.text}
-              </FormHelperText>
-            )}
-          </FormControl>
-        );
-      })}
-      <Button variant="outlined" color="warning" type="submit" sx={{ marginTop: 4 }}>
-        Submit
-      </Button>
-    </form>
-  );
-};
+          {!editing && (
+            <Input
+              {...register(id, fromPairs(rules.creating.map(rule => [rule.name, rule.value])))}
+              id={id}
+              type={type}
+            />
+          )}
+
+          {errorHelperText?.text ? (
+            <FormHelperText error id="component-error-text">
+              {errorHelperText.text}
+            </FormHelperText>
+          ) : null}
+        </FormControl>
+      );
+    })}
+
+    <Button variant="outlined" color="warning" type="submit" sx={{ marginTop: 4 }}>
+      Submit
+    </Button>
+  </form>
+);

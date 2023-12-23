@@ -1,4 +1,5 @@
-import Head from 'next/head';
+import { useState } from 'react';
+
 import {
   Button,
   CircularProgress,
@@ -7,11 +8,13 @@ import {
   Input,
   InputLabel,
 } from '@mui/material';
+import Head from 'next/head';
+import Router from 'next/router';
+
 import { fromPairs } from 'lodash';
 import { useForm } from 'react-hook-form';
-import { useState } from 'react';
-import Router from 'next/router';
-import { mailFormFields } from '../../../forms/mailFieldsData';
+
+import { mailFormFields } from '@/forms/mailFieldsData';
 import { AppLayout } from '@/layouts/AppLayout';
 import { axios } from '@/lib/axios';
 

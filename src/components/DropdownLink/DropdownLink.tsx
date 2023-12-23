@@ -1,7 +1,8 @@
-import Link from 'next/link';
+import { ButtonHTMLAttributes, FC, PropsWithChildren } from 'react';
+
 import { Menu } from '@headlessui/react';
 import { LinkProps } from 'next/dist/client/link';
-import { ButtonHTMLAttributes, FC, PropsWithChildren } from 'react';
+import Link from 'next/link';
 
 export type DropdownLinkProps = LinkProps & PropsWithChildren;
 

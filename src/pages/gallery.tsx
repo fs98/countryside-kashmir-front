@@ -1,11 +1,14 @@
 import { FC } from 'react';
-import LightGallery from 'lightgallery/react';
-import lgZoom from 'lightgallery/plugins/zoom';
+
 import lgThumbnail from 'lightgallery/plugins/thumbnail';
-import { ImageProps } from '.';
-import { axios } from '@/lib/axios';
-import { ImageHeaderLayout } from '@/layouts/ImageHeaderLayout';
+import lgZoom from 'lightgallery/plugins/zoom';
+import LightGallery from 'lightgallery/react';
+
 import { Block } from '@/components/Block/Block';
+import { ImageHeaderLayout } from '@/layouts/ImageHeaderLayout';
+import { axios } from '@/lib/axios';
+
+import { ImageProps } from '.';
 
 // import styles
 import 'lightgallery/css/lightgallery.css';

@@ -5,5 +5,5 @@ type ApplicationLogoProps = {
 };
 
 export const ApplicationLogo = ({ className }: ApplicationLogoProps): JSX.Element => (
-  <img src={Logo.src} alt="" className={`block w-30 fill-current text-gray-600 ${className}`} />
+  <img src={Logo.src} alt="" className={`block w-20 fill-current text-gray-600 ${className}`} />
 );

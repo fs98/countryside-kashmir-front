@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import Head from 'next/head';
-import { DataGrid, GridColDef, GridRowParams, GridValueGetterParams } from '@mui/x-data-grid';
+
 import {
   Dialog,
   DialogActions,
@@ -8,9 +7,12 @@ import {
   DialogContentText,
   DialogTitle,
 } from '@mui/material';
+import { DataGrid, GridColDef, GridRowParams, GridValueGetterParams } from '@mui/x-data-grid';
+import Head from 'next/head';
+
+import { Button } from '@/components/Button/Button';
 import { AppLayout } from '@/layouts/AppLayout';
 import { axios } from '@/lib/axios';
-import { Button } from '@/components/Button/Button';
 
 type UserProps = {
   id: Number;

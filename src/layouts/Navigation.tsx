@@ -1,14 +1,16 @@
-import { useRouter } from 'next/router';
 import { FC, useState } from 'react';
+
+import { useRouter } from 'next/router';
+
+import { ApplicationLogo } from '@/components/ApplicationLogo/ApplicationLogo';
 import { Dropdown } from '@/components/Dropdown/Dropdown';
+import { DropdownButton } from '@/components/DropdownLink/DropdownLink';
 import { NavLink } from '@/components/NavLink/NavLink';
 import {
   ResponsiveNavButton,
   ResponsiveNavLink,
 } from '@/components/ResponsiveNavLink/ResponsiveNavLink';
-import { DropdownButton } from '@/components/DropdownLink/DropdownLink';
 import { useAuth } from '@/hooks/auth';
-import { ApplicationLogo } from '@/components/ApplicationLogo/ApplicationLogo';
 
 const navLinks: NavLinkProps = [
   {
@@ -36,8 +38,8 @@ const navLinks: NavLinkProps = [
     url: '/admin/mail',
   },
   {
-    title: 'Blog',
-    url: '/admin/blog',
+    title: 'Blogs',
+    url: '/admin/blogs',
   },
   {
     title: 'Things to do',
@@ -77,8 +79,11 @@ export const Navigation: FC<NavigationProps> = ({ user }) => {
 
             {/* Navigation Links */}
             <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-              {navLinks.map((navLink, i) => (
-                <NavLink key={i} href={navLink.url} active={router.pathname === navLink.url}>
+              {navLinks.map(navLink => (
+                <NavLink
+                  key={navLink.url}
+                  href={navLink.url}
+                  active={router.pathname === navLink.url}>
                   {navLink.title}
                 </NavLink>
               ))}
@@ -116,7 +121,7 @@ export const Navigation: FC<NavigationProps> = ({ user }) => {
           {/* Hamburger */}
           <div className="-mr-2 flex items-center sm:hidden">
             <button
-              onClick={() => setOpen(open => !open)}
+              onClick={() => setOpen(prev => !prev)}
               className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
               <svg className="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                 {open ? (
@@ -146,9 +151,9 @@ export const Navigation: FC<NavigationProps> = ({ user }) => {
       {open && (
         <div className="block sm:hidden">
           <div className="pt-2 pb-3 space-y-1">
-            {navLinks.map((navLink, i) => (
+            {navLinks.map(navLink => (
               <ResponsiveNavLink
-                key={i}
+                key={navLink.url}
                 href={navLink.url}
                 active={router.pathname === navLink.url}>
                 {navLink.title}

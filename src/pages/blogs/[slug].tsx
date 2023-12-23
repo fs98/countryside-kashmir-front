@@ -1,13 +1,15 @@
 import { FC } from 'react';
 
+import { Box } from '@mui/material';
+
 import Blocks from 'editorjs-blocks-react-renderer';
 import moment from 'moment';
-import { Box } from '@mui/material';
-import { BlogsProps } from '..';
+
 import { Block } from '@/components/Block/Block';
 import { ImageHeaderLayout } from '@/layouts/ImageHeaderLayout';
-
 import { axios } from '@/lib/axios';
+
+import { BlogsProps } from '..';
 
 type BlogProps = {
   blog: BlogsProps & {

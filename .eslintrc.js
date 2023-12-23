@@ -7,7 +7,12 @@ module.exports = {
     es6: true,
     commonjs: true,
   },
-  extends: ['eslint:recommended', 'plugin:react/recommended', 'plugin:prettier/recommended'],
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:prettier/recommended',
+    'plugin:react-hooks/recommended',
+  ],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -21,7 +26,7 @@ module.exports = {
     'no-nested-ternary': 0,
     'no-underscore-dangle': 0,
     'no-unused-expressions': ['error', { allowTernary: true }],
-    'no-unused-vars': 2,
+    'no-unused-vars': 'error',
     camelcase: 0,
     'react/self-closing-comp': 1,
     'react/jsx-filename-extension': [1, { extensions: ['.js', 'jsx', '.tsx'] }],
@@ -37,8 +42,37 @@ module.exports = {
     'prettier/prettier': ['error', { endOfLine: 'auto' }, { usePrettierrc: true }],
     'sort-imports': ['error', { ignoreCase: true, ignoreDeclarationSort: true }],
     'import/order': [
-      1,
-      { groups: ['external', 'builtin', 'internal', 'sibling', 'index', 'parent'] },
+      'error',
+      {
+        groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
+        pathGroups: [
+          {
+            pattern: 'react',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: '@next/*',
+            group: 'internal',
+            position: 'before',
+          },
+          {
+            pattern: '@/**',
+            group: 'internal',
+          },
+          {
+            pattern: '*',
+            group: 'external',
+            position: 'after',
+          },
+        ],
+        pathGroupsExcludedImportTypes: ['react'],
+        'newlines-between': 'always',
+        alphabetize: {
+          order: 'asc',
+          caseInsensitive: true,
+        },
+      },
     ],
   },
   globals: {

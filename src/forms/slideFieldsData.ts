@@ -1,4 +1,5 @@
-import { FormData } from '../pages/admin/slides/create';
+import { FormDataProps } from '@/pages/admin/slides/create';
+import { ruleFile, ruleMax, ruleRequired } from '@/utils/formRules';
 
 type FormFieldRulesProps = {
   name: string;
@@ -7,7 +8,7 @@ type FormFieldRulesProps = {
 };
 
 type FormFieldProps = {
-  id: keyof FormData;
+  id: keyof FormDataProps;
   label: string;
   type: 'text' | 'number' | 'file';
   rules: {
@@ -23,29 +24,13 @@ export const slideFormFields: FormFieldProps[] = [
     type: 'file',
     rules: {
       creating: [
-        {
-          name: 'required',
-          value: true,
-          text: 'Image is required.',
-        },
-        {
-          name: 'filetype',
-          text: 'Image must be of type jpg,jpeg or png.',
-        },
-        {
-          name: 'filesize',
-          text: 'Image must not exceed 5MB.',
-        },
+        ruleRequired({ text: 'Image is required' }),
+        ruleFile('filetype', 'Image must be of type jpg,jpeg or png.'),
+        ruleFile('filesize', 'Image must not exceed 5MB.'),
       ],
       updating: [
-        {
-          name: 'filetype',
-          text: 'Image must be of type jpg,jpeg or png.',
-        },
-        {
-          name: 'filesize',
-          text: 'Image must not exceed 5MB.',
-        },
+        ruleFile('filetype', 'Image must be of type jpg,jpeg or png.'),
+        ruleFile('filesize', 'Image must not exceed 5MB.'),
       ],
     },
   },
@@ -55,28 +40,12 @@ export const slideFormFields: FormFieldProps[] = [
     type: 'text',
     rules: {
       creating: [
-        {
-          name: 'required',
-          value: true,
-          text: 'Image Alt is required.',
-        },
-        {
-          name: 'max',
-          value: 64,
-          text: 'Image Alt must be shorter than 64 characters.',
-        },
+        ruleRequired({ text: 'Image Alt is required.' }),
+        ruleMax({ text: 'Image Alt must be shorter than 64 characters.' }),
       ],
       updating: [
-        {
-          name: 'required',
-          value: true,
-          text: 'Image Alt is required.',
-        },
-        {
-          name: 'max',
-          value: 64,
-          text: 'Image Alt must be shorter than 64 characters.',
-        },
+        ruleRequired({ text: 'Image Alt is required.' }),
+        ruleMax({ text: 'Image Alt must be shorter than 64 characters.' }),
       ],
     },
   },
@@ -85,20 +54,8 @@ export const slideFormFields: FormFieldProps[] = [
     label: 'Order',
     type: 'number',
     rules: {
-      creating: [
-        {
-          name: 'required',
-          value: true,
-          text: 'Order is required.',
-        },
-      ],
-      updating: [
-        {
-          name: 'required',
-          value: true,
-          text: 'Order is required.',
-        },
-      ],
+      creating: [ruleRequired({ text: 'Order is required.' })],
+      updating: [ruleRequired({ text: 'Order is required.' })],
     },
   },
   {
@@ -106,20 +63,8 @@ export const slideFormFields: FormFieldProps[] = [
     label: 'Title',
     type: 'text',
     rules: {
-      creating: [
-        {
-          name: 'max',
-          value: 64,
-          text: 'Title must be shorter than 64 characters.',
-        },
-      ],
-      updating: [
-        {
-          name: 'max',
-          value: 64,
-          text: 'Title must be shorter than 64 characters.',
-        },
-      ],
+      creating: [ruleMax({ text: 'Title must be shorter than 64 characters.' })],
+      updating: [ruleMax({ text: 'Title must be shorter than 64 characters.' })],
     },
   },
   {
@@ -127,20 +72,8 @@ export const slideFormFields: FormFieldProps[] = [
     label: 'Subtitle',
     type: 'text',
     rules: {
-      creating: [
-        {
-          name: 'max',
-          value: 32,
-          text: 'Title must be shorter than 32 characters.',
-        },
-      ],
-      updating: [
-        {
-          name: 'max',
-          value: 32,
-          text: 'Title must be shorter than 32 characters.',
-        },
-      ],
+      creating: [ruleMax({ text: 'Subtitle must be shorter than 32 characters.', value: 32 })],
+      updating: [ruleMax({ text: 'Subtitle must be shorter than 32 characters.', value: 32 })],
     },
   },
 ];

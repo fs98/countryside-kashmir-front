@@ -1,13 +1,14 @@
 import React from 'react';
 
-import Blocks from 'editorjs-blocks-react-renderer';
 import { Box, Container, Grid, Link, Typography } from '@mui/material';
-import { Block } from '@/components/Block/Block';
-import { ImageHeaderLayout } from '@/layouts/ImageHeaderLayout';
 
-import { axios } from '@/lib/axios';
-import { CardSimple } from '@/components/CardSimple/CardSimple';
+import Blocks from 'editorjs-blocks-react-renderer';
+
 import BookingForm from '@/blocks/PackagesPageBlocks/BookingForm';
+import { Block } from '@/components/Block/Block';
+import { CardSimple } from '@/components/CardSimple/CardSimple';
+import { ImageHeaderLayout } from '@/layouts/ImageHeaderLayout';
+import { axios } from '@/lib/axios';
 
 const Package = ({ offer }): JSX.Element => (
   <ImageHeaderLayout title={offer.name} heading="Blog">

@@ -1,5 +1,6 @@
-import Head from 'next/head';
 import { FC, PropsWithChildren } from 'react';
+
+import Head from 'next/head';
 
 export const GuestLayout: FC<PropsWithChildren> = ({ children }) => {
   return (

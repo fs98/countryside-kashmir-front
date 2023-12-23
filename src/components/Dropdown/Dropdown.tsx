@@ -1,4 +1,5 @@
 import React, { FC, PropsWithChildren, ReactNode } from 'react';
+
 import { Menu, Transition } from '@headlessui/react';
 
 export type DropdownProps = PropsWithChildren & {
@@ -35,8 +36,6 @@ export const Dropdown: FC<DropdownProps> = ({
       alignmentClasses = 'origin-top-right right-0';
       break;
   }
-
-  // const [open, setOpen] = useState(false);
 
   return (
     <Menu as="div" className="relative">
