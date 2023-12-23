@@ -26,7 +26,7 @@ module.exports = {
     'no-nested-ternary': 0,
     'no-underscore-dangle': 0,
     'no-unused-expressions': ['error', { allowTernary: true }],
-    'no-unused-vars': 2,
+    'no-unused-vars': 'error',
     camelcase: 0,
     'react/self-closing-comp': 1,
     'react/jsx-filename-extension': [1, { extensions: ['.js', 'jsx', '.tsx'] }],
