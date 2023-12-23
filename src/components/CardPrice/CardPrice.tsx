@@ -2,10 +2,10 @@ import { FC } from 'react';
 
 import { Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material';
 
-import { OfferProps } from '@/pages';
+import { Package } from '@/types/resources';
 
 type CardPriceProps = {
-  offer: OfferProps;
+  offer: Package;
 };
 
 export const CardPrice: FC<CardPriceProps> = ({ offer }) => (

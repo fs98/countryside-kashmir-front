@@ -8,21 +8,14 @@ import { Button } from '@/components/Button/Button';
 import { ConfirmDialog } from '@/components/ConfirmDialog/ConfirmDialog';
 import { PageLayout } from '@/layouts/PageLayout';
 import { axios } from '@/lib/axios';
-
-type CategoryProps = {
-  id: Number;
-  name: string;
-  slug: string;
-  created_at: string;
-  updated_at: string;
-};
+import { Category } from '@/types/resources';
 
 type CategoriesProps = {
-  categories: CategoryProps[];
+  categories: Category[];
 };
 
 const Categories = (props: CategoriesProps) => {
-  const [categories, setCategories] = useState<CategoryProps[]>(props.categories);
+  const [categories, setCategories] = useState<Category[]>(props.categories);
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
   const [deleteItem, setDeleteItem] = useState<{ id: Number | null }>({ id: null });
 

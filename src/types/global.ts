@@ -15,16 +15,16 @@ export type ImageProps = {
   image_alt: string;
 };
 
-export type BasicResourceType = {
+export type BasicUserType = {
   id: number;
   name: string;
   created_at: string;
   updated_at: string;
 };
 
-export type User = BasicResourceType & {
+export type User = BasicUserType & {
   email: string;
   email_verified_at: string;
 };
 
-export type Author = BasicResourceType;
+export type Author = BasicUserType;
