@@ -3,8 +3,7 @@ import { useState } from 'react';
 import { Card } from '@/components/Card/Card';
 import { PageLayout } from '@/layouts/PageLayout';
 import { axios } from '@/lib/axios';
-
-import { SlidesProps } from '../..';
+import { SlidesProps } from '@/pages/index';
 
 type AdminSlidesProps = SlidesProps & {
   id: number;

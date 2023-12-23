@@ -2,8 +2,8 @@ import { Button, FormControl, FormHelperText, Input, InputLabel } from '@mui/mat
 
 import { fromPairs } from 'lodash';
 
-import { slideFormFields } from '../../forms/slideFieldsData';
-import { InputAttributesProps } from '../../pages/admin/slides/[slideId]/edit';
+import { slideFormFields } from '@/forms/slideFieldsData';
+import { InputAttributesProps } from '@/pages/admin/slides/[slideId]/edit';
 
 export const SlideForm = ({ onSubmit, errors, register, editing, inputAttributes }) => (
   <form onSubmit={onSubmit}>

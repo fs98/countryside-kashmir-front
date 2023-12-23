@@ -1,4 +1,4 @@
-import { Author, BasicResourceType, ContentProps, ImageProps, User } from './global';
+import { Author, BasicResourceType, ContentProps, ImageProps, User } from '@/types/global';
 
 export interface Package extends ImageProps, BasicResourceType {
   slug: string;

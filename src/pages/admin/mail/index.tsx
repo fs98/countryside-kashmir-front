@@ -14,10 +14,9 @@ import Router from 'next/router';
 import { fromPairs } from 'lodash';
 import { useForm } from 'react-hook-form';
 
+import { mailFormFields } from '@/forms/mailFieldsData';
 import { AppLayout } from '@/layouts/AppLayout';
 import { axios } from '@/lib/axios';
-
-import { mailFormFields } from '../../../forms/mailFieldsData';
 
 export type FormData = {
   receiver: string;

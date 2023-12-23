@@ -7,9 +7,8 @@ import { useForm } from 'react-hook-form';
 import { SlideForm } from '@/blocks/SlidesPageBlocks/SlideForm';
 import { PageLayout } from '@/layouts/PageLayout';
 import { axios } from '@/lib/axios';
+import { FormDataProps } from '@/pages/admin/slides/create';
 import { Message } from '@/types/message';
-
-import { FormDataProps } from '../create';
 
 export type InputAttributesProps = {
   id: string;

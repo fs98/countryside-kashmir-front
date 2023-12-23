@@ -23,11 +23,10 @@ import { fromPairs } from 'lodash';
 import { useForm } from 'react-hook-form';
 
 import { Block } from '@/components/Block/Block';
+import { contactUsFormFields } from '@/forms/contactFieldsData';
 import { ImageHeaderLayout } from '@/layouts/ImageHeaderLayout';
 import { axios } from '@/lib/axios';
 import { Message } from '@/types/message';
-
-import { contactUsFormFields } from '../../forms/contactFieldsData';
 
 export type FormData = {
   firstName: string;

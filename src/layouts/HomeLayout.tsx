@@ -11,10 +11,9 @@ import SwiperCore, { Autoplay, Navigation } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
+import { Footer } from '@/layouts/Footer';
+import { MainNavbar } from '@/layouts/MainNavbar';
 import type { SlidesProps } from '@/pages';
-
-import { Footer } from './Footer';
-import { MainNavbar } from './MainNavbar';
 
 export type HomeLayoutProps = PropsWithChildren & {
   slides: SlidesProps[];

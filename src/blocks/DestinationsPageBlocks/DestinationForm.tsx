@@ -5,12 +5,10 @@ import { fromPairs } from 'lodash';
 import { Controller } from 'react-hook-form';
 
 import { destinationFormFields } from '@/forms/destinationFieldsData';
-
-import { InputAttributesProps } from '../../pages/admin/slides/[slideId]/edit';
+import { InputAttributesProps } from '@/pages/admin/slides/[slideId]/edit';
 
 const CustomEditor = dynamic(
-  () =>
-    import('../../components/CustomEditor/CustomEditor').then(({ CustomEditor }) => CustomEditor),
+  () => import('@/components/CustomEditor/CustomEditor').then(({ CustomEditor }) => CustomEditor),
   {
     ssr: false,
   },

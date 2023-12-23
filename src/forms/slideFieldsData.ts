@@ -1,6 +1,5 @@
+import { FormDataProps } from '@/pages/admin/slides/create';
 import { ruleFile, ruleMax, ruleRequired } from '@/utils/formRules';
-
-import { FormDataProps } from '../pages/admin/slides/create';
 
 type FormFieldRulesProps = {
   name: string;

@@ -1,6 +1,5 @@
+import { FormData } from '@/pages/admin/destinations/create';
 import { FormFieldRulesProps, ruleFile, ruleMax, ruleRequired } from '@/utils/formRules';
-
-import { FormData } from '../pages/admin/destinations/create';
 
 type FormFieldProps = {
   id: keyof FormData;

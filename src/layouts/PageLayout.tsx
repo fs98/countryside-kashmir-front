@@ -5,8 +5,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 
 import { Resource, RESOURCES } from '@/data/resources';
-
-import { AppLayout } from './AppLayout';
+import { AppLayout } from '@/layouts/AppLayout';
 
 type PageLayoutProps = {
   resource: Resource['name'];
