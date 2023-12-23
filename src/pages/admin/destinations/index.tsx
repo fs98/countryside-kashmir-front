@@ -28,7 +28,7 @@ const Destinations = (props: DestinationsProps) => {
   };
 
   return (
-    <PageLayout resource="destinations" isOverview>
+    <PageLayout resource="destinations" isOverview showAddButton>
       <ConfirmDialog
         isOpen={isDialogOpen}
         onClose={() => setIsDialogOpen(false)}

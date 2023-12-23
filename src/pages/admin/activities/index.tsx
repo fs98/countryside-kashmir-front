@@ -8,7 +8,7 @@ type ActivitiesProps = {
 };
 
 const Activities = ({ activities }: ActivitiesProps) => (
-  <PageLayout resource="activities" isOverview>
+  <PageLayout resource="activities" isOverview showAddButton>
     {activities.map(({ id, image_alt, image_url, name, keywords }) => (
       <Card
         data={{

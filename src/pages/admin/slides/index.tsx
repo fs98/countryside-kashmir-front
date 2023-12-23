@@ -28,7 +28,7 @@ const Slides = (props: { slides: AdminSlidesProps[] }): JSX.Element => {
   };
 
   return (
-    <PageLayout resource="slides" isOverview>
+    <PageLayout resource="slides" isOverview showAddButton>
       {slides.map(slide => (
         <Card
           data={slide}

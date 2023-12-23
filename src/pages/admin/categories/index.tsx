@@ -99,7 +99,7 @@ const Categories = (props: CategoriesProps) => {
   };
 
   return (
-    <PageLayout resource="categories">
+    <PageLayout resource="categories" showAddButton>
       <ConfirmDialog
         isOpen={isDialogOpen}
         onClose={() => setIsDialogOpen(false)}

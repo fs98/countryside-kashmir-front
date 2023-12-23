@@ -3,7 +3,7 @@ import { PageLayout } from '@/layouts/PageLayout';
 import { axios } from '@/lib/axios';
 
 const Blogs = ({ blogs }) => (
-  <PageLayout resource="blogs" isOverview>
+  <PageLayout resource="blogs" isOverview showAddButton>
     {blogs.map(({ id, image_alt, image_url, title, keywords }) => (
       <Card
         data={{

@@ -8,7 +8,7 @@ type PackagesProps = {
 };
 
 const Packages = ({ packages }: PackagesProps) => (
-  <PageLayout resource="packages" isOverview={true}>
+  <PageLayout resource="packages" isOverview showAddButton>
     {packages.map(item => (
       <Card
         data={{ ...item, title: item.name }}

@@ -10,12 +10,14 @@ import { AppLayout } from '@/layouts/AppLayout';
 type PageLayoutProps = {
   resource: Resource['name'];
   isOverview?: boolean;
+  showAddButton?: boolean;
 };
 
 export const PageLayout = ({
   children,
   resource,
   isOverview = false,
+  showAddButton = false,
 }: PropsWithChildren<PageLayoutProps>) => {
   const dynamicClasses = isOverview ? 'w-full grid-cols-3 gap-4' : 'gap-5';
 
@@ -34,7 +36,7 @@ export const PageLayout = ({
       <div className="py-12">
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-            {isOverview && (
+            {showAddButton && (
               <div className="p-6 pb-0">
                 <Link href={`${variations.pluralLowercase}/create`}>
                   <a className="btn outline p-2 rounded-sm outline-blue-500 text-blue-500 hover:outline-blue-700 hover:text-blue-700">
