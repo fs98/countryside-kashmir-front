@@ -32,3 +32,6 @@ export interface Package extends ImageProps, BasicResourceType {
 export interface Destination extends ImageProps, BasicResourceType {}
 
 export interface Activity extends ImageProps, BasicResourceType {}
+export interface Blog extends ImageProps, BasicResourceType {
+  title: string;
+}
