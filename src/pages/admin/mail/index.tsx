@@ -50,14 +50,7 @@ const Mail = () => {
       })
       .catch(error => {
         setLoading(false);
-        if (error.response.status === 500) {
-          setMessage({
-            title: error.response.data.message,
-            type: 'error',
-          });
-        }
-
-        if (error.response.status === 422) {
+        if (error.response.status === 500 || error.response.status === 422) {
           setMessage({
             title: error.response.data.message,
             type: 'error',

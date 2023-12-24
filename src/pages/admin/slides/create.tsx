@@ -8,6 +8,7 @@ import { SlideForm } from '@/blocks/SlidesPageBlocks/SlideForm';
 import { PageLayout } from '@/layouts/PageLayout';
 import { axios } from '@/lib/axios';
 import { Message } from '@/types/message';
+import { validateImage } from '@/utils/validateImage';
 
 export type FormDataProps = {
   image: File;
@@ -26,16 +27,19 @@ const Slides = (): JSX.Element => {
   } = useForm<FormDataProps>();
 
   const onSubmit = handleSubmit(({ image, imageAlt, order, title, subtitle }) => {
-    if (image[0].type !== 'image/jpeg' && image[0].type !== 'image/png') {
-      return setError('image', { type: 'filetype' });
-    }
-
-    if (image[0].size >= 5000000) {
-      return setError('image', { type: 'filesize' });
-    }
-
     const formData = new FormData();
-    formData.append('image', image[0]);
+
+    const imageItem = image?.[0];
+
+    if (imageItem) {
+      const errorType = validateImage(imageItem);
+      if (errorType) {
+        return setError('image', { type: errorType });
+      }
+      formData.append('image', imageItem);
+    }
+
+    formData.append('image', imageItem);
     formData.append('image_alt', imageAlt);
     formData.append('order', order);
     formData.append('title', title);
@@ -55,14 +59,7 @@ const Slides = (): JSX.Element => {
         Router.push('/admin/slides');
       })
       .catch(error => {
-        if (error.response.status === 500) {
-          setMessage({
-            title: error.response.data.message,
-            type: 'error',
-          });
-        }
-
-        if (error.response.status === 422) {
+        if (error.response.status === 500 || error.response.status === 422) {
           setMessage({
             title: error.response.data.message,
             type: 'error',

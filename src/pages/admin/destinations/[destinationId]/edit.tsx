@@ -67,13 +67,13 @@ const EditDestination = ({ destination }: EditDestinationProps) => {
     }
 
     const imageItem = image?.[0];
+
     if (imageItem) {
       const errorType = validateImage(imageItem);
       if (errorType) {
         return setError('image', { type: errorType });
       }
-
-      formData.append('image', image[0]);
+      formData.append('image', imageItem);
     }
 
     // Make a request
