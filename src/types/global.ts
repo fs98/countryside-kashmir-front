@@ -28,3 +28,15 @@ export type User = BasicUserType & {
 };
 
 export type Author = BasicUserType;
+
+export type FormDataProps = {
+  image: File;
+  imageAlt: string;
+  name: string;
+  keywords: string;
+  description: {
+    time: number;
+    blocks: any[];
+  };
+  author: number;
+};

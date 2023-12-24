@@ -4,22 +4,13 @@ import Router from 'next/router';
 
 import { useForm } from 'react-hook-form';
 
-import { DestinationForm } from '@/blocks/DestinationsPageBlocks/DestinationForm';
+import { Form } from '@/components/Form/Form';
 import { useAuth } from '@/hooks/auth';
 import { PageLayout } from '@/layouts/PageLayout';
 import { axios } from '@/lib/axios';
+import { FormDataProps } from '@/types/global';
 import { Message } from '@/types/message';
-
-export type FormDataProps = {
-  image: File;
-  imageAlt: string;
-  name: string;
-  keywords: string;
-  description: {
-    time: number;
-    blocks: any[];
-  };
-};
+import { validateImage } from '@/utils/validateImage';
 
 const Destinations = () => {
   const {
@@ -34,12 +25,15 @@ const Destinations = () => {
   const { user } = useAuth({ middleware: 'auth' });
 
   const onSubmit = handleSubmit(({ image, imageAlt, name, description, keywords }) => {
-    if (image[0]?.type !== 'image/jpeg' && image[0]?.type !== 'image/png') {
-      return setError('image', { type: 'filetype' });
-    }
+    const formData = new FormData();
 
-    if (image[0]?.size >= 5000000) {
-      return setError('image', { type: 'filesize' });
+    const imageItem = image?.[0];
+
+    if (imageItem) {
+      const errorType = validateImage(imageItem);
+      if (errorType) {
+        return setError('image', { type: errorType });
+      }
     }
 
     if (!description || description?.blocks.length === 0) {
@@ -49,8 +43,7 @@ const Destinations = () => {
       });
     }
 
-    const formData = new FormData();
-    formData.append('image', image[0]);
+    formData.append('image', imageItem);
     formData.append('image_alt', imageAlt);
     formData.append('name', name);
     formData.append('keywords', keywords.toLowerCase());
@@ -71,14 +64,7 @@ const Destinations = () => {
         Router.push('/admin/destinations');
       })
       .catch(error => {
-        if (error.response.status === 500) {
-          setMessage({
-            title: error.response.data.message,
-            type: 'error',
-          });
-        }
-
-        if (error.response.status === 422) {
+        if (error.response.status === 500 || error.response.status === 422) {
           setMessage({
             title: error.response.data.message,
             type: 'error',
@@ -95,7 +81,7 @@ const Destinations = () => {
     <PageLayout resource="destinations">
       {message && <div>{message.title}</div>}
 
-      <DestinationForm
+      <Form
         onSubmit={onSubmit}
         errors={errors}
         register={register}

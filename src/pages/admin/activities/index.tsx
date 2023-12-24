@@ -67,7 +67,7 @@ export const getServerSideProps = async ({
         Referer: host,
       },
     })
-    .then(res => res.data.data)
+    .then(({ data }) => data.data)
     .catch(error => {
       if (error.response.status !== 409) throw error;
     });

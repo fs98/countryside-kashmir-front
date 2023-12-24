@@ -71,8 +71,7 @@ const Slide = ({ slide }) => {
       if (errorType) {
         return setError('image', { type: errorType });
       }
-
-      formData.append('image', image[0]);
+      formData.append('image', imageItem);
     }
 
     axios

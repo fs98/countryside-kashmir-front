@@ -4,29 +4,27 @@ import Router from 'next/router';
 
 import { useForm } from 'react-hook-form';
 
-import { SlideForm } from '@/blocks/SlidesPageBlocks/SlideForm';
+import { Form } from '@/components/Form/Form';
+import { useAuth } from '@/hooks/auth';
 import { PageLayout } from '@/layouts/PageLayout';
 import { axios } from '@/lib/axios';
+import { FormDataProps } from '@/types/global';
 import { Message } from '@/types/message';
 import { validateImage } from '@/utils/validateImage';
 
-export type FormDataProps = {
-  image: File;
-  imageAlt: string;
-  order: string;
-  title: string;
-  subtitle: string;
-};
-
-const Slides = (): JSX.Element => {
+const Activities = () => {
   const {
     register,
     handleSubmit,
     setError,
+    control,
     formState: { errors },
   } = useForm<FormDataProps>();
 
-  const onSubmit = handleSubmit(({ image, imageAlt, order, title, subtitle }) => {
+  const [message, setMessage] = useState<Message>();
+  const { user } = useAuth({ middleware: 'auth' });
+
+  const onSubmit = handleSubmit(({ image, imageAlt, name, keywords, description }) => {
     const formData = new FormData();
 
     const imageItem = image?.[0];
@@ -36,17 +34,17 @@ const Slides = (): JSX.Element => {
       if (errorType) {
         return setError('image', { type: errorType });
       }
-      formData.append('image', imageItem);
     }
 
     formData.append('image', imageItem);
     formData.append('image_alt', imageAlt);
-    formData.append('order', order);
-    formData.append('title', title);
-    formData.append('subtitle', subtitle);
+    formData.append('keywords', keywords.toLowerCase());
+    formData.append('name', name);
+    formData.append('description', JSON.stringify(description));
+    formData.append('author_id', user.id);
 
     axios
-      .post('/api/slides', formData, {
+      .post('/api/activities', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -56,7 +54,7 @@ const Slides = (): JSX.Element => {
           title: res.data.message,
           type: 'success',
         });
-        Router.push('/admin/slides');
+        Router.push('/admin/activities');
       })
       .catch(error => {
         if (error.response.status === 500 || error.response.status === 422) {
@@ -72,20 +70,20 @@ const Slides = (): JSX.Element => {
       });
   });
 
-  const [message, setMessage] = useState<Message>();
-
   return (
-    <PageLayout resource="slides">
+    <PageLayout resource="activities">
       {message && <div>{message.title}</div>}
-      <SlideForm
+
+      <Form
         onSubmit={onSubmit}
         errors={errors}
         register={register}
         editing={false}
         inputAttributes={[]}
+        control={control}
       />
     </PageLayout>
   );
 };
 
-export default Slides;
+export default Activities;

@@ -1,17 +1,7 @@
-import { FormDataProps } from '@/pages/admin/destinations/create';
-import { FormFieldRulesProps, ruleFile, ruleMax, ruleRequired } from '@/utils/formRules';
+import { FormFieldProps } from '@/components/Form/Form';
+import { ruleFile, ruleMax, ruleRequired } from '@/utils/formRules';
 
-type FormFieldProps = {
-  id: keyof FormDataProps;
-  label: string;
-  type: 'text' | 'number' | 'file';
-  rules: {
-    creating: FormFieldRulesProps[];
-    updating: FormFieldRulesProps[];
-  };
-};
-
-export const destinationFormFields: FormFieldProps[] = [
+export const globalFieldsData: FormFieldProps[] = [
   {
     id: 'image',
     label: 'Image (png, jpg, jpeg)',

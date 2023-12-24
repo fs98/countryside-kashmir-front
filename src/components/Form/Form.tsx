@@ -4,8 +4,10 @@ import dynamic from 'next/dynamic';
 import { fromPairs } from 'lodash';
 import { Controller } from 'react-hook-form';
 
-import { destinationFormFields } from '@/forms/destinationFieldsData';
+import { globalFieldsData } from '@/forms/globalFieldsData';
 import { InputAttributesProps } from '@/pages/admin/slides/[slideId]/edit';
+import { FormDataProps } from '@/types/global';
+import { FormFieldRulesProps } from '@/utils/formRules';
 
 const CustomEditor = dynamic(
   () => import('@/components/CustomEditor/CustomEditor').then(({ CustomEditor }) => CustomEditor),
@@ -14,21 +16,45 @@ const CustomEditor = dynamic(
   },
 );
 
-export const DestinationForm = ({
+export type FormFieldProps = {
+  id: keyof FormDataProps;
+  label: string;
+  type: 'text' | 'number' | 'file';
+  rules: {
+    creating: FormFieldRulesProps[];
+    updating: FormFieldRulesProps[];
+  };
+};
+
+type FormProps = {
+  onSubmit: any;
+  errors: any;
+  register: any;
+  editing: any;
+  inputAttributes: any;
+  control: any;
+  formFields?: FormFieldProps[];
+};
+
+export const Form = ({
   onSubmit,
   errors,
   register,
   editing,
   inputAttributes,
   control,
-}): JSX.Element => {
+  formFields,
+}: FormProps): JSX.Element => {
   const editorContent = inputAttributes.find(
     (inputProp: InputAttributesProps) => inputProp.id === 'editor',
   )?.attributes.defaultValue;
 
+  // If formFields are not passed then use globalFieldsData
+  const fields = formFields ?? globalFieldsData;
+
   return (
     <form onSubmit={onSubmit}>
-      {destinationFormFields.map(({ id, label, type, rules }) => {
+      {fields.map(({ id, label, type, rules }) => {
         const errorHelperText =
           errors?.[id]?.type && rules.creating.find(err => err.name === errors[id].type);
 

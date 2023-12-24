@@ -9,14 +9,14 @@ import { PageLayout } from '@/layouts/PageLayout';
 import { axios } from '@/lib/axios';
 import { FormDataProps } from '@/types/global';
 import { Message } from '@/types/message';
-import { Destination } from '@/types/resources';
+import { Activity } from '@/types/resources';
 import { validateImage } from '@/utils/validateImage';
 
-type EditDestinationProps = {
-  destination: Destination;
+type EditActivityProps = {
+  activity: Activity;
 };
 
-const EditDestination = ({ destination }: EditDestinationProps) => {
+const EditActivity = ({ activity }: EditActivityProps) => {
   const {
     register,
     handleSubmit,
@@ -31,35 +31,35 @@ const EditDestination = ({ destination }: EditDestinationProps) => {
     {
       id: 'imageAlt',
       attributes: {
-        defaultValue: destination.image_alt,
+        defaultValue: activity.image_alt,
       },
     },
     {
       id: 'name',
       attributes: {
-        defaultValue: destination.name,
+        defaultValue: activity.name,
       },
     },
     {
       id: 'keywords',
       attributes: {
-        defaultValue: destination.keywords,
+        defaultValue: activity.keywords,
       },
     },
     {
       id: 'editor',
       attributes: {
-        defaultValue: destination.description,
+        defaultValue: activity.description,
       },
     },
   ];
 
-  const onSubmit = handleSubmit(({ image, imageAlt, keywords, name, description }) => {
+  const onSubmit = handleSubmit(({ image, imageAlt, name, keywords, description }) => {
     const formData = new FormData();
 
     formData.append('image_alt', imageAlt);
     formData.append('keywords', keywords.toLowerCase());
-    if (name !== destination.name) {
+    if (name !== activity.name) {
       formData.append('name', name);
     }
     if (description) {
@@ -78,7 +78,7 @@ const EditDestination = ({ destination }: EditDestinationProps) => {
 
     // Make a request
     axios
-      .post(`/api/destinations/${destination.id}?_method=PUT`, formData, {
+      .post(`/api/activities/${activity.id}?_method=PUT`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -89,7 +89,7 @@ const EditDestination = ({ destination }: EditDestinationProps) => {
           type: 'success',
         });
 
-        Router.push('/admin/destinations');
+        Router.push('/admin/activities');
       })
       .catch(error => {
         if (error.response.status === 500 || error.response.status === 422) {
@@ -106,7 +106,7 @@ const EditDestination = ({ destination }: EditDestinationProps) => {
   });
 
   return (
-    <PageLayout resource="destinations">
+    <PageLayout resource="activities">
       {message && <div>{message.title}</div>}
 
       <Form
@@ -125,10 +125,10 @@ export const getServerSideProps = async ({
   req: {
     headers: { cookie, host },
   },
-  params: { destinationId },
+  params: { activityId },
 }) => {
-  const destination = await axios
-    .get<{ data: Destination[] }>(`/api/destinations/${destinationId}`, {
+  const activity = await axios
+    .get<{ data: Activity[] }>(`/api/activities/${activityId}`, {
       headers: {
         Cookie: cookie,
         Referer: host,
@@ -140,7 +140,7 @@ export const getServerSideProps = async ({
       console.log(error);
     });
 
-  if (!destination) {
+  if (!activity) {
     return {
       notFound: true,
     };
@@ -148,9 +148,9 @@ export const getServerSideProps = async ({
 
   return {
     props: {
-      destination,
+      activity,
     },
   };
 };
 
-export default EditDestination;
+export default EditActivity;
