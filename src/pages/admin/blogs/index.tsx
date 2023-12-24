@@ -48,7 +48,7 @@ const Blogs = (props: BlogsProps) => {
             setIsDialogOpen(true);
             setDeleteItem({ id });
           }}
-          editUrl={`activities/${id}/edit`}
+          editUrl={`blogs/${id}/edit`}
         />
       ))}
     </PageLayout>

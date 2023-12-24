@@ -39,4 +39,5 @@ export type FormDataProps = {
     blocks: any[];
   };
   author: number;
+  publishedAt?: string;
 };

@@ -19,7 +19,7 @@ const CustomEditor = dynamic(
 export type FormFieldProps = {
   id: keyof FormDataProps;
   label: string;
-  type: 'text' | 'number' | 'file';
+  type: 'text' | 'number' | 'file' | 'date';
   rules: {
     creating: FormFieldRulesProps[];
     updating: FormFieldRulesProps[];

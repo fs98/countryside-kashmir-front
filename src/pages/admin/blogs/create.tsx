@@ -2,31 +2,31 @@ import { useState } from 'react';
 
 import Router from 'next/router';
 
+import moment from 'moment';
 import { useForm } from 'react-hook-form';
 
-import { SlideForm } from '@/blocks/SlidesPageBlocks/SlideForm';
+import { Form } from '@/components/Form/Form';
+import { blogFieldsData } from '@/forms/blogFieldsData';
+import { useAuth } from '@/hooks/auth';
 import { PageLayout } from '@/layouts/PageLayout';
 import { axios } from '@/lib/axios';
+import { FormDataProps } from '@/types/global';
 import { Message } from '@/types/message';
 import { validateImage } from '@/utils/validateImage';
 
-export type FormDataProps = {
-  image: File;
-  imageAlt: string;
-  order: string;
-  title: string;
-  subtitle: string;
-};
-
-const Slides = (): JSX.Element => {
+const Blogs = () => {
   const {
     register,
     handleSubmit,
     setError,
+    control,
     formState: { errors },
   } = useForm<FormDataProps>();
 
-  const onSubmit = handleSubmit(({ image, imageAlt, order, title, subtitle }) => {
+  const [message, setMessage] = useState<Message>();
+  const { user } = useAuth({ middleware: 'auth' });
+
+  const onSubmit = handleSubmit(({ image, imageAlt, name, keywords, description, publishedAt }) => {
     const formData = new FormData();
 
     const imageItem = image?.[0];
@@ -36,17 +36,27 @@ const Slides = (): JSX.Element => {
       if (errorType) {
         return setError('image', { type: errorType });
       }
-      formData.append('image', imageItem);
+    }
+
+    if (!description || description?.blocks.length === 0) {
+      setError('description', {
+        type: 'required',
+        message: 'The content is required.',
+      });
     }
 
     formData.append('image', imageItem);
     formData.append('image_alt', imageAlt);
-    formData.append('order', order);
-    formData.append('title', title);
-    formData.append('subtitle', subtitle);
+    formData.append('keywords', keywords.toLowerCase());
+    formData.append('title', name);
+    formData.append('content', JSON.stringify(description));
+    formData.append('author_id', user.id);
+
+    const publishedAtISO = moment(publishedAt).format();
+    formData.append('published_at', publishedAtISO);
 
     axios
-      .post('/api/slides', formData, {
+      .post('/api/blogs', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -56,7 +66,7 @@ const Slides = (): JSX.Element => {
           title: res.data.message,
           type: 'success',
         });
-        Router.push('/admin/slides');
+        Router.push('/admin/blogs');
       })
       .catch(error => {
         if (error.response?.status === 500 || error.response?.status === 422) {
@@ -72,20 +82,21 @@ const Slides = (): JSX.Element => {
       });
   });
 
-  const [message, setMessage] = useState<Message>();
-
   return (
-    <PageLayout resource="slides">
+    <PageLayout resource="blogs">
       {message && <div>{message.title}</div>}
-      <SlideForm
+
+      <Form
         onSubmit={onSubmit}
         errors={errors}
         register={register}
         editing={false}
         inputAttributes={[]}
+        control={control}
+        formFields={blogFieldsData}
       />
     </PageLayout>
   );
 };
 
-export default Slides;
+export default Blogs;
