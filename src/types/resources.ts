@@ -14,7 +14,8 @@ type BasicResourceType = {
   created_at: string;
   updated_at: string;
   slug: string;
-  description: Content;
+  description?: Content;
+  content?: Content;
   keywords: string;
   user: User;
   author: Author;
@@ -34,4 +35,5 @@ export interface Destination extends Image, BasicResourceType {}
 export interface Activity extends Image, BasicResourceType {}
 export interface Blog extends Image, BasicResourceType {
   title: string;
+  published_at: string;
 }
