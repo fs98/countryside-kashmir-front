@@ -1,15 +1,5 @@
-import { FormDataProps } from '@/pages/admin/destinations/create';
-import { FormFieldRulesProps, ruleFile, ruleMax, ruleRequired } from '@/utils/formRules';
-
-type FormFieldProps = {
-  id: keyof FormDataProps;
-  label: string;
-  type: 'text' | 'number' | 'file';
-  rules: {
-    creating: FormFieldRulesProps[];
-    updating: FormFieldRulesProps[];
-  };
-};
+import { FormFieldProps } from '@/components/Form/Form';
+import { ruleFile, ruleMax, ruleRequired } from '@/utils/formRules';
 
 export const globalFieldsData: FormFieldProps[] = [
   {

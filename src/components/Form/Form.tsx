@@ -16,7 +16,7 @@ const CustomEditor = dynamic(
   },
 );
 
-type FormFieldProps = {
+export type FormFieldProps = {
   id: keyof FormDataProps;
   label: string;
   type: 'text' | 'number' | 'file';

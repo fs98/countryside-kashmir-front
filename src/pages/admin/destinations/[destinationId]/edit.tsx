@@ -4,10 +4,10 @@ import Router from 'next/router';
 
 import { useForm } from 'react-hook-form';
 
-import { DestinationForm } from '@/blocks/DestinationsPageBlocks/DestinationForm';
+import { Form } from '@/components/Form/Form';
 import { PageLayout } from '@/layouts/PageLayout';
 import { axios } from '@/lib/axios';
-import { FormDataProps } from '@/pages/admin/destinations/create';
+import { FormDataProps } from '@/types/global';
 import { Message } from '@/types/message';
 import { Destination } from '@/types/resources';
 import { validateImage } from '@/utils/validateImage';
@@ -109,7 +109,7 @@ const EditDestination = ({ destination }: EditDestinationProps) => {
     <PageLayout resource="destinations">
       {message && <div>{message.title}</div>}
 
-      <DestinationForm
+      <Form
         onSubmit={onSubmit}
         errors={errors}
         register={register}
