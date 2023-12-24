@@ -7,14 +7,15 @@ import Blocks from 'editorjs-blocks-react-renderer';
 import { Block } from '@/components/Block/Block';
 import { ImageHeaderLayout } from '@/layouts/ImageHeaderLayout';
 import { axios } from '@/lib/axios';
+import { Content, Image } from '@/types/global';
 
-import { ContentProps, ImageProps, ItemsProps } from '..';
+import { ItemsProps } from '..';
 
 type ActivityProps = {
   activity: ItemsProps & {
-    description: ContentProps;
+    description: Content;
     keywords: string;
-    activity_images: ImageProps[];
+    activity_images: Image[];
   };
 };
 

@@ -9,23 +9,23 @@ import { CardSimple } from '@/components/CardSimple/CardSimple';
 import { useAuth } from '@/hooks/auth';
 import { HomeLayout } from '@/layouts/HomeLayout';
 import { axios } from '@/lib/axios';
-import { ContentProps, ImageProps } from '@/types/global';
+import { Content, Image } from '@/types/global';
 import { Package } from '@/types/resources';
 
-export type SlidesProps = ImageProps & {
+export type SlidesProps = Image & {
   title: string;
   subtitle: string;
 };
 
 // ItemsProps correspond to destinations, activities and packages
-export type ItemsProps = ImageProps & {
+export type ItemsProps = Image & {
   title?: string;
   name?: string;
   slug: string;
 };
 
-export type BlogsProps = ImageProps & {
-  content: ContentProps;
+export type BlogsProps = Image & {
+  content: Content;
   title: string;
   slug: string;
 };

@@ -7,8 +7,7 @@ import LightGallery from 'lightgallery/react';
 import { Block } from '@/components/Block/Block';
 import { ImageHeaderLayout } from '@/layouts/ImageHeaderLayout';
 import { axios } from '@/lib/axios';
-
-import { ImageProps } from '.';
+import { Image } from '@/types/global';
 
 // import styles
 import 'lightgallery/css/lightgallery.css';
@@ -16,7 +15,7 @@ import 'lightgallery/css/lg-zoom.css';
 import 'lightgallery/css/lg-thumbnail.css';
 
 type GalleryProps = {
-  galleryImages: ImageProps[];
+  galleryImages: Image[];
 };
 
 const Gallery: FC<GalleryProps> = ({ galleryImages }) => (

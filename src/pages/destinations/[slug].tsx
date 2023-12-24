@@ -7,14 +7,14 @@ import Blocks from 'editorjs-blocks-react-renderer';
 import { Block } from '@/components/Block/Block';
 import { ImageHeaderLayout } from '@/layouts/ImageHeaderLayout';
 import { axios } from '@/lib/axios';
-
-import { ContentProps, ImageProps, ItemsProps } from '..';
+import { ItemsProps } from '@/pages/index';
+import { Content, Image } from '@/types/global';
 
 type DestinationProps = {
   destination: ItemsProps & {
-    description: ContentProps;
+    description: Content;
     keywords: string;
-    destination_images: ImageProps[];
+    destination_images: Image[];
   };
 };
 

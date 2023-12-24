@@ -1,4 +1,4 @@
-export type ContentProps = {
+export type Content = {
   time: number;
   blocks: Array<{
     id: string;
@@ -10,7 +10,7 @@ export type ContentProps = {
   version: string;
 };
 
-export type ImageProps = {
+export type Image = {
   image_url: string;
   image_alt: string;
 };
