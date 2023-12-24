@@ -59,7 +59,7 @@ const Slides = (): JSX.Element => {
         Router.push('/admin/slides');
       })
       .catch(error => {
-        if (error.response.status === 500 || error.response.status === 422) {
+        if (error.response?.status === 500 || error.response?.status === 422) {
           setMessage({
             title: error.response.data.message,
             type: 'error',
