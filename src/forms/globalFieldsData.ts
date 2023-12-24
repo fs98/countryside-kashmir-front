@@ -11,7 +11,7 @@ type FormFieldProps = {
   };
 };
 
-export const destinationFormFields: FormFieldProps[] = [
+export const globalFieldsData: FormFieldProps[] = [
   {
     id: 'image',
     label: 'Image (png, jpg, jpeg)',
