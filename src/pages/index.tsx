@@ -118,11 +118,26 @@ const Home = ({
 
 export const getServerSideProps = async () => {
   try {
-    const slides = await axios.get('/api/guest/slides').then(res => res.data.data);
-    const destinations = await axios.get('/api/guest/destinations').then(res => res.data.data);
-    const activities = await axios.get('/api/guest/activities').then(res => res.data.data);
-    const blogs = await axios.get('/api/guest/blogs').then(res => res.data.data);
-    const categoryOffers = await axios.get('api/guest/categories').then(res => res.data.data);
+    const apiEndpoints = [
+      '/api/guest/slides',
+      '/api/guest/destinations',
+      '/api/guest/activities',
+      '/api/guest/blogs',
+      'api/guest/categories',
+    ];
+
+    const allResponses = await Promise.all(
+      apiEndpoints.map(endpoint =>
+        axios
+          .get(endpoint)
+          .then(res => res.data.data || [])
+          .catch(() => {
+            return [];
+          }),
+      ),
+    );
+
+    const [slides, destinations, activities, blogs, categoryOffers] = allResponses;
 
     return {
       props: {
@@ -134,9 +149,8 @@ export const getServerSideProps = async () => {
       },
     };
   } catch (error) {
+    if (error.response?.status !== 409) throw error;
     console.error('API request failed:', error);
-    // Handle error case here
-    // if (error.response?.status !== 409) throw error;
 
     // Return default values in case of failure
     return {
