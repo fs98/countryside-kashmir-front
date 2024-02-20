@@ -6,6 +6,7 @@ name: Countryside Kashmir Build
 on:
   push:
     branches: [ "master" ]
+  workflow_dispatch:
 
 jobs:
   build:
