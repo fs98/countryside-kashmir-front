@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren } from 'react';
+import { PropsWithChildren } from 'react';
 
 import { Typography } from '@mui/material';
 import Head from 'next/head';
@@ -20,7 +20,7 @@ export type HomeLayoutProps = PropsWithChildren & {
   title: string;
 };
 
-export const HomeLayout: FC<HomeLayoutProps> = ({ slides, title, children }) => {
+export const HomeLayout = ({ slides, title, children }: HomeLayoutProps) => {
   SwiperCore.use([Autoplay]);
 
   return (

@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { useState } from 'react';
 
 import { useRouter } from 'next/router';
 
@@ -59,7 +59,7 @@ export type NavigationProps = {
   };
 };
 
-export const Navigation: FC<NavigationProps> = ({ user }) => {
+export const Navigation = ({ user }: NavigationProps) => {
   const router = useRouter();
 
   const { logout } = useAuth();
